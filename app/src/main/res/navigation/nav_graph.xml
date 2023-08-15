@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.chalo.fieldauditapp.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_busSelectionFragment"
+            app:destination="@id/busSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/busSelectionFragment"
+        android:name="com.chalo.fieldauditapp.BusSelectionFragment"
+        android:label="fragment_bus_selection"
+        tools:layout="@layout/fragment_bus_selection" >
+        <action
+            android:id="@+id/action_busSelectionFragment_to_busSelectionDispFragment"
+            app:destination="@id/busSelectionDispFragment" />
+        <action
+            android:id="@+id/action_busSelectionFragment_to_auditReportFragment"
+            app:destination="@id/auditReportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/busSelectionDispFragment"
+        android:name="com.chalo.fieldauditapp.BusSelectionDispFragment"
+        android:label="fragment_bus_selection_disp"
+        tools:layout="@layout/fragment_bus_selection_disp" >
+        <action
+            android:id="@+id/action_busSelectionDispFragment_to_busSelectionFineFragment"
+            app:destination="@id/busSelectionFineFragment" />
+        <argument
+            android:name="dataVRec"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/busSelectionFineFragment"
+        android:name="com.chalo.fieldauditapp.BusSelectionFineFragment"
+        android:label="fragment_bus_selection_fine"
+        tools:layout="@layout/fragment_bus_selection_fine" >
+        <action
+            android:id="@+id/action_busSelectionFineFragment_to_busDetailsDoneFragment"
+            app:destination="@id/busDetailsDoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/busDetailsDoneFragment"
+        android:name="com.chalo.fieldauditapp.BusDetailsDoneFragment"
+        android:label="fragment_bus_details_done"
+        tools:layout="@layout/fragment_bus_details_done" />
+    <fragment
+        android:id="@+id/auditReportFragment"
+        android:name="com.chalo.fieldauditapp.AuditReportFragment"
+        android:label="fragment_audit_report"
+        tools:layout="@layout/fragment_audit_report" />
+</navigation>

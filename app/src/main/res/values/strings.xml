@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">FieldAuditApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log">Login</string>
+    <string name="invalid_use">Invalid User ID</string>
+    <string name="invalid_pas">Invalid Password</string>
+    <string name="user_id">User Id</string>
+    <string name="password">Password</string>
+    <string name="proceed">Proceed</string>
+    <string name="scan_bus_qr">Scan bus QR</string>
+    <string name="audit_report">Audit Report</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="mh_393984">MH 393984</string>
+    <string name="current_stop">Current Stop</string>
+    <string name="kapilvastu_buddha_vihar">Kapilvastu Buddha Vihar</string>
+    <string name="deboard_count">Deboard Count</string>
+    <string name="_02">02</string>
+    <string name="passenger_count">Passenger Count</string>
+    <string name="_17">17</string>
+    <string name="start_audit">START AUDIT</string>
+    <string name="sans_serif_medium">sans-serif-medium</string>
+    <string name="issue_fine_ticket">Issue fine ticket</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="issue_fine">ISSUE FINE</string>
+    <string name="end_audit">END AUDIT</string>
+    <string name="confirm_your_details">Confirm your details</string>
+    <string name="bus">Bus</string>
+    <string name="mh7675669">MH7675669</string>
+    <string name="route">Route</string>
+    <string name="s_849">S-849</string>
+    <string name="vashi_junction_andheri_east">Vashi junction - Andheri east</string>
+    <string name="manual_count">Manual count</string>
+    <string name="_9">9</string>
+    <string name="passenger_caught">Passenger caught</string>
+    <string name="_6">6</string>
+    <string name="fine_collection">Fine collection</string>
+    <string name="_4567">₹4567</string>
+    <string name="submit">SUBMIT</string>
+</resources>
