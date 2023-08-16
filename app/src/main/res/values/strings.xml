@@ -42,4 +42,6 @@
     <string name="fine_collection">Fine collection</string>
     <string name="_4567">₹4567</string>
     <string name="submit">SUBMIT</string>
+    <string name="audit_completed_successfully">Audit completed successfully</string>
+    <string name="okay">OKAY</string>
 </resources>

@@ -6,9 +6,12 @@
     tools:context=".AuditReportFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Audit fragment" />
-
+        tools:itemCount="3"
+        tools:listitem="@layout/card_route_design"/>
 </FrameLayout>

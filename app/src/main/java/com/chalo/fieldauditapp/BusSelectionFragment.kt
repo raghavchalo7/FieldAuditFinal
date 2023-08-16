@@ -43,8 +43,9 @@ class BusSelectionFragment : Fragment() {
         _binding!!.navView.setNavigationItemSelectedListener {
             Log.d("TAG1","5")
             when(it.itemId) {
-                R.id.audit -> Toast.makeText(context,"Audit Button Pressed.............",
-                    Toast.LENGTH_SHORT).show()
+//                R.id.audit -> Toast.makeText(context,"Audit Button Pressed.............",
+//                    Toast.LENGTH_SHORT).show()
+                R.id.audit -> findNavController().navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
             }
             true
         }
