@@ -44,4 +44,7 @@
     <string name="submit">SUBMIT</string>
     <string name="audit_completed_successfully">Audit completed successfully</string>
     <string name="okay">OKAY</string>
+    <string name="total_buses">Total Buses</string>
+    <string name="_8949">₹8949</string>
+    <string name="routes_audited">Routes audited</string>
 </resources>
