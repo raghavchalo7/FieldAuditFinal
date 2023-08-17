@@ -47,4 +47,8 @@
     <string name="total_buses">Total Buses</string>
     <string name="_8949">₹8949</string>
     <string name="routes_audited">Routes audited</string>
+    <string name="fine_collected">Fine Collected</string>
+    <string name="fine_count">Fine Count</string>
+    <string name="_171101">171101</string>
+    <string name="_0">0</string>
 </resources>

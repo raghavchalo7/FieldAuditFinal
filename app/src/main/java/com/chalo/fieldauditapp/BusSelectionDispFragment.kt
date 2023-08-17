@@ -41,7 +41,8 @@ class BusSelectionDispFragment : Fragment() {
         val currentPassengerCount=findVal(amount,"currentPassengerCount")
         binding.currentPassengerCountTV.text=currentPassengerCount
         binding.redirectBusDispToBusSelectFine.setOnClickListener {
-            findNavController().navigate(R.id.action_busSelectionDispFragment_to_busSelectionFineFragment)
+            val action=BusSelectionDispFragmentDirections.actionBusSelectionDispFragmentToBusSelectionFineFragment(amount)
+            findNavController().navigate(action)
         }
         return binding.root
     }

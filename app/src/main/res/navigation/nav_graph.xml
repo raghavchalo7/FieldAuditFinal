@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_busSelectionFineFragment_to_busDetailsDoneFragment"
             app:destination="@id/busDetailsDoneFragment" />
+        <argument
+            android:name="dataVRec"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/busDetailsDoneFragment"
