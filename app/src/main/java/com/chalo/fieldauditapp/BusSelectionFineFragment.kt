@@ -1,6 +1,7 @@
 package com.chalo.fieldauditapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +9,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.chalo.fieldauditapp.databinding.ConfirmdetailsBinding
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionFineBinding
 import com.chalo.fieldauditapp.databinding.FragmentLoginBinding
+import com.chalo.fieldauditapp.model.CreateAuditRequest
+import com.chalo.fieldauditapp.model.Fine
+import com.chalo.fieldauditapp.model.UserPost
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 
 class BusSelectionFineFragment : Fragment() {
@@ -58,17 +69,25 @@ class BusSelectionFineFragment : Fragment() {
 
         binding.issueFine.setOnClickListener {
 
-            fineCount=fineCount+1
-            val fine1:EditText?=binding.fineAmountET
-            var fine:Int=0
-            if (fine1 != null) {
-                fine=fine1.text.toString().toInt()
-            }
+            val msg=binding.fineAmountET.text.toString()
+            if(msg.trim().length>0) {
+                fineCount = fineCount + 1
+                val fine1: EditText? = binding.fineAmountET
+                var fine: Int = 0
+                if (fine1 != null) {
+                    fine = fine1.text.toString().toInt()
+                }
 
-            fineColl=fineColl+fine
-            binding.fineCountTV.text=fineCount.toString()
-            binding.fineCollectedTV.text=fineColl.toString()
-            binding.fineTV.visibility=View.VISIBLE
+                binding.fineAmountET.getText().clear();
+                fineColl = fineColl + fine
+                binding.fineCountTV.text = fineCount.toString()
+                binding.fineCollectedTV.text = fineColl.toString()
+                binding.fineTV.visibility = View.VISIBLE
+            }
+            else
+            {
+                Toast.makeText(context, "Enter some fine", Toast.LENGTH_LONG).show()
+            }
 
         }
 
@@ -118,6 +137,39 @@ class BusSelectionFineFragment : Fragment() {
                 b2.setOnClickListener {
                     findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
                     bottomSheetDialog.dismiss()
+
+
+                    //URL is https://c7e4-49-43-1-55.ngrok-free.app/field-audit/create_field_audit' not https://jsonplaceholder.typicode.com/
+//                    val retrofitbuilder= Retrofit.Builder()
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .baseUrl("https://c7e4-49-43-1-55.ngrok-free.app/field-audit/")
+//                        .build()
+//
+//                    val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
+//                    //val userpost= UserPost(1,1,"title","This is Body")
+//
+//                    val lt=Fine(20,232)
+//                    val lt2=Fine(50,532)
+//                    val lst= listOf<Fine>(lt,lt2)
+//                    val auditReq=CreateAuditRequest(2,"2023-08-18T13:00:00Z",1,"2023-08-18T12:00:00Z",lst,90,10.0,31,"dw",32)
+//
+//                    //val lt= listOf<Fine>({110,1234567890})
+//
+//                    val call=createAuditApi.sendUserData(auditReq)
+//
+//                    call.enqueue(object : Callback<CreateAuditRequest> {
+//                        override fun onResponse(call: Call<CreateAuditRequest>, response: Response<CreateAuditRequest>) {
+//                            binding.code2TV.text=response.code().toString()
+////                            Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+//                        }
+//
+//                        override fun onFailure(call: Call<CreateAuditRequest>, t: Throwable) {
+//                            Log.d("Data",t.toString())
+//                            binding.code2TV.text=t.message.toString()
+//                        }
+//
+//                    })
+
                 }
             }
 

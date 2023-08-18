@@ -56,27 +56,27 @@ class LoginFragment : Fragment() {
         binding.editTextUser.addTextChangedListener(mTextWatcher);
         binding.editTextPassword.addTextChangedListener(mTextWatcher);
 
-        val retrofitbuilder=Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://jsonplaceholder.typicode.com/")
-            .build()
+//        val retrofitbuilder=Retrofit.Builder()
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .baseUrl("https://jsonplaceholder.typicode.com/")
+//            .build()
 
-        val jsonPlaceHolderAPI=retrofitbuilder.create(JsonPlaceHolderAPI::class.java)
+//        val jsonPlaceHolderAPI=retrofitbuilder.create(JsonPlaceHolderAPI::class.java)
 
         val userpost=UserPost(1,1,"title","This is Body")
 
-        val call=jsonPlaceHolderAPI.sendUserData(userpost)
-        call.enqueue(object :Callback<UserPost>{
-            override fun onResponse(call: Call<UserPost>, response: Response<UserPost>) {
-                binding.codeTV.text=response.code().toString()
-            }
-
-            override fun onFailure(call: Call<UserPost>, t: Throwable) {
-                Log.d("Data",t.toString())
-                binding.codeTV.text=t.message.toString()
-            }
-
-        })
+//        val call=jsonPlaceHolderAPI.sendUserData(userpost)
+//        call.enqueue(object :Callback<UserPost>{
+//            override fun onResponse(call: Call<UserPost>, response: Response<UserPost>) {
+//                binding.codeTV.text=response.code().toString()
+//            }
+//
+//            override fun onFailure(call: Call<UserPost>, t: Throwable) {
+//                Log.d("Data",t.toString())
+//                binding.codeTV.text=t.message.toString()
+//            }
+//
+//        })
 
 
         // run once to disable if empty

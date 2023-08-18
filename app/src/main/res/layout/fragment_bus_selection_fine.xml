@@ -190,7 +190,7 @@
                     android:layout_width="291dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="21dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:background="@drawable/rectangle_62"
                     android:ems="10"
                     android:hint="Enter amount"
@@ -200,64 +200,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="30dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="21dp"
-                    android:layout_marginTop="27dp"
-                    android:background="@drawable/rectangle_63"
-                    android:gravity="center"
-                    android:text="@string/_1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fineAmountET" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="30dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="27dp"
-                    android:background="@drawable/rectangle_63"
-                    android:gravity="center"
-                    android:text="@string/_2"
-                    app:layout_constraintStart_toEndOf="@+id/textView6"
-                    app:layout_constraintTop_toBottomOf="@+id/fineAmountET" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="30dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="27dp"
-                    android:background="@drawable/rectangle_63"
-                    android:gravity="center"
-                    android:text="@string/_3"
-                    app:layout_constraintStart_toEndOf="@+id/textView7"
-                    app:layout_constraintTop_toBottomOf="@+id/fineAmountET" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="30dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="27dp"
-                    android:background="@drawable/rectangle_63"
-                    android:gravity="center"
-                    android:text="@string/_4"
-                    app:layout_constraintStart_toEndOf="@+id/textView8"
-                    app:layout_constraintTop_toBottomOf="@+id/fineAmountET" />
-
-                <TextView
-                    android:layout_width="30dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="27dp"
-                    android:background="@drawable/rectangle_63"
-                    android:gravity="center"
-                    android:text="@string/_5"
-                    app:layout_constraintStart_toEndOf="@+id/textView9"
-                    app:layout_constraintTop_toBottomOf="@+id/fineAmountET" />
 
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -265,13 +207,13 @@
                     android:layout_width="291dp"
                     android:layout_height="42dp"
                     android:layout_marginStart="21dp"
-                    android:layout_marginTop="27dp"
+                    android:layout_marginTop="55dp"
                     android:background="@drawable/rectangle_6_proceed"
                     android:text="@string/issue_fine"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintTop_toBottomOf="@+id/fineAmountET" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -292,6 +234,12 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/code2TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="code2"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

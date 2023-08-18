@@ -36,7 +36,12 @@ class AuditReportFragment : Fragment() {
 //            if (b2 != null) {
 //                b2.setOnClickListener {
 //                    findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
-//                    bottomSheetDialog.dismiss()
+            val b2=bottomSheetDialog.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.dimissAudit)
+            if (b2 != null) {
+                b2.setOnClickListener {
+                    bottomSheetDialog.dismiss()
+                }
+            }
 //                }
 //            }
             bottomSheetDialog.show()

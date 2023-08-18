@@ -54,7 +54,11 @@
         android:id="@+id/busDetailsDoneFragment"
         android:name="com.chalo.fieldauditapp.BusDetailsDoneFragment"
         android:label="fragment_bus_details_done"
-        tools:layout="@layout/fragment_bus_details_done" />
+        tools:layout="@layout/fragment_bus_details_done" >
+        <action
+            android:id="@+id/action_busDetailsDoneFragment_to_busSelectionFragment2"
+            app:destination="@id/busSelectionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/auditReportFragment"
         android:name="com.chalo.fieldauditapp.AuditReportFragment"
