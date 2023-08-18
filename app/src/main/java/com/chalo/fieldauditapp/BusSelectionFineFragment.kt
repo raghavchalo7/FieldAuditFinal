@@ -140,35 +140,35 @@ class BusSelectionFineFragment : Fragment() {
 
 
                     //URL is https://c7e4-49-43-1-55.ngrok-free.app/field-audit/create_field_audit' not https://jsonplaceholder.typicode.com/
-//                    val retrofitbuilder= Retrofit.Builder()
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .baseUrl("https://c7e4-49-43-1-55.ngrok-free.app/field-audit/")
-//                        .build()
-//
-//                    val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
-//                    //val userpost= UserPost(1,1,"title","This is Body")
-//
-//                    val lt=Fine(20,232)
-//                    val lt2=Fine(50,532)
-//                    val lst= listOf<Fine>(lt,lt2)
-//                    val auditReq=CreateAuditRequest(2,"2023-08-18T13:00:00Z",1,"2023-08-18T12:00:00Z",lst,90,10.0,31,"dw",32)
-//
-//                    //val lt= listOf<Fine>({110,1234567890})
-//
-//                    val call=createAuditApi.sendUserData(auditReq)
-//
-//                    call.enqueue(object : Callback<CreateAuditRequest> {
-//                        override fun onResponse(call: Call<CreateAuditRequest>, response: Response<CreateAuditRequest>) {
-//                            binding.code2TV.text=response.code().toString()
-////                            Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
-//                        }
-//
-//                        override fun onFailure(call: Call<CreateAuditRequest>, t: Throwable) {
-//                            Log.d("Data",t.toString())
-//                            binding.code2TV.text=t.message.toString()
-//                        }
-//
-//                    })
+                    val retrofitbuilder= Retrofit.Builder()
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .baseUrl("https://c7e4-49-43-1-55.ngrok-free.app/field-audit/")
+                        .build()
+
+                    val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
+                    //val userpost= UserPost(1,1,"title","This is Body")
+
+                    val lt=Fine(20,232)
+                    val lt2=Fine(50,532)
+                    val lst= listOf<Fine>(lt,lt2)
+                    val auditReq=CreateAuditRequest(2,"2023-08-18T13:00:00Z",1,"2023-08-18T12:00:00Z",lst,90,10.0,31,"dw",32)
+
+                    //val lt= listOf<Fine>({110,1234567890})
+
+                    val call=createAuditApi.sendUserData(auditReq)
+
+                    call.enqueue(object : Callback<CreateAuditRequest> {
+                        override fun onResponse(call: Call<CreateAuditRequest>, response: Response<CreateAuditRequest>) {
+                            binding.code2TV.text=response.code().toString()
+//                            Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+                        }
+
+                        override fun onFailure(call: Call<CreateAuditRequest>, t: Throwable) {
+                            Log.d("Data",t.toString())
+                            binding.code2TV.text=t.message.toString()
+                        }
+
+                    })
 
                 }
             }
