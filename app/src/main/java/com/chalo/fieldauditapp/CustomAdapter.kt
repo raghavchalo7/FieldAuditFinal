@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 class CustomAdapter(private val mList: List<ItemViewsModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     // create new views
+
+    var onItemClick : ((ItemViewsModel)->Unit)?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
@@ -30,6 +32,10 @@ class CustomAdapter(private val mList: List<ItemViewsModel>) : RecyclerView.Adap
 
         // sets the text to the textview from our itemHolder class
         holder.stoptextView.text = ItemViewsModel.stop
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(ItemViewsModel)
+        }
 
     }
 

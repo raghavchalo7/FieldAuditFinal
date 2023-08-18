@@ -51,4 +51,6 @@
     <string name="fine_count">Fine Count</string>
     <string name="_171101">171101</string>
     <string name="_0">0</string>
+    <string name="audit_details">Audit details</string>
+    <string name="dismiss">Dismiss</string>
 </resources>

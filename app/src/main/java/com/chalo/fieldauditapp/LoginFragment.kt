@@ -3,12 +3,19 @@ package com.chalo.fieldauditapp
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.chalo.fieldauditapp.databinding.FragmentLoginBinding
+import com.chalo.fieldauditapp.model.UserPost
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginFragment : Fragment() {
 
@@ -48,6 +55,29 @@ class LoginFragment : Fragment() {
         _binding=FragmentLoginBinding.inflate(inflater,container, false)
         binding.editTextUser.addTextChangedListener(mTextWatcher);
         binding.editTextPassword.addTextChangedListener(mTextWatcher);
+
+        val retrofitbuilder=Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://jsonplaceholder.typicode.com/")
+            .build()
+
+        val jsonPlaceHolderAPI=retrofitbuilder.create(JsonPlaceHolderAPI::class.java)
+
+        val userpost=UserPost(1,1,"title","This is Body")
+
+        val call=jsonPlaceHolderAPI.sendUserData(userpost)
+        call.enqueue(object :Callback<UserPost>{
+            override fun onResponse(call: Call<UserPost>, response: Response<UserPost>) {
+                binding.codeTV.text=response.code().toString()
+            }
+
+            override fun onFailure(call: Call<UserPost>, t: Throwable) {
+                Log.d("Data",t.toString())
+                binding.codeTV.text=t.message.toString()
+            }
+
+        })
+
 
         // run once to disable if empty
         checkFieldsForEmptyValues();

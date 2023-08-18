@@ -31,6 +31,8 @@ class BusSelectionFragment : Fragment() {
 
         binding.redirectBusSelectToBusSelectDisp.setOnClickListener {
 //            IntentIntegrator().initiateScan()
+
+
             IntentIntegrator.forSupportFragment(this).initiateScan();
         }
 
