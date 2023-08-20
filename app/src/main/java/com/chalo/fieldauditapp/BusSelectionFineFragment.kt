@@ -1,6 +1,7 @@
 package com.chalo.fieldauditapp
 
 import android.os.Bundle
+import android.os.health.TimerStat
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.chalo.fieldauditapp.databinding.ConfirmdetailsBinding
@@ -21,10 +23,12 @@ import com.chalo.fieldauditapp.model.UserPost
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.HttpException
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import java.io.IOException
 
 
 class BusSelectionFineFragment : Fragment() {
@@ -57,6 +61,18 @@ class BusSelectionFineFragment : Fragment() {
         val currentPassengerCount=findVal(amount,"currentPassengerCount")
         binding.passengerTV.text=currentPassengerCount
 
+        val waybill_number=findVal(amount,"waybillNo")
+
+        val trip_number=findVal(amount,"tripNo")
+
+//        val audit_start_bus_stop_id=findVal(amount,"currentStopId")
+
+        val passenger_count=findVal(amount,"currentPassengerCount")
+
+        val tm=amount.indexOf("@")
+        val timeStart=amount.subSequence(0,tm).toString().toLong()
+
+        val fines= ArrayList<Fine>()
 
         if(fineCount!=0)
         {
@@ -68,6 +84,8 @@ class BusSelectionFineFragment : Fragment() {
         }
 
         binding.issueFine.setOnClickListener {
+            val ts = System.currentTimeMillis() / 1000
+            val fineTs = ts.toString()
 
             val msg=binding.fineAmountET.text.toString()
             if(msg.trim().length>0) {
@@ -77,6 +95,8 @@ class BusSelectionFineFragment : Fragment() {
                 if (fine1 != null) {
                     fine = fine1.text.toString().toInt()
                 }
+                val pair = Fine(fine,fineTs.toLong())
+                fines.add(pair)
 
                 binding.fineAmountET.getText().clear();
                 fineColl = fineColl + fine
@@ -135,36 +155,81 @@ class BusSelectionFineFragment : Fragment() {
             val b2=bottomSheetDialog.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.redirectBusSelectFineToBusDetailsDone)
             if (b2 != null) {
                 b2.setOnClickListener {
+                    val tsLong = System.currentTimeMillis() / 1000
+                    val timeEnd = tsLong.toString().toLong()
+                    Toast.makeText(context, "Fines:"+fines, Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
                     bottomSheetDialog.dismiss()
 
 
                     //URL is https://c7e4-49-43-1-55.ngrok-free.app/field-audit/create_field_audit' not https://jsonplaceholder.typicode.com/
-                    val retrofitbuilder= Retrofit.Builder()
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .baseUrl("https://c7e4-49-43-1-55.ngrok-free.app/field-audit/")
-                        .build()
-
-                    val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
-                    //val userpost= UserPost(1,1,"title","This is Body")
+//                    val retrofitbuilder= Retrofit.Builder()
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .baseUrl("https://c7e4-49-43-1-55.ngrok-free.app/field-audit/")
+//                        .build()
 
                     val lt=Fine(20,232)
                     val lt2=Fine(50,532)
                     val lst= listOf<Fine>(lt,lt2)
-                    val auditReq=CreateAuditRequest(2,"2023-08-18T13:00:00Z",1,"2023-08-18T12:00:00Z",lst,90,10.0,31,"dw",32)
+//                    val auditReq=CreateAuditRequest(2,"2023-08-18T13:00:00Z",audit_start_bus_stop_id.toInt(),"2023-08-18T12:00:00Z",lst,passenger_count.toInt(),10.0,31,trip_number,waybill_number.toInt())
+
+                    val audit_start_bus_stop_id=findVal(amount,"currentStopId")
+                    println("audit_start_bus_stop_id is: $audit_start_bus_stop_id")
+                    Log.d("Check","Passenger Count is: $passenger_count")
+                    val auditReq=CreateAuditRequest(2,timeEnd,3,timeStart,fines,passenger_count.toInt(),10.0,31,"dw",10)
+
+
+                    //val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
+                    //val userpost= UserPost(1,1,"title","This is Body")
 
                     //val lt= listOf<Fine>({110,1234567890})
 
-                    val call=createAuditApi.sendUserData(auditReq)
+                    //val call=createAuditApi.sendAuditData(auditReq)
+                    val call=RetrofitInstance.api.sendAuditData(auditReq)
 
-                    call.enqueue(object : Callback<CreateAuditRequest> {
-                        override fun onResponse(call: Call<CreateAuditRequest>, response: Response<CreateAuditRequest>) {
+                    //From Here
+
+//                    lifecycleScope.launchWhenCreated {
+//                        Log.d("Msg","Emtering in the lifeCycleScope")
+//                        val response=try{
+//                            RetrofitInstance.api.sendAuditData(auditReq)
+//                        } catch(e:IOException){
+//                                Log.e("Errorapi","IOException No Internet Connection")
+//                            return@launchWhenCreated
+//                        } catch (e:HttpException){
+//                            Log.e("Errorapi","HttpException No Internet Connection")
+//                            return@launchWhenCreated
+//                        }
+//                        if(response.isExecuted)
+//                        {
+//                            response.enqueue(object : Callback<String> {
+//                                override fun onResponse(call: Call<String>, response: Response<String>) {
+//                                    Log.d("Successapi",response.code().toString())
+//                                    binding.code2TV.text=response.code().toString()
+//                                    //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+//                                }
+//
+//                                override fun onFailure(call: Call<String>, t: Throwable) {
+//                                    Log.d("Errorapi",t.toString())
+//                                    binding.code2TV.text=t.message.toString()
+//                                }
+//
+//                            })
+//                        }
+//                    }
+
+                    //Till here
+
+//                    Commented now
+                    call.enqueue(object : Callback<String> {
+                        override fun onResponse(call: Call<String>, response: Response<String>) {
+                            Log.d("Successapi",response.code().toString())
                             binding.code2TV.text=response.code().toString()
-//                            Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+                            //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
                         }
 
-                        override fun onFailure(call: Call<CreateAuditRequest>, t: Throwable) {
-                            Log.d("Data",t.toString())
+                        override fun onFailure(call: Call<String>, t: Throwable) {
+                            Log.d("Errorapi",t.toString())
                             binding.code2TV.text=t.message.toString()
                         }
 

@@ -45,7 +45,8 @@
         tools:layout="@layout/fragment_bus_selection_fine" >
         <action
             android:id="@+id/action_busSelectionFineFragment_to_busDetailsDoneFragment"
-            app:destination="@id/busDetailsDoneFragment" />
+            app:destination="@id/busDetailsDoneFragment"
+            app:popUpTo="@id/busSelectionFragment" />
         <argument
             android:name="dataVRec"
             app:argType="string" />
