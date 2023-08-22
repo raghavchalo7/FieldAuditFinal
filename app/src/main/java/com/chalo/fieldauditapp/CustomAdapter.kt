@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.chalo.fieldauditapp.model.AuditReportRequestItem
 
-class CustomAdapter(private val mList: List<ItemViewsModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val mList: List<AuditReportRequestItem>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     // create new views
 
-    var onItemClick : ((ItemViewsModel)->Unit)?=null
+    var onItemClick : ((AuditReportRequestItem)->Unit)?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
@@ -28,10 +29,10 @@ class CustomAdapter(private val mList: List<ItemViewsModel>) : RecyclerView.Adap
 
         // sets the image to the imageview from our itemHolder class
         //holder.imageView.setImageResource(ItemViewsModel.image)
-        holder.routetextView.text=ItemViewsModel.route
+        holder.routetextView.text=ItemViewsModel.tripNumber
 
         // sets the text to the textview from our itemHolder class
-        holder.stoptextView.text = ItemViewsModel.stop
+        holder.stoptextView.text = ItemViewsModel.auditEndBusStopId.toString()
 
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(ItemViewsModel)

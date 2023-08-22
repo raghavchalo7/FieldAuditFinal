@@ -52,7 +52,7 @@ class AuditReportFragment : Fragment() {
                 }
                 Log.d("DATAInonResponse",routeList.toString())
                 sr=responseBody[0].auditStartBusStopId
-                val itemAdapter=CustomAdapter(routeList)
+                val itemAdapter=CustomAdapter(responseBody)
                 binding.recyclerview.layoutManager= LinearLayoutManager(context)
                 binding.recyclerview.adapter=itemAdapter
                 Log.d("DATALIst",routeList.toString())
@@ -61,6 +61,36 @@ class AuditReportFragment : Fragment() {
                     Toast.makeText(context, "Pressed", Toast.LENGTH_LONG).show()
                     val  bottomSheetDialog: BottomSheetDialog =  BottomSheetDialog(requireContext())
                     bottomSheetDialog.setContentView(R.layout.auditdetails)
+
+                    val busTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.busTV2a)
+                    if (busTV2a != null) {
+                        busTV2a.text=it.id.toString()
+                    }
+
+                    val routeTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.routeTV2a)
+                    if (routeTV2a != null) {
+                        routeTV2a.text=it.tripNumber
+                    }
+
+                    val stopTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.stopTV2a)
+                    if (stopTV2a != null) {
+                        stopTV2a.text=it.auditEndBusStopId.toString()
+                    }
+
+                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
+                    if (passengerTV2a != null) {
+                        passengerTV2a.text=it.passengerCount.toString()
+                    }
+
+                    val fineCountTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.fineCountTV2a)
+                    if (fineCountTV2a != null) {
+                        fineCountTV2a.text=it.totalFinesCollected.toString()
+                    }
+
+                    val fineTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.fineTV2a)
+                    if (fineTV2a != null) {
+                        fineTV2a.text=it.totalFinesCount.toString()
+                    }
 
 //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
 //                    if (passengerTV2a != null) {
