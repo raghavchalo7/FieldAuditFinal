@@ -35,7 +35,9 @@ class BusSelectionFragment : Fragment() {
             IntentIntegrator.forSupportFragment(this).initiateScan();
         }
 
-        toggle = ActionBarDrawerToggle(activity,binding.drawerLayout,R.string.open,R.string.close)
+//        val toolbar:androidx.appcompat.widget.Toolbar?=null
+//        toolbar=
+        toggle = ActionBarDrawerToggle((activity as AppCompatActivity),binding.drawerLayout,R.string.open,R.string.close)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
