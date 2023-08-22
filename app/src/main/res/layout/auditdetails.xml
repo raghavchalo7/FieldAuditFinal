@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/busTV2"
+        android:id="@+id/busTV2a"
         android:layout_width="200dp"
         android:layout_height="25dp"
         android:layout_marginStart="24dp"
@@ -59,10 +59,10 @@
         android:textColor="@color/gray"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/busTV2" />
+        app:layout_constraintTop_toBottomOf="@+id/busTV2a" />
 
     <TextView
-        android:id="@+id/routeTV2"
+        android:id="@+id/routeTV2a"
         android:layout_width="47dp"
         android:layout_height="25dp"
         android:layout_marginStart="24dp"
@@ -75,14 +75,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
-        android:id="@+id/stopTV2"
+        android:id="@+id/stopTV2a"
         android:layout_width="250dp"
         android:layout_height="19dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:text="@string/vashi_junction_andheri_east"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/routeTV2" />
+        app:layout_constraintTop_toBottomOf="@+id/routeTV2a" />
 
     <TextView
         android:id="@+id/textView16"
@@ -94,10 +94,10 @@
         android:textColor="@color/gray"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopTV2" />
+        app:layout_constraintTop_toBottomOf="@+id/stopTV2a" />
 
     <TextView
-        android:id="@+id/passengerTV2"
+        android:id="@+id/passengerTV2a"
         android:layout_width="200dp"
         android:layout_height="27dp"
         android:layout_marginStart="24dp"
@@ -118,11 +118,11 @@
         android:textColor="@color/gray"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passengerTV2" />
+        app:layout_constraintTop_toBottomOf="@+id/passengerTV2a" />
 
 
     <TextView
-        android:id="@+id/fineCountTV2"
+        android:id="@+id/fineCountTV2a"
         android:layout_width="200dp"
         android:layout_height="27dp"
         android:layout_marginStart="24dp"
@@ -143,10 +143,10 @@
         android:textColor="@color/gray"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fineCountTV2" />
+        app:layout_constraintTop_toBottomOf="@+id/fineCountTV2a" />
 
     <TextView
-        android:id="@+id/fineTV2"
+        android:id="@+id/fineTV2a"
         android:layout_width="200dp"
         android:layout_height="27dp"
         android:layout_marginStart="24dp"
@@ -169,7 +169,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fineTV2" />
+        app:layout_constraintTop_toBottomOf="@+id/fineTV2a" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
 package com.chalo.fieldauditapp
 
-data class ItemViewsModel(val route: String,val stop: String) {
+data class ItemViewsModel(val route: String?=null,val stop: String?=null) {
 }

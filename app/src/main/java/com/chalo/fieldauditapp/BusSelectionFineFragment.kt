@@ -185,55 +185,66 @@ class BusSelectionFineFragment : Fragment() {
                     //val lt= listOf<Fine>({110,1234567890})
 
                     //val call=createAuditApi.sendAuditData(auditReq)
-                    val call=RetrofitInstance.api.sendAuditData(auditReq)
+//                    val call=RetrofitInstance.api.sendAuditData(auditReq)
 
                     //From Here
 
-//                    lifecycleScope.launchWhenCreated {
-//                        Log.d("Msg","Emtering in the lifeCycleScope")
-//                        val response=try{
-//                            RetrofitInstance.api.sendAuditData(auditReq)
-//                        } catch(e:IOException){
-//                                Log.e("Errorapi","IOException No Internet Connection")
-//                            return@launchWhenCreated
-//                        } catch (e:HttpException){
-//                            Log.e("Errorapi","HttpException No Internet Connection")
-//                            return@launchWhenCreated
-//                        }
-//                        if(response.isExecuted)
-//                        {
-//                            response.enqueue(object : Callback<String> {
-//                                override fun onResponse(call: Call<String>, response: Response<String>) {
-//                                    Log.d("Successapi",response.code().toString())
-//                                    binding.code2TV.text=response.code().toString()
-//                                    //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
-//                                }
-//
-//                                override fun onFailure(call: Call<String>, t: Throwable) {
-//                                    Log.d("Errorapi",t.toString())
-//                                    binding.code2TV.text=t.message.toString()
-//                                }
-//
-//                            })
-//                        }
-//                    }
+                    lifecycleScope.launchWhenCreated {
+                        Log.d("Msg","Emtering in the lifeCycleScope")
+                        val response=try{
+                            RetrofitInstance.api.sendAuditData(auditReq)
+                            //Log.d("Successapi","Success")
+                        } catch(e:IOException){
+                                Log.d("Errorapi","IOException No Internet Connection")
+                            return@launchWhenCreated
+                        } catch (e:HttpException){
+                            Log.d("Errorapi","HttpException No Internet Connection")
+                            return@launchWhenCreated
+                        }
+                        if(response.isExecuted)
+                        {
+                            Log.d("Msg2","Success")
+                            response.enqueue(object : Callback<String> {
+                                override fun onResponse(call: Call<String>, response: Response<String>) {
+                                    Log.d("Successapi",response.code().toString())
+                                    binding.code2TV.text=response.code().toString()
+                                    //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+                                }
+
+                                override fun onFailure(call: Call<String>, t: Throwable) {
+                                    Log.d("Errorapi",t.toString())
+                                    binding.code2TV.text=t.message.toString()
+                                }
+
+                            })
+                        }
+                        else
+                        {
+                            Log.d("Errorapi","else")
+                        }
+                    }
 
                     //Till here
 
+
+
+
+
+
 //                    Commented now
-                    call.enqueue(object : Callback<String> {
-                        override fun onResponse(call: Call<String>, response: Response<String>) {
-                            Log.d("Successapi",response.code().toString())
-                            binding.code2TV.text=response.code().toString()
-                            //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
-                        }
-
-                        override fun onFailure(call: Call<String>, t: Throwable) {
-                            Log.d("Errorapi",t.toString())
-                            binding.code2TV.text=t.message.toString()
-                        }
-
-                    })
+//                    call.enqueue(object : Callback<String> {
+//                        override fun onResponse(call: Call<String>, response: Response<String>) {
+//                            Log.d("Successapi",response.code().toString())
+//                            binding.code2TV.text=response.code().toString()
+//                            //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+//                        }
+//
+//                        override fun onFailure(call: Call<String>, t: Throwable) {
+//                            Log.d("Errorapi",t.toString())
+//                            binding.code2TV.text=t.message.toString()
+//                        }
+//
+//                    })
 
                 }
             }

@@ -8,7 +8,7 @@ object RetrofitInstance {
     val api:CreateAuditAPI by lazy {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://c7e4-49-43-1-55.ngrok-free.app/field-audit/")
+            .baseUrl("https://96fb-49-43-3-42.ngrok-free.app/field-audit/")
             .build()
             .create(CreateAuditAPI::class.java)
     }
