@@ -53,4 +53,9 @@
     <string name="_0">0</string>
     <string name="audit_details">Audit details</string>
     <string name="dismiss">Dismiss</string>
+    <string name="issue_ticket">Issue ticket</string>
+    <string name="ticket_amount">Ticket Amount</string>
+    <string name="_456">₹456</string>
+    <string name="print">PRINT</string>
+    <string name="cancel">CANCEL</string>
 </resources>

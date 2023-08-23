@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.chalo.fieldauditapp.LoginFragment"
-        android:label="fragment_login"
+        android:label=""
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_busSelectionFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/busSelectionFragment"
         android:name="com.chalo.fieldauditapp.BusSelectionFragment"
-        android:label="fragment_bus_selection"
+        android:label=""
         tools:layout="@layout/fragment_bus_selection" >
         <action
             android:id="@+id/action_busSelectionFragment_to_busSelectionDispFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/busSelectionDispFragment"
         android:name="com.chalo.fieldauditapp.BusSelectionDispFragment"
-        android:label="fragment_bus_selection_disp"
+        android:label=""
         tools:layout="@layout/fragment_bus_selection_disp" >
         <action
             android:id="@+id/action_busSelectionDispFragment_to_busSelectionFineFragment"
@@ -41,12 +41,11 @@
     <fragment
         android:id="@+id/busSelectionFineFragment"
         android:name="com.chalo.fieldauditapp.BusSelectionFineFragment"
-        android:label="fragment_bus_selection_fine"
+        android:label=""
         tools:layout="@layout/fragment_bus_selection_fine" >
         <action
             android:id="@+id/action_busSelectionFineFragment_to_busDetailsDoneFragment"
-            app:destination="@id/busDetailsDoneFragment"
-            app:popUpTo="@id/busSelectionFragment" />
+            app:destination="@id/busDetailsDoneFragment" />
         <argument
             android:name="dataVRec"
             app:argType="string" />
@@ -54,7 +53,7 @@
     <fragment
         android:id="@+id/busDetailsDoneFragment"
         android:name="com.chalo.fieldauditapp.BusDetailsDoneFragment"
-        android:label="fragment_bus_details_done"
+        android:label=""
         tools:layout="@layout/fragment_bus_details_done" >
         <action
             android:id="@+id/action_busDetailsDoneFragment_to_busSelectionFragment2"

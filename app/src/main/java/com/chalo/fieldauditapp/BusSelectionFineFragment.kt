@@ -58,8 +58,8 @@ class BusSelectionFineFragment : Fragment() {
         val deboardedPassengerCount=findVal(amount,"deboardedPassengerCount")
         binding.deboardTV.text=deboardedPassengerCount
 
-        val currentPassengerCount=findVal(amount,"currentPassengerCount")
-        binding.passengerTV.text=currentPassengerCount
+//        val currentPassengerCount=findVal(amount,"currentPassengerCount")
+//        binding.passengerTV.text=currentPassengerCount
 
         val waybill_number=findVal(amount,"waybillNo")
 
@@ -74,14 +74,14 @@ class BusSelectionFineFragment : Fragment() {
 
         val fines= ArrayList<Fine>()
 
-        if(fineCount!=0)
-        {
-            binding.fineTV.visibility=View.VISIBLE
-        }
-        else
-        {
-            binding.fineTV.visibility=View.INVISIBLE
-        }
+//        if(fineCount!=0)
+//        {
+//            binding.fineTV.visibility=View.VISIBLE
+//        }
+//        else
+//        {
+//            binding.fineTV.visibility=View.INVISIBLE
+//        }
 
         binding.issueFine.setOnClickListener {
             val ts = System.currentTimeMillis() / 1000
@@ -89,7 +89,7 @@ class BusSelectionFineFragment : Fragment() {
 
             val msg=binding.fineAmountET.text.toString()
             if(msg.trim().length>0) {
-                fineCount = fineCount + 1
+//                fineCount = fineCount + 1
                 val fine1: EditText? = binding.fineAmountET
                 var fine: Int = 0
                 if (fine1 != null) {
@@ -99,10 +99,37 @@ class BusSelectionFineFragment : Fragment() {
                 fines.add(pair)
 
                 binding.fineAmountET.getText().clear();
-                fineColl = fineColl + fine
-                binding.fineCountTV.text = fineCount.toString()
-                binding.fineCollectedTV.text = fineColl.toString()
-                binding.fineTV.visibility = View.VISIBLE
+//                fineColl = fineColl + fine
+                //****From Here
+                val  bottomSheetDialog1: BottomSheetDialog =  BottomSheetDialog(requireContext())
+                bottomSheetDialog1.setContentView(R.layout.issueticket)
+
+                val fineTVi: TextView? =bottomSheetDialog1.findViewById<TextView>(R.id.fineTVi)
+                if (fineTVi != null) {
+                    fineTVi.text=fine.toString()
+                }
+
+                val b2i=bottomSheetDialog1.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.printTVi)
+                if (b2i!= null) {
+                    b2i.setOnClickListener {
+                        fineColl = fineColl + fine
+                        fineCount = fineCount + 1
+                        bottomSheetDialog1.dismiss()
+                    }
+                }
+
+                val b3i=bottomSheetDialog1.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.cancelTVi)
+                if (b3i!= null) {
+                    b3i.setOnClickListener {
+                        bottomSheetDialog1.dismiss()
+                    }
+                }
+
+                bottomSheetDialog1.show()
+                //****to Here
+//                binding.fineCountTV.text = fineCount.toString()
+//                binding.fineCollectedTV.text = fineColl.toString()
+//                binding.fineTV.visibility = View.VISIBLE
             }
             else
             {
@@ -131,10 +158,10 @@ class BusSelectionFineFragment : Fragment() {
                 stopTv2.text=currentStopName
             }
 
-            val passengerTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2)
-            if (passengerTv2 != null) {
-                passengerTv2.text=currentPassengerCount
-            }
+//            val passengerTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2)
+//            if (passengerTv2 != null) {
+//                passengerTv2.text=currentPassengerCount
+//            }
 
             val finecountTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.fineCountTV2)
             if (finecountTv2 != null) {
@@ -235,13 +262,13 @@ class BusSelectionFineFragment : Fragment() {
                     call.enqueue(object : Callback<String> {
                         override fun onResponse(call: Call<String>, response: Response<String>) {
                             Log.d("Successapi",response.code().toString())
-                            binding.code2TV.text=response.code().toString()
+                            //binding.code2TV.text=response.code().toString()
                             //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
                         }
 
                         override fun onFailure(call: Call<String>, t: Throwable) {
                             Log.d("Errorapi",t.toString())
-                            binding.code2TV.text=t.message.toString()
+                            //binding.code2TV.text=t.message.toString()
                         }
 
                     })

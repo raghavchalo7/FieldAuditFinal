@@ -11,8 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
-        android:background="@color/red"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 

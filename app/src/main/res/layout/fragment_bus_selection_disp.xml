@@ -11,40 +11,18 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:src="@drawable/arrow17"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/busNoTV"
-            android:layout_width="130dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/mh_393984"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="330dp"
-            android:layout_height="304dp"
-            android:layout_marginTop="19dp"
+            android:layout_height="213dp"
+            android:layout_marginTop="24dp"
             app:cardCornerRadius="7dp"
             app:cardElevation="7dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/busNoTV">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="95dp"
@@ -66,38 +44,12 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <TextView
-                android:layout_width="115dp"
-                android:layout_height="22dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="105dp"
-                android:text="@string/deboard_count"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="137dp"
-                android:src="@drawable/red_man" />
-
-            <TextView
-                android:id="@+id/deboardedPassengerCountTV"
-                android:layout_width="37dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="47sp"
-                android:layout_marginTop="135sp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/_02"
-                android:textColor="@color/black"
-                android:textSize="32sp" />
 
             <TextView
                 android:layout_width="128dp"
                 android:layout_height="22dp"
-                android:layout_marginStart="16sp"
-                android:layout_marginTop="202sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="105dp"
                 android:text="@string/passenger_count"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -106,15 +58,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="234dp"
+                android:layout_marginTop="137dp"
                 android:src="@drawable/green_man" />
 
             <TextView
                 android:id="@+id/currentPassengerCountTV"
                 android:layout_width="37dp"
                 android:layout_height="44dp"
-                android:layout_marginStart="47sp"
-                android:layout_marginTop="232sp"
+                android:layout_marginStart="47dp"
+                android:layout_marginTop="134dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/_17"
                 android:textColor="@color/black"
@@ -126,7 +78,7 @@
             android:id="@+id/redirectBusDispToBusSelectFine"
             android:layout_width="328dp"
             android:layout_height="48dp"
-            android:layout_marginTop="215dp"
+            android:layout_marginTop="353dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/rectangle_6_proceed"
             android:text="@string/start_audit"

@@ -11,39 +11,18 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:src="@drawable/arrow17"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/textView"
-            android:layout_width="115dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/deboard_count"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-        <TextView
-            android:id="@+id/textView2"
             android:layout_width="128dp"
             android:layout_height="22dp"
-            android:layout_marginStart="46dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
             android:text="@string/passenger_count"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/imageView2"
@@ -51,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/red_man2"
+            android:src="@drawable/green_man2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -68,95 +47,6 @@
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="113dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/green_man2"
-            app:layout_constraintStart_toEndOf="@+id/deboardTV"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <TextView
-            android:id="@+id/passengerTV"
-            android:layout_width="28dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="6dp"
-            android:fontFamily="@string/sans_serif_medium"
-            android:text="17"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/fineTV"
-            android:layout_width="330dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="15dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passengerTV">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/textView28"
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:text="@string/fine_collected"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView29"
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="84dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/fine_count"
-                    app:layout_constraintStart_toEndOf="@+id/textView28"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/fineCollectedTV"
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/_0"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView28" />
-
-                <TextView
-                    android:id="@+id/fineCountTV"
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="84dp"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/_0"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif-medium"
-                    app:layout_constraintStart_toEndOf="@+id/fineCollectedTV"
-                    app:layout_constraintTop_toBottomOf="@+id/textView29" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -166,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fineTV">
+            app:layout_constraintTop_toBottomOf="@+id/deboardTV">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -235,11 +125,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-        <TextView
-            android:id="@+id/code2TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="code2"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

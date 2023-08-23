@@ -29,14 +29,11 @@ class BusSelectionDispFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val amount = args.dataVRec
-        val busNo=findVal(amount,"busNo")
-        binding.busNoTV.text=busNo
+//        val busNo=findVal(amount,"busNo")
+//        binding.busNoTV.text=busNo
 
         val currentStopName=findVal(amount,"currentStopName")
         binding.currentStopNameTV.text=currentStopName
-
-        val deboardedPassengerCount=findVal(amount,"deboardedPassengerCount")
-        binding.deboardedPassengerCountTV.text=deboardedPassengerCount
 
         val currentPassengerCount=findVal(amount,"currentPassengerCount")
         binding.currentPassengerCountTV.text=currentPassengerCount
