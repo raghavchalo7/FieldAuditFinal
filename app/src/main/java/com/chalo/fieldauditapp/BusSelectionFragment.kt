@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionBinding
 import com.google.zxing.integration.android.IntentIntegrator
+import kotlinx.coroutines.Dispatchers.Main
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 
@@ -70,6 +71,13 @@ class BusSelectionFragment : Fragment() {
                                     val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
                                     val editor= sharedPreferences?.edit()
                                     editor?.remove("token")?.apply()
+
+                                    activity?.let{
+                                        val intent = Intent (it, SplashScreenActivity::class.java)
+                                        it.startActivity(intent)
+                                        (activity as AppCompatActivity).finish()
+                                    }
+
                                 }
             }
             true
