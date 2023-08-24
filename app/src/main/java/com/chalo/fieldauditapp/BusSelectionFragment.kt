@@ -17,8 +17,11 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionBinding
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.coroutines.Dispatchers.Main
@@ -33,6 +36,9 @@ class BusSelectionFragment : Fragment() {
     val SPEC_ALGORITHM_AES="AES"
 
     val DECRYPT_MODE = 2
+
+
+    lateinit var drawerLayout2: DrawerLayout
 
     lateinit var toggle: ActionBarDrawerToggle
     private var _binding: FragmentBusSelectionBinding?=null
@@ -54,9 +60,11 @@ class BusSelectionFragment : Fragment() {
 
 //        val toolbar:androidx.appcompat.widget.Toolbar?=null
 //        toolbar=
+
+        drawerLayout2 = binding.drawerLayout
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toggle = ActionBarDrawerToggle((activity as AppCompatActivity),binding.drawerLayout,R.string.open,R.string.close)
-        binding.drawerLayout.addDrawerListener(toggle)
+        toggle = ActionBarDrawerToggle((activity as AppCompatActivity),drawerLayout2,R.string.open,R.string.close)
+        drawerLayout2.addDrawerListener(toggle)
         toggle.syncState()
 
 //        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)

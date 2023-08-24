@@ -56,6 +56,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.google.android.material:material:1.2.0-alpha05")
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
 
 //    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 //    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")

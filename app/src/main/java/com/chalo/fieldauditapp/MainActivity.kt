@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.chalo.fieldauditapp.databinding.FragmentBusSelectionBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController:NavController
@@ -51,8 +53,9 @@ class MainActivity : AppCompatActivity() {
 //        navController.graph = navGraph
 
 
-
-//        appBarConfiguration = AppBarConfiguration(navController.graph)
+        //val dr:DrawerLayout=findViewById(BusSelectionFragment.d)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        //appBarConfiguration = AppBarConfiguration(navController.graph, R.id.drawerLayout)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //
         val toolbar:androidx.appcompat.widget.Toolbar?=findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
@@ -63,6 +66,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
