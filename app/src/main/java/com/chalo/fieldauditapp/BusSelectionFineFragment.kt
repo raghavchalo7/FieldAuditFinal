@@ -148,15 +148,15 @@ class BusSelectionFineFragment : Fragment() {
                 busTv2.text=busNo
             }
 
-            val routeTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.routeTV2)
-            if (routeTv2 != null) {
-                routeTv2.text=busNo
-            }
-
-            val stopTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.stopTV2)
-            if (stopTv2 != null) {
-                stopTv2.text=currentStopName
-            }
+//            val routeTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.routeTV2)
+//            if (routeTv2 != null) {
+//                routeTv2.text=busNo
+//            }
+//
+//            val stopTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.stopTV2)
+//            if (stopTv2 != null) {
+//                stopTv2.text=currentStopName
+//            }
 
 //            val passengerTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2)
 //            if (passengerTv2 != null) {

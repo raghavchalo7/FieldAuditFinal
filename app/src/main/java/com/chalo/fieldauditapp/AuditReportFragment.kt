@@ -77,10 +77,10 @@ class AuditReportFragment : Fragment() {
                         stopTV2a.text=it.auditEndBusStopId.toString()
                     }
 
-                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
-                    if (passengerTV2a != null) {
-                        passengerTV2a.text=it.passengerCount.toString()
-                    }
+//                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
+//                    if (passengerTV2a != null) {
+//                        passengerTV2a.text=it.passengerCount.toString()
+//                    }
 
                     val fineCountTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.fineCountTV2a)
                     if (fineCountTV2a != null) {

@@ -8,8 +8,8 @@
     <string name="user_id">User Id</string>
     <string name="password">Password</string>
     <string name="proceed">Proceed</string>
-    <string name="scan_bus_qr">Scan bus QR</string>
-    <string name="audit_report">Audit Report</string>
+    <string name="scan_bus_qr">Scan bus QR to Audit</string>
+    <string name="audit_report">Audit report</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="mh_393984">MH 393984</string>
@@ -58,4 +58,5 @@
     <string name="_456">₹456</string>
     <string name="print">PRINT</string>
     <string name="cancel">CANCEL</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -54,6 +54,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.google.android.material:material:1.2.0-alpha05")
 
 //    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")

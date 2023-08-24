@@ -1,5 +1,6 @@
 package com.chalo.fieldauditapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,11 +18,17 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         _binding = ActivitySplashScreenBinding.inflate(layoutInflater)
-        binding.ivChalo.alpha=0f
+        //binding.ivChalo.alpha=0f
         binding.ivChalo.animate().setDuration(1000).alpha(1f).withEndAction {
             val i= Intent(this,MainActivity::class.java)
             startActivity(i)
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
+            //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
+//            val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+//            val token= sharedPreferences?.getString("STRING_KEY1",null)
+//            if(token!=null)
+//            {
+//
+//            }
             finish()
         }
 

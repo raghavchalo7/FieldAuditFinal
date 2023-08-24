@@ -37,11 +37,27 @@ class BusSelectionDispFragment : Fragment() {
 
         val currentPassengerCount=findVal(amount,"currentPassengerCount")
         binding.currentPassengerCountTV.text=currentPassengerCount
+
+        val busNo=findVal(amount,"busNo")
+
         binding.redirectBusDispToBusSelectFine.setOnClickListener {
             val action=BusSelectionDispFragmentDirections.actionBusSelectionDispFragmentToBusSelectionFineFragment(amount)
             findNavController().navigate(action)
         }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val amount = args.dataVRec
+        val busNo=findVal(amount,"busNo")
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=busNo
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(true)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(false)
     }
 
     fun findVal(amount:String,key:String):String{
