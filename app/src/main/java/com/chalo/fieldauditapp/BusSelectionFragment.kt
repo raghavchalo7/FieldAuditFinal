@@ -97,16 +97,30 @@ class BusSelectionFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
-            if (result.contents == null) {
+            if (result == null) {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 val tsLong = System.currentTimeMillis() / 1000
                 val ts = tsLong.toString()
                 Toast.makeText(context, "Scanned at: " + ts, Toast.LENGTH_LONG).show()
-                var dataResult1=result.contents
+                var dataResult1Previous=result.toString()
+                //Toast.makeText(context,"Encrypted=${dataResult1Previous}",Toast.LENGTH_LONG).show()
                 //val encoded = Base64.encode(dataResult1Previous.toByteArray(),Base64.NO_WRAP)
-                ///var dataResult1=decryptWithECB(strToDecrypt:ByteArray, secret: String?)
-                val dataResult=ts+"@"+dataResult1
+                val v1data=findVal(dataResult1Previous,"v1")
+                Log.e("v1dat",v1data)
+                val encodedByte=v1data.toByteArray()
+                //Log.d("QRData",v1data)
+                val secret="qwtPhBPjlpTpoPS7"
+                val sec=Base64.encodeToString(secret.toByteArray(),Base64.NO_WRAP)
+                //val secretBase64= Base64.encode(secret,Base64.NO_WRAP)
+
+                val dataResult1ByteArray=decryptWithECB(encodedByte, sec)
+                //val decodeResult=Base64.decode(dataResult1ByteArray,Base64.NO_WRAP)
+//                Log.d("QRData",String(dataResult1ByteArray!!))
+                val dataResult1=String(dataResult1ByteArray!!)
+                Toast.makeText(context,"Decrypted=${dataResult1}",Toast.LENGTH_LONG).show()
+                val dataResult= "$ts@$dataResult1"
+                Log.d("QRData",dataResult1)
                 val action=BusSelectionFragmentDirections.actionBusSelectionFragmentToBusSelectionDispFragment(dataResult)
                 findNavController().navigate(action)
 
@@ -134,9 +148,19 @@ class BusSelectionFragment : Fragment() {
             cipher.init(Cipher.DECRYPT_MODE, secretKey)
             return cipher.doFinal(Base64.decode(strToDecrypt,Base64.NO_WRAP))
         }catch (e:Exception) {
-            Log.e(e.toString(), "Decryption Error")
+            Log.e("Decryption Error",e.toString())
             return null
         }
+    }
+
+    fun findVal(amount:String,key:String):String{
+        val index:Int = amount.indexOf(key)
+        val additional=index+key.length+2
+        val indexMid=amount.indexOf("\"", startIndex = additional)
+        var index2 = amount.indexOf("\"", startIndex = indexMid+2)
+        val answer=amount.subSequence(indexMid+1,index2).toString()
+        //Toast.makeText(context,"Got="+answer,Toast.LENGTH_LONG).show()
+        return answer
     }
 
 }
