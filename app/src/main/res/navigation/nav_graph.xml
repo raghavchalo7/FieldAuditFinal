@@ -57,7 +57,12 @@
         tools:layout="@layout/fragment_bus_details_done" >
         <action
             android:id="@+id/action_busDetailsDoneFragment_to_busSelectionFragment2"
-            app:destination="@id/busSelectionFragment" />
+            app:destination="@id/busSelectionFragment"
+            app:popUpTo="@id/busSelectionFragment" />
+        <action
+            android:id="@+id/action_busDetailsDoneFragment_to_loginFragment2"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/auditReportFragment"
