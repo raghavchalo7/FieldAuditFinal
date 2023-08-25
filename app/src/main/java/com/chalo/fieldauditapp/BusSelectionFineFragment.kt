@@ -1,5 +1,6 @@
 package com.chalo.fieldauditapp
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
 import android.os.health.TimerStat
 import android.util.Log
@@ -21,6 +22,7 @@ import com.chalo.fieldauditapp.model.CreateAuditRequest
 import com.chalo.fieldauditapp.model.Fine
 import com.chalo.fieldauditapp.model.UserPost
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
@@ -185,7 +187,7 @@ class BusSelectionFineFragment : Fragment() {
                     val tsLong = System.currentTimeMillis() / 1000
                     val timeEnd = tsLong.toString().toLong()
                     Toast.makeText(context, "Fines:"+fines, Toast.LENGTH_LONG).show()
-                    findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
+//                    findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
                     bottomSheetDialog.dismiss()
 
 
@@ -291,37 +293,40 @@ class BusSelectionFineFragment : Fragment() {
 
                     //1
 
-                    try{
-                        val response=RetrofitInstance.api.sendAuditData(auditReq)
-                            if(response.isExecuted)
-                            {
-                                Log.d("Msg2","Success")
-                                response.enqueue(object : Callback<String> {
-                                    override fun onResponse(call: Call<String>, response: Response<String>) {
-                                        Log.d("Successapi1",response.code().toString())
-                                        //binding.code2TV.text=response.code().toString()
-                                        //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
-                                    }
+//                    try{
+//                        val response=RetrofitInstance.api.sendAuditData(auditReq)
+//                            if(response.isExecuted)
+//                            {
+//                                Log.d("Msg2","Success")
+//                                response.enqueue(object : Callback<String> {
+//                                    override fun onResponse(call: Call<String>, response: Response<String>) {
+//                                        Log.d("Successapi1Wr",response.code().toString())
+//                                        //binding.code2TV.text=response.code().toString()
+//                                        //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+//                                    }
+//
+//                                    override fun onFailure(call: Call<String>, t: Throwable) {
+//                                        Log.d("Errorapi1Wr",t.toString())
+//                                        //binding.code2TV.text=t.message.toString()
+//                                    }
+//
+//                                })
+//                            }
+//                            else
+//                            {
+//                                //logout()
+//                            }
+//                            //Log.d("Successapi","Success")
+//                        } catch(e:IOException){
+//                                Log.d("Errorapi1Wr","IOException No Internet Connection")
+//                            //return@launchWhenCreated
+//                        } catch (e:HttpException){
+//                            Log.d("Errorapi1Wr","HttpException Note 200 Code")
+//                            //return@launchWhenCreated
+//                        }
 
-                                    override fun onFailure(call: Call<String>, t: Throwable) {
-                                        Log.d("Errorapi1",t.toString())
-                                        //binding.code2TV.text=t.message.toString()
-                                    }
 
-                                })
-                            }
-                            else
-                            {
-                                //logout()
-                            }
-                            //Log.d("Successapi","Success")
-                        } catch(e:IOException){
-                                Log.d("Errorapi1","IOException No Internet Connection")
-                            //return@launchWhenCreated
-                        } catch (e:HttpException){
-                            Log.d("Errorapi1","HttpException Note 200 Code")
-                            //return@launchWhenCreated
-                        }
+
 //                        if(response.isExecuted)
 //                        {
 //                            Log.d("Msg2","Success")
@@ -349,19 +354,38 @@ class BusSelectionFineFragment : Fragment() {
 
 
 //                    Commented now
-//                    call.enqueue(object : Callback<String> {
-//                        override fun onResponse(call: Call<String>, response: Response<String>) {
-//                            Log.d("Successapi",response.code().toString())
-//                            //binding.code2TV.text=response.code().toString()
-//                            //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
-//                        }
-//
-//                        override fun onFailure(call: Call<String>, t: Throwable) {
-//                            Log.d("Errorapi",t.toString())
-//                            //binding.code2TV.text=t.message.toString()
-//                        }
-//
-//                    })
+                    Log.d("DataAPI",auditReq.toString())
+                    Log.d("LOGREQ",call.request().toString())
+                    call.enqueue(object : Callback<Unit> {
+                        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                            Log.d("SuccessapiWr",response.code().toString())
+                            if(response.code()==200)
+                            {
+                                findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
+                            }
+                            else if(response.code()>=500)
+                            {
+                                Toast.makeText(context,"Server Error Please Try Again",Toast.LENGTH_LONG).show()
+                            }
+                            else if(response.code()>=400)
+                            {
+                                Log.d("400errorText",response.message())
+                                Log.d("400errorText",response.body().toString())
+                                Log.d("400errorText",response.errorBody().toString())
+
+
+                                Toast.makeText(context,"Please try again: "+response.body(),Toast.LENGTH_LONG).show()
+                            }
+                            //binding.code2TV.text=response.code().toString()
+                            //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+                        }
+
+                        override fun onFailure(call: Call<Unit>, t: Throwable) {
+                            Log.d("ErrorapiWr",t.toString())
+                            //binding.code2TV.text=t.message.toString()
+                        }
+
+                    })
 
                 }
             }
