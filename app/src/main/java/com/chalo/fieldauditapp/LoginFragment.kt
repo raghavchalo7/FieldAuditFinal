@@ -106,6 +106,11 @@ class LoginFragment : Fragment() {
                         val token= response.body()?.get("token")
                         val key="token"
                         saveData(key,token.toString())
+                        findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
+                    }
+                    else
+                    {
+                        Toast.makeText(context,"Enter correct Login Details",Toast.LENGTH_SHORT).show()
                     }
                     //binding.code2TV.text=response.code().toString()
                     //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
@@ -117,7 +122,7 @@ class LoginFragment : Fragment() {
                 }
 
             })
-            findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
+//            findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
         }
         return binding.root
     }

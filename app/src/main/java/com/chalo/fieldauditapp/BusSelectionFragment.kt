@@ -76,15 +76,17 @@ class BusSelectionFragment : Fragment() {
 //                    Toast.LENGTH_SHORT).show()
                 R.id.audit -> findNavController().navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
                 R.id.logout -> {
-                                    val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
-                                    val editor= sharedPreferences?.edit()
-                                    editor?.remove("token")?.apply()
 
-                                    activity?.let{
-                                        val intent = Intent (it, SplashScreenActivity::class.java)
-                                        it.startActivity(intent)
-                                        (activity as AppCompatActivity).finish()
-                                    }
+                    (activity as MainActivity?)!!.logout()
+//                                    val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+//                                    val editor= sharedPreferences?.edit()
+//                                    editor?.remove("token")?.apply()
+//
+//                                    activity?.let{
+//                                        val intent = Intent (it, SplashScreenActivity::class.java)
+//                                        it.startActivity(intent)
+//                                        (activity as AppCompatActivity).finish()
+//                                    }
 
                                 }
             }

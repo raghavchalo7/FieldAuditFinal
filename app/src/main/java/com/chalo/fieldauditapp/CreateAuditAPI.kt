@@ -9,6 +9,8 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.HeaderMap
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -23,8 +25,8 @@ interface CreateAuditAPI {
         @Body createAuditRequest: CreateAuditRequest
     ):Call<String>
 
-    @Headers("Token:cbus1111")
+    //@Headers("Token:cbus1111")
     @GET("audits-by-crew?crewId=1")
-    fun getAuditReports(
-    ):Call<ArrayList<AuditReportRequestItem>>
+    fun getAuditReports(@Header("Token") token:String):Call<ArrayList<AuditReportRequestItem>>
+    //@Header("Token") token:String
 }
