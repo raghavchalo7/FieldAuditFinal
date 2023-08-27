@@ -205,7 +205,7 @@ class BusSelectionFineFragment : Fragment() {
                     val audit_start_bus_stop_id=findVal(amount,"currentStopId")
                     println("audit_start_bus_stop_id is: $audit_start_bus_stop_id")
                     Log.d("Check","Passenger Count is: $passenger_count")
-                    val auditReq=CreateAuditRequest(2,timeEnd,3,timeStart,fines,passenger_count.toInt(),10.0,31,"dw",10)
+                    val auditReq=CreateAuditRequest(2,timeEnd,3,timeStart,fines,passenger_count.toInt(),31,"dw",10)
 
 
                     //val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
@@ -394,12 +394,10 @@ class BusSelectionFineFragment : Fragment() {
 
             // on below line we are adding on click listener
             // for our dismissing the dialog button.
-            if (btnClose != null) {
-                btnClose.setOnClickListener {
-                    // on below line we are calling a dismiss
-                    // method to close our dialog.
-                    findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
-                }
+            btnClose?.setOnClickListener {
+                // on below line we are calling a dismiss
+                // method to close our dialog.
+                findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
             }
 
             bottomSheetDialog.show()

@@ -101,7 +101,7 @@ class LoginFragment : Fragment() {
                     Log.d("SuccessapiLog",response.code().toString())
                     Log.d("SuccessapiLog",response.message().toString())
                     Log.d("SuccessapiLog",response.body().toString())
-                    if(response.code()==200)
+                    if(response.code()>=200)     //CORRECT THIS ***+++**********************
                     {
                         val token= response.body()?.get("token")
                         val key="token"

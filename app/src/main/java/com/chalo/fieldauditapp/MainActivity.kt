@@ -4,9 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -14,15 +18,63 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.chalo.fieldauditapp.databinding.ActivityMainBinding
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionBinding
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    lateinit var toggle: ActionBarDrawerToggle
+
+    private var _binding: ActivityMainBinding?=null
+    private val binding get() = _binding!!
+
+    lateinit var nview: NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        setContentView(R.layout.activity_main)
+
+
+        nview=binding.navView
+        toggle = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open,R.string.close)
+       binding.drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+//
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
+//        _binding!!.navView.setNavigationItemSelectedListener {
+//            Log.d("TAG1","5")
+//            when(it.itemId) {
+////                R.id.audit -> Toast.makeText(context,"Audit Button Pressed.............",
+////                    Toast.LENGTH_SHORT).show()
+//
+////                R.id.nav_host_fragment
+//                R.id.audit -> findNavController(R.id.nav_host_fragment).navigate(R.id.busSelectionDispFragment)
+//                R.id.logout -> {
+//
+//                    logout()
+////                                    val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+////                                    val editor= sharedPreferences?.edit()
+////                                    editor?.remove("token")?.apply()
+////
+////                                    activity?.let{
+////                                        val intent = Intent (it, SplashScreenActivity::class.java)
+////                                        it.startActivity(intent)
+////                                        (activity as AppCompatActivity).finish()
+////                                    }
+//
+//                }
+//            }
+//            true
+//        }
 
 
         var IS_LOGGED_IN: Boolean
@@ -33,11 +85,20 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
+        //val nvc=findNavController(R.id.nav_host_fragment)
+
+
 
 
         val graphInflater = navHostFragment.navController.navInflater
         val navGraph = graphInflater.inflate(R.navigation.nav_graph)
         navController = navHostFragment.navController
+
+
+//        //Fragment fragment = new FragmentOne()
+//        FragmentTransaction fragmentTransaction=getSupportManager().beginTransaction();
+//        val fr:FragmentTransaction=getSupportManager().beginTransaction();
+//        fragmentTransaction.replace(R.id.container,fragment).commit();
 
         //val IS_PRIVACY_POLICY_ACCEPTED:String="true"//for now
 
@@ -45,6 +106,51 @@ class MainActivity : AppCompatActivity() {
             if (IS_LOGGED_IN == false) R.id.loginFragment else R.id.busSelectionFragment
         navGraph.setStartDestination(destination)
         navController.graph = navGraph
+
+
+
+
+
+
+
+        _binding!!.navView.setNavigationItemSelectedListener {
+            Log.d("TAG1","5")
+            when(it.itemId) {
+//                R.id.audit -> Toast.makeText(context,"Audit Button Pressed.............",
+//                    Toast.LENGTH_SHORT).show()
+
+//                R.id.nav_host_fragment
+                R.id.audit -> //navController.navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
+                {
+                    //setContentView(R.layout.fragment_audit_report)
+                    val mFragmentManager = supportFragmentManager
+                    val mFragmentTransaction = mFragmentManager.beginTransaction()
+                    val mFragment = AuditReport2Fragment()
+                    mFragmentTransaction.replace(R.id.nav_host_fragment, mFragment)
+                    mFragmentTransaction.addToBackStack(null)
+                    mFragmentTransaction.commit()
+                    binding.drawerLayout.closeDrawers()
+                }
+                R.id.logout -> {
+
+                    logout()
+//                                    val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+//                                    val editor= sharedPreferences?.edit()
+//                                    editor?.remove("token")?.apply()
+//
+//                                    activity?.let{
+//                                        val intent = Intent (it, SplashScreenActivity::class.java)
+//                                        it.startActivity(intent)
+//                                        (activity as AppCompatActivity).finish()
+//                                    }
+
+                }
+            }
+            true
+        }
+
+
+
 
 
 //        val navHostFragment =
@@ -57,7 +163,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //val dr:DrawerLayout=findViewById(BusSelectionFragment.d)
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        val appBarConfiguration = AppBarConfiguration(navGraph,binding.drawerLayout)
         //appBarConfiguration = AppBarConfiguration(navController.graph, R.id.drawerLayout)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //
@@ -72,6 +178,14 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if(toggle.onOptionsItemSelected(item))
+//        {
+//            return true
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
     fun logout() {
             val sharedPreferences = this?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)

@@ -2,13 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/auditReport"
-    android:background="@color/white"
-    tools:context=".AuditReportFragment">
+    tools:context=".AuditReport2Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -107,6 +105,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView27"
             tools:itemCount="3"
             tools:listitem="@layout/card_route_design" />
-        /
+<!--        /-->
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

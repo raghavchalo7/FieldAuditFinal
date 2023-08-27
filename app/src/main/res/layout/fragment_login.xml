@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-black"
             android:text="@string/log"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/red"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import com.chalo.fieldauditapp.databinding.ActivityMainBinding
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionBinding
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.coroutines.Dispatchers.Main
@@ -40,9 +41,12 @@ class BusSelectionFragment : Fragment() {
 
     lateinit var drawerLayout2: DrawerLayout
 
-    lateinit var toggle: ActionBarDrawerToggle
+//    lateinit var toggle: ActionBarDrawerToggle
     private var _binding: FragmentBusSelectionBinding?=null
     private val binding get() = _binding!!
+
+    private var _binding2: ActivityMainBinding?=null
+    private val binding2 get() = _binding2!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,40 +62,82 @@ class BusSelectionFragment : Fragment() {
             IntentIntegrator.forSupportFragment(this).initiateScan();
         }
 
+        binding.buttoncheck.setOnClickListener {
+            findNavController().navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
+        }
+
+
+
+        //From here for main
+//        (activity as MainActivity?)!!.nview.setNavigationItemSelectedListener {
+//
+//            Log.d("TAG1","5")
+//            when(it.itemId) {
+////                R.id.audit -> Toast.makeText(context,"Audit Button Pressed.............",
+////                    Toast.LENGTH_SHORT).show()
+//
+////                R.id.nav_host_fragment
+//                R.id.audit -> findNavController().navigate(R.id.auditReportFragment)
+//                R.id.logout -> {
+//                        Toast.makeText(context,"Logout",Toast.LENGTH_SHORT).show()
+//                    //logout()
+////                                    val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+////                                    val editor= sharedPreferences?.edit()
+////                                    editor?.remove("token")?.apply()
+////
+////                                    activity?.let{
+////                                        val intent = Intent (it, SplashScreenActivity::class.java)
+////                                        it.startActivity(intent)
+////                                        (activity as AppCompatActivity).finish()
+////                                    }
+//
+//                }
+//            }
+//            true
+//        }
+
+        //To here for main
+
+
+
+
+
+
+
 //        val toolbar:androidx.appcompat.widget.Toolbar?=null
 //        toolbar=
 
-        drawerLayout2 = binding.drawerLayout
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toggle = ActionBarDrawerToggle((activity as AppCompatActivity),drawerLayout2,R.string.open,R.string.close)
-        drawerLayout2.addDrawerListener(toggle)
-        toggle.syncState()
+        //drawerLayout2 = binding.drawerLayout   ALSO COMMENTED
+//        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        toggle = ActionBarDrawerToggle((activity as AppCompatActivity),drawerLayout2,R.string.open,R.string.close)
+//        drawerLayout2.addDrawerListener(toggle)
+//        toggle.syncState()
 
 //        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        _binding!!.navView.setNavigationItemSelectedListener {
-            Log.d("TAG1","5")
-            when(it.itemId) {
-//                R.id.audit -> Toast.makeText(context,"Audit Button Pressed.............",
-//                    Toast.LENGTH_SHORT).show()
-                R.id.audit -> findNavController().navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
-                R.id.logout -> {
-
-                    (activity as MainActivity?)!!.logout()
-//                                    val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
-//                                    val editor= sharedPreferences?.edit()
-//                                    editor?.remove("token")?.apply()
+//        _binding!!.navView.setNavigationItemSelectedListener {
+//            Log.d("TAG1","5")
+//            when(it.itemId) {
+////                R.id.audit -> Toast.makeText(context,"Audit Button Pressed.............",
+////                    Toast.LENGTH_SHORT).show()
+//                R.id.audit -> findNavController().navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
+//                R.id.logout -> {
 //
-//                                    activity?.let{
-//                                        val intent = Intent (it, SplashScreenActivity::class.java)
-//                                        it.startActivity(intent)
-//                                        (activity as AppCompatActivity).finish()
-//                                    }
-
-                                }
-            }
-            true
-        }
+//                    (activity as MainActivity?)!!.logout()
+////                                    val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+////                                    val editor= sharedPreferences?.edit()
+////                                    editor?.remove("token")?.apply()
+////
+////                                    activity?.let{
+////                                        val intent = Intent (it, SplashScreenActivity::class.java)
+////                                        it.startActivity(intent)
+////                                        (activity as AppCompatActivity).finish()
+////                                    }
+//
+//                                }
+//            }
+//            true
+//        }
 
 //        binding.redirectBusSelectToBusSelectDisp.setOnClickListener {
 //            findNavController().navigate(R.id.action_busSelectionFragment_to_busSelectionDispFragment)
@@ -148,10 +194,10 @@ class BusSelectionFragment : Fragment() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item))
-        {
-            return true
-        }
+//        if(toggle.onOptionsItemSelected(item))
+//        {
+//            return true
+//        }
         return super.onOptionsItemSelected(item)
     }
 
