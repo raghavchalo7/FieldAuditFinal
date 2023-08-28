@@ -80,7 +80,7 @@ class AuditReport2Fragment : Fragment() {
 
             CoroutineScope(Dispatchers.IO).launch {
                 token= token!!.substring(1, token!!.length-1);
-                val response = RetrofitInstance.api.getAuditReports(token!!)
+                val response = RetrofitInstance.api.getAuditReports(token!!)   //jhhjvjh*****
                 Log.d("LOGREQ", response.request().toString())
                 if (response.isCanceled == false) {
                     Log.d("Msg2", "Success")
@@ -113,11 +113,11 @@ class AuditReport2Fragment : Fragment() {
                             //                binding.code2TV.text=response.code().toString()
                             val responseBody = response.body()!!
                             //resp=responseBody
-                            Toast.makeText(
-                                context,
-                                "Recieved Data=" + responseBody[0].tripNumber,
-                                Toast.LENGTH_LONG
-                            ).show()
+//                            Toast.makeText(
+//                                context,
+//                                "Recieved Data=" + responseBody[0].tripNumber,
+//                                Toast.LENGTH_LONG
+//                            ).show()
                             //Toast.makeText(context, "responseBody="+responseBody.toString(),Toast.LENGTH_LONG).show()
                             val sz = responseBody.size
                             Log.d("Success2apiDATA", sz.toString())
@@ -143,7 +143,7 @@ class AuditReport2Fragment : Fragment() {
                             }
 
                             itemAdapter.onItemClick = {
-                                Toast.makeText(context, "Pressed", Toast.LENGTH_LONG).show()
+                                //Toast.makeText(context, "Pressed", Toast.LENGTH_LONG).show()
                                 val bottomSheetDialog: BottomSheetDialog =
                                     BottomSheetDialog(requireContext())
                                 //bottomSheetDialog.setContentView()
@@ -244,11 +244,12 @@ class AuditReport2Fragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity?)?.setDrawerEnabled(true)
-        (activity as MainActivity).supportActionBar?.title = ""
+
     }
 
 
     override fun onDestroyView() {
+        (activity as MainActivity).supportActionBar?.title = ""
         super.onDestroyView()
         _binding=null
     }

@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         var IS_LOGGED_IN: Boolean
         val sharedPreferences = this.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
         val token = sharedPreferences?.getString("token", null)
-        Toast.makeText(this, "toast=${token}", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, "toast=${token}", Toast.LENGTH_LONG).show()
         IS_LOGGED_IN = token != null
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //val dr:DrawerLayout=findViewById(BusSelectionFragment.d)
-        val appBarConfiguration = AppBarConfiguration(navGraph,binding.drawerLayout)
+        val appBarConfiguration = AppBarConfiguration(navController.graph,binding.drawerLayout)
         //appBarConfiguration = AppBarConfiguration(navController.graph, R.id.drawerLayout)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //
@@ -169,12 +169,12 @@ class MainActivity : AppCompatActivity() {
             findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        setupActionBarWithNavController(navController)
+        setupActionBarWithNavController(navController,appBarConfiguration)
 
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {

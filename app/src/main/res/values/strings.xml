@@ -59,4 +59,8 @@
     <string name="print">PRINT</string>
     <string name="cancel">CANCEL</string>
     <string name="logout">Logout</string>
+    <string name="day_summary">Day summary</string>
+    <string name="passengers_caught">Passengers caught</string>
+    <string name="_23">23</string>
+    <string name="_3456">₹3456</string>
 </resources>
