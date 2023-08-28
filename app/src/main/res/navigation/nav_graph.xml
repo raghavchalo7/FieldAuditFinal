@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/busSelectionFineFragment"
         android:name="com.chalo.fieldauditapp.BusSelectionFineFragment"
-        android:label=""
+        android:label="{dataVRec}"
         tools:layout="@layout/fragment_bus_selection_fine" >
         <action
             android:id="@+id/action_busSelectionFineFragment_to_busDetailsDoneFragment"
