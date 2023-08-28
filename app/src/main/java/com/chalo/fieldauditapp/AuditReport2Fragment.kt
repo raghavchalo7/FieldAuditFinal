@@ -40,6 +40,7 @@ class AuditReport2Fragment : Fragment() {
         _binding=FragmentAuditReport2Binding.inflate(inflater,container, false)
         (activity as MainActivity?)?.setDrawerEnabled(false)
 
+        (activity as MainActivity).supportActionBar?.title = "Audit Report"
         val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
         var token= sharedPreferences?.getString("token",null)
         Log.d("TOKEN",token!!)
@@ -136,6 +137,11 @@ class AuditReport2Fragment : Fragment() {
                             binding.recyclerview.adapter = itemAdapter
                             Log.d("DATALIst", routeList.toString())
 
+                            val busCnt: TextView? = binding.busCnt
+                            if (busCnt != null) {
+                                busCnt.text =sz.toString()
+                            }
+
                             itemAdapter.onItemClick = {
                                 Toast.makeText(context, "Pressed", Toast.LENGTH_LONG).show()
                                 val bottomSheetDialog: BottomSheetDialog =
@@ -148,6 +154,8 @@ class AuditReport2Fragment : Fragment() {
                                 if (busTV2a != null) {
                                     busTV2a.text = it.id.toString()
                                 }
+
+
 
                                 val routeTV2a: TextView? =
                                     bottomSheetDialog.findViewById<TextView>(R.id.routeTV2a)
@@ -236,6 +244,7 @@ class AuditReport2Fragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity?)?.setDrawerEnabled(true)
+        (activity as MainActivity).supportActionBar?.title = ""
     }
 
 

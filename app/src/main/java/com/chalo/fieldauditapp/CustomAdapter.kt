@@ -32,7 +32,7 @@ class CustomAdapter(private val mList: List<AuditReportRequestItem>) : RecyclerV
         holder.routetextView.text=ItemViewsModel.tripNumber
 
         // sets the text to the textview from our itemHolder class
-        holder.stoptextView.text = ItemViewsModel.auditEndBusStopId.toString()
+        //holder.stoptextView.text = ItemViewsModel.auditEndBusStopId.toString()
 
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(ItemViewsModel)
@@ -48,6 +48,6 @@ class CustomAdapter(private val mList: List<AuditReportRequestItem>) : RecyclerV
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val routetextView: TextView = itemView.findViewById(R.id.routeTV)
-        val stoptextView: TextView = itemView.findViewById(R.id.stopTV)
+//        val stoptextView: TextView = itemView.findViewById(R.id.stopTV)
     }
 }

@@ -62,9 +62,7 @@ class BusSelectionFragment : Fragment() {
             IntentIntegrator.forSupportFragment(this).initiateScan();
         }
 
-        binding.buttoncheck.setOnClickListener {
-            findNavController().navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
-        }
+
 
 
 
@@ -154,7 +152,7 @@ class BusSelectionFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayUseLogoEnabled(false)
-        (activity as MainActivity?)?.setDrawerEnabled(false)
+        //(activity as MainActivity?)?.setDrawerEnabled(false)
     }
 
 
