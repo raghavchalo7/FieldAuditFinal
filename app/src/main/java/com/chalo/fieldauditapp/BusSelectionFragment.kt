@@ -55,6 +55,10 @@ class BusSelectionFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding=FragmentBusSelectionBinding.inflate(inflater,container, false)
 
+
+//        activity.gea().setDisplayHomeAsUpEnabled(true);
+        (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         binding.redirectBusSelectToBusSelectDisp.setOnClickListener {
 //            IntentIntegrator().initiateScan()
 

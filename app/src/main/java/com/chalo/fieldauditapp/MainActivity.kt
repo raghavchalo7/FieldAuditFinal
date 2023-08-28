@@ -4,19 +4,22 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.chalo.fieldauditapp.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -120,14 +123,17 @@ class MainActivity : AppCompatActivity() {
 //                R.id.nav_host_fragment
                 R.id.audit -> //navController.navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
                 {
-                    //setContentView(R.layout.fragment_audit_report)
-                    val mFragmentManager = supportFragmentManager
-                    val mFragmentTransaction = mFragmentManager.beginTransaction()
-                    val mFragment = AuditReport2Fragment()
-                    mFragmentTransaction.replace(R.id.nav_host_fragment, mFragment)
-                    mFragmentTransaction.addToBackStack(null)
-                    mFragmentTransaction.commit()
-                    binding.drawerLayout.closeDrawers()
+                    navController.navigate(R.id.auditReport2Fragment)
+//                    return@setNavigationItemSelectedListener NavigationUI.onNavDestinationSelected(R.id.audit, navController)
+//                    return NavigationUI.onNavDestinationSelected(item, navController);
+//                    //setContentView(R.layout.fragment_audit_report)
+//                    val mFragmentManager = supportFragmentManager
+//                    val mFragmentTransaction = mFragmentManager.beginTransaction()
+//                    val mFragment = AuditReport2Fragment()
+//                    mFragmentTransaction.replace(R.id.nav_host_fragment, mFragment)
+//                    mFragmentTransaction.addToBackStack(null)
+//                    mFragmentTransaction.commit()
+//                    binding.drawerLayout.closeDrawers()
                 }
                 R.id.logout -> {
 
@@ -161,7 +167,8 @@ class MainActivity : AppCompatActivity() {
 
 
         //val dr:DrawerLayout=findViewById(BusSelectionFragment.d)
-        val appBarConfiguration = AppBarConfiguration(navController.graph,binding.drawerLayout)
+//        val appBarConfiguration = AppBarConfiguration(navController.graph,binding.drawerLayout)
+        appBarConfiguration = AppBarConfiguration.Builder(R.id.auditReport2Fragment,R.id.busSelectionFragment).build()
         //appBarConfiguration = AppBarConfiguration(navController.graph, R.id.drawerLayout)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //
@@ -174,7 +181,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+        val navController = findNavController(this, R.id.nav_host_fragment)
+        return (navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp())
     }
 
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
