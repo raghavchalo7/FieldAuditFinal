@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chalo.fieldauditapp.databinding.FragmentAuditReport2Binding
 import com.chalo.fieldauditapp.databinding.FragmentAuditReportBinding
@@ -37,6 +38,8 @@ class AuditReport2Fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding=FragmentAuditReport2Binding.inflate(inflater,container, false)
+        (activity as MainActivity?)?.setDrawerEnabled(false)
+
         val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
         var token= sharedPreferences?.getString("token",null)
         Log.d("TOKEN",token!!)
@@ -229,6 +232,12 @@ class AuditReport2Fragment : Fragment() {
 
         return binding.root
     }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity?)?.setDrawerEnabled(true)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

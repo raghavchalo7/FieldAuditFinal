@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.chalo.fieldauditapp.databinding.FragmentBusDetailsDoneBinding
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionBinding
@@ -23,6 +24,8 @@ class BusDetailsDoneFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentBusDetailsDoneBinding.inflate(inflater, container, false)
 
+        (activity as MainActivity?)?.setDrawerEnabled(false)
+
         binding.redirectBusDetailsDoneToBusSelection.setOnClickListener {
             val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
             val token= sharedPreferences?.getString("token",null)
@@ -30,6 +33,11 @@ class BusDetailsDoneFragment : Fragment() {
             findNavController().navigate(actionDest)
         }
         return binding.root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity?)?.setDrawerEnabled(true)
     }
 
 }

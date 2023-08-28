@@ -154,7 +154,9 @@ class BusSelectionFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayUseLogoEnabled(false)
+        (activity as MainActivity?)?.setDrawerEnabled(false)
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

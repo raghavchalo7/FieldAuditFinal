@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -52,6 +53,7 @@ class BusSelectionFineFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding=FragmentBusSelectionFineBinding.inflate(inflater,container, false)
 
+        (activity as MainActivity?)?.setDrawerEnabled(false)
         val amount=args.dataVRec
 
         val busNo=findVal(amount,"busNo")
@@ -356,8 +358,8 @@ class BusSelectionFineFragment : Fragment() {
 //                    Commented now
                     Log.d("DataAPI",auditReq.toString())
                     Log.d("LOGREQ",call.request().toString())
-                    call.enqueue(object : Callback<Unit> {
-                        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    call.enqueue(object : Callback<JsonObject> {
+                        override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                             Log.d("SuccessapiWr",response.code().toString())
                             if(response.code()==200)
                             {
@@ -369,7 +371,7 @@ class BusSelectionFineFragment : Fragment() {
                             }
                             else if(response.code()>=400)
                             {
-                                Log.d("400errorText",response.message())
+                                Log.d("400errorText",response.code().toString())
                                 Log.d("400errorText",response.body().toString())
                                 Log.d("400errorText",response.errorBody().toString())
 
@@ -380,7 +382,7 @@ class BusSelectionFineFragment : Fragment() {
                             //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
                         }
 
-                        override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                             Log.d("ErrorapiWr",t.toString())
                             //binding.code2TV.text=t.message.toString()
                         }
@@ -412,6 +414,10 @@ class BusSelectionFineFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity?)?.setDrawerEnabled(true)
+    }
 
     fun findVal(amount:String,key:String):String{
         val index:Int = amount.indexOf(key)

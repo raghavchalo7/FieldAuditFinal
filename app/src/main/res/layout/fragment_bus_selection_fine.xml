@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="22dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="29dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="216dp"
             android:text="@string/passenger_count"
             android:textColor="@color/black"

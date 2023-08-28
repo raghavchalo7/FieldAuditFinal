@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.chalo.fieldauditapp.databinding.FragmentLoginBinding
 import com.chalo.fieldauditapp.model.LoginRequest
@@ -60,6 +61,8 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding=FragmentLoginBinding.inflate(inflater,container, false)
+        (activity as MainActivity?)?.setDrawerEnabled(true)
+
         binding.editTextUser.addTextChangedListener(mTextWatcher);
         binding.editTextPassword.addTextChangedListener(mTextWatcher);
 
@@ -101,7 +104,7 @@ class LoginFragment : Fragment() {
                     Log.d("SuccessapiLog",response.code().toString())
                     Log.d("SuccessapiLog",response.message().toString())
                     Log.d("SuccessapiLog",response.body().toString())
-                    if(response.code()>=200)     //CORRECT THIS ***+++**********************
+                    if(response.code()==200)     //CORRECT THIS ***+++**********************
                     {
                         val token= response.body()?.get("token")
                         val key="token"
@@ -125,6 +128,11 @@ class LoginFragment : Fragment() {
 //            findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
         }
         return binding.root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity?)?.setDrawerEnabled(true)
     }
 
     private fun saveData(key:String, token:String)
