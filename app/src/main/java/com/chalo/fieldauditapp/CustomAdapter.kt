@@ -7,12 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.chalo.fieldauditapp.model.AuditReportRequestItem
+import com.chalo.fieldauditapp.model.Lists
 
-class CustomAdapter(private val mList: List<AuditReportRequestItem>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val mList: List<Lists>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     // create new views
 
-    var onItemClick : ((AuditReportRequestItem)->Unit)?=null
+    var onItemClick : ((Lists)->Unit)?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item

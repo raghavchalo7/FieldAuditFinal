@@ -110,7 +110,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/totalBusesTV"
                     android:layout_width="100dp"
                     android:layout_height="33dp"
                     android:layout_marginStart="16dp"
@@ -135,6 +135,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/passengerCaughtTV"
                     android:layout_width="100dp"
                     android:layout_height="33dp"
                     android:layout_marginTop="8dp"
@@ -155,9 +156,10 @@
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                    app:layout_constraintTop_toBottomOf="@+id/totalBusesTV" />
 
                 <TextView
+                    android:id="@+id/fineCollectionTV"
                     android:layout_width="100dp"
                     android:layout_height="33dp"
                     android:layout_marginTop="8dp"

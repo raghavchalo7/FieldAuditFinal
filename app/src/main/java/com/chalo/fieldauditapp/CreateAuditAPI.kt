@@ -1,6 +1,7 @@
 package com.chalo.fieldauditapp
 
 import com.chalo.fieldauditapp.model.AuditReportRequestItem
+import com.chalo.fieldauditapp.model.CreateAuditNew
 import com.chalo.fieldauditapp.model.CreateAuditRequest
 import com.chalo.fieldauditapp.model.LoginRequest
 import com.chalo.fieldauditapp.model.LoginResponse
@@ -13,6 +14,7 @@ import retrofit2.http.Header
 import retrofit2.http.HeaderMap
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface CreateAuditAPI {
     @POST("login")
@@ -28,6 +30,6 @@ interface CreateAuditAPI {
 
     //@Headers("Token:cbus1111")
     @GET("auditsByCrew")
-    fun getAuditReports(@Header("Token") token:String):Call<ArrayList<AuditReportRequestItem>>
+    fun getAuditReports(@Header("Token") token:String, @Query("list") condition:Boolean):Call<CreateAuditNew>
     //@Header("Token") token:String
 }

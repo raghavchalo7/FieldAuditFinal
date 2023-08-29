@@ -24,8 +24,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import com.chalo.fieldauditapp.databinding.ActivityMainBinding
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionBinding
+import com.chalo.fieldauditapp.model.CreateAuditNew
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.coroutines.Dispatchers.Main
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 
@@ -45,8 +49,8 @@ class BusSelectionFragment : Fragment() {
     private var _binding: FragmentBusSelectionBinding?=null
     private val binding get() = _binding!!
 
-    private var _binding2: ActivityMainBinding?=null
-    private val binding2 get() = _binding2!!
+//    private var _binding2: ActivityMainBinding?=null
+//    private val binding2 get() = _binding2!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +62,39 @@ class BusSelectionFragment : Fragment() {
 
 //        activity.gea().setDisplayHomeAsUpEnabled(true);
         (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+        var token= sharedPreferences?.getString("token",null)
+
+
+        token= token!!.substring(1, token!!.length-1);
+        val response = RetrofitInstance.api.getAuditReports(token!!,false)
+
+        response.enqueue(object : Callback<CreateAuditNew> {
+            override fun onResponse(
+                call: Call<CreateAuditNew>,
+                response: Response<CreateAuditNew>
+            ) {
+                val responseBody1 = response.body()!!
+                val responseBody=responseBody1.data.summary
+                binding.totalBusesTV.text=responseBody.totalAudits.toString()
+                binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
+                binding.fineCollectionTV.text=responseBody.totalCollection.toString()
+            }
+
+            //                    override fun onFailure(call: Call<String>, t: Throwable) {
+            //                        Log.d("Errorapi1",t.toString())
+            //                        //binding.code2TV.text=t.message.toString()
+            //                    }
+
+            override fun onFailure(
+                call: Call<CreateAuditNew>,
+                t: Throwable
+            ) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
         binding.redirectBusSelectToBusSelectDisp.setOnClickListener {
 //            IntentIntegrator().initiateScan()

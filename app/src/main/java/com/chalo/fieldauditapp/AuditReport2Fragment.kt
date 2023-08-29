@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.chalo.fieldauditapp.databinding.FragmentAuditReport2Binding
 import com.chalo.fieldauditapp.databinding.FragmentAuditReportBinding
 import com.chalo.fieldauditapp.model.AuditReportRequestItem
+import com.chalo.fieldauditapp.model.CreateAuditNew
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
@@ -80,7 +81,7 @@ class AuditReport2Fragment : Fragment() {
 
             CoroutineScope(Dispatchers.IO).launch {
                 token= token!!.substring(1, token!!.length-1);
-                val response = RetrofitInstance.api.getAuditReports(token!!)   //jhhjvjh*****
+                val response = RetrofitInstance.api.getAuditReports(token!!,true)   //jhhjvjh*****
                 Log.d("LOGREQ", response.request().toString())
                 if (response.isCanceled == false) {
                     Log.d("Msg2", "Success")
@@ -103,15 +104,17 @@ class AuditReport2Fragment : Fragment() {
                     ////                    .callTimeout(60, TimeUnit.SECOND)
                     ////                    .cache(Cache(dir,10 * 1024 * 1024)) //10MB
                     //                    .build()
-                    response.enqueue(object : Callback<ArrayList<AuditReportRequestItem>> {
+                    response.enqueue(object : Callback<CreateAuditNew> {
                         override fun onResponse(
-                            call: Call<ArrayList<AuditReportRequestItem>>,
-                            response: Response<ArrayList<AuditReportRequestItem>>
+                            call: Call<CreateAuditNew>,
+                            response: Response<CreateAuditNew>
                         ) {
                             Log.d("Successapi1", response.code().toString())
                             Log.d("Success2api", response.code().toString())
                             //                binding.code2TV.text=response.code().toString()
-                            val responseBody = response.body()!!
+                            val responseBody1 = response.body()!!
+                            val responseBody=responseBody1.data.lists
+                            //val tot=responseBody1.su
                             //resp=responseBody
 //                            Toast.makeText(
 //                                context,
@@ -140,6 +143,11 @@ class AuditReport2Fragment : Fragment() {
                             val busCnt: TextView? = binding.busCnt
                             if (busCnt != null) {
                                 busCnt.text =sz.toString()
+                            }
+
+                            val fineColl: TextView? = binding.fineCollTV
+                            if (fineColl != null) {
+                                fineColl.text =responseBody1.data.summary.totalCollection.toString()
                             }
 
                             itemAdapter.onItemClick = {
@@ -218,7 +226,7 @@ class AuditReport2Fragment : Fragment() {
                         //                    }
 
                         override fun onFailure(
-                            call: Call<ArrayList<AuditReportRequestItem>>,
+                            call: Call<CreateAuditNew>,
                             t: Throwable
                         ) {
                             TODO("Not yet implemented")
