@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionDispBinding
+
 
 class BusSelectionDispFragment : Fragment() {
 
@@ -26,9 +29,11 @@ class BusSelectionDispFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding=FragmentBusSelectionDispBinding.inflate(inflater,container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //(activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         (activity as MainActivity?)?.setDrawerEnabled(false)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        //(activity as MainActivity?)?.getActionBar()?.setDisplayHomeAsUpEnabled(false)
 
         val amount = args.dataVRec
 //        val busNo=findVal(amount,"busNo")
@@ -46,6 +51,13 @@ class BusSelectionDispFragment : Fragment() {
             val action=BusSelectionDispFragmentDirections.actionBusSelectionDispFragmentToBusSelectionFineFragment(amount)
             findNavController().navigate(action)
         }
+        val callback=object:OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                Toast.makeText(context,"CHECK",Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+        MainActivity().getOnBackPressedDispatcher().addCallback(callback)
         return binding.root
     }
 
@@ -61,7 +73,33 @@ class BusSelectionDispFragment : Fragment() {
         super.onStop()
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(false)
         (activity as MainActivity?)?.setDrawerEnabled(true)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
+//    @Override
+//    fun onBackPressed() {
+//
+//        // To execute back press
+//        // super.onBackPressed()
+//
+//        // To do something else
+//        Toast.makeText(context, "Back Button Pressed", Toast.LENGTH_SHORT).show()
+//    }
+
+//    @Override
+//    fun onBackPressed() {
+//        return
+//    }
+//    @Override
+//    fun onKeyDown(): Boolean {
+//        return false
+//    }
+//
+//
+//    @Override
+//    fun onBackPressed() {
+//        Toast.makeText(context,"*********HI*****",Toast.LENGTH_SHORT).show()
+//    }
 
     fun findVal(amount:String,key:String):String{
         val index:Int = amount.indexOf(key)

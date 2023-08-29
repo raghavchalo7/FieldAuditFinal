@@ -52,8 +52,11 @@ class BusSelectionFineFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding=FragmentBusSelectionFineBinding.inflate(inflater,container, false)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         (activity as MainActivity?)?.setDrawerEnabled(false)
+
+
         val amount=args.dataVRec
 
         val busNo=findVal(amount,"busNo")
@@ -77,6 +80,9 @@ class BusSelectionFineFragment : Fragment() {
         val timeStart=amount.subSequence(0,tm).toString().toLong()
 
         val fines= ArrayList<Fine>()
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=busNo
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(true)
 
 //        if(fineCount!=0)
 //        {
@@ -417,6 +423,7 @@ class BusSelectionFineFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity?)?.setDrawerEnabled(true)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     fun findVal(amount:String,key:String):String{

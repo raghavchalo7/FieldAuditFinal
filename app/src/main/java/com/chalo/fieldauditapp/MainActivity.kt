@@ -168,7 +168,8 @@ class MainActivity : AppCompatActivity() {
 
         //val dr:DrawerLayout=findViewById(BusSelectionFragment.d)
 //        val appBarConfiguration = AppBarConfiguration(navController.graph,binding.drawerLayout)
-        appBarConfiguration = AppBarConfiguration.Builder(R.id.auditReport2Fragment,R.id.busSelectionFragment).build()
+        appBarConfiguration = AppBarConfiguration.Builder(R.id.loginFragment,R.id.busSelectionFragment).build()
+
         //appBarConfiguration = AppBarConfiguration(navController.graph, R.id.drawerLayout)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //
