@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -18,7 +19,9 @@ import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.chalo.fieldauditapp.databinding.ActivityMainBinding
+import com.chalo.fieldauditapp.databinding.FragmentBusSelectionDispBinding
 import com.google.android.material.navigation.NavigationView
+import kotlin.reflect.typeOf
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     lateinit var nview: NavigationView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -179,6 +183,29 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController,appBarConfiguration)
 
+    }
+
+    override fun onBackPressed() {
+
+//        val fragmentOne:BusSelectionFragment = supportFragmentManager.findFragmentByTag("BusSelectionFragment");
+//        if (fragmentOne != null && fragmentOne.isVisible())
+
+//        val fragmentInstance = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+////        val ffe:BusSelectionDispFragment
+////        if(navController.currentDestination==navController.graph.findNode(R.id.busSelectionDispFragment))
+//        //if(BusSelectionDispFragmen)
+//        if(BusSelectionDispFragment.)
+        if(navController.currentDestination==navController.findDestination(R.id.busSelectionDispFragment) || navController.currentDestination==navController.findDestination(R.id.busSelectionFineFragment))
+        {
+            Toast.makeText(this,"NOBACKPRESS...",Toast.LENGTH_LONG).show()
+        }
+//        else if(navController.currentDestination==navController.findDestination(R.id.busSelectionFineFragment))
+//        {
+//            Toast.makeText(this,"NOBACKPRESS...",Toast.LENGTH_LONG).show()
+//        }
+        else {
+        super.onBackPressed()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

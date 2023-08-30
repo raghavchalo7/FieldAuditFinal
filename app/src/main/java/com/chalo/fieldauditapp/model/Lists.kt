@@ -1,9 +1,9 @@
 package com.chalo.fieldauditapp.model
 
 data class Lists(
-    val auditEndBusStopId: Int,
+    val auditEndBusStopId: String,
     val auditEndTs: String,
-    val auditStartBusStopId: Int,
+    val auditStartBusStopId: String,
     val auditStartTs: String,
     val createdDate: String,
     val crewId: Int,

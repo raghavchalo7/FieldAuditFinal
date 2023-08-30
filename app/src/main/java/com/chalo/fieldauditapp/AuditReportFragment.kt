@@ -133,7 +133,7 @@ class AuditReportFragment : Fragment() {
                                 routeList.add(rt1)
                             }
                             Log.d("DATAInonResponse", routeList.toString())
-                            sr = responseBody[0].auditStartBusStopId
+                            //sr = responseBody[0].auditStartBusStopId
                             val itemAdapter = CustomAdapter(responseBody)
                             binding.recyclerview.layoutManager = LinearLayoutManager(context)
                             binding.recyclerview.adapter = itemAdapter

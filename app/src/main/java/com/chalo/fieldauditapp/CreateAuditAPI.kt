@@ -22,10 +22,10 @@ interface CreateAuditAPI {
         @Body loginRequest: LoginRequest
     ):Call<JsonObject>
 
-    @Headers("Content-Type: application/json","Token:cbus1111")
+    @Headers("Content-Type: application/json")
     @POST("createFieldAudit")
     fun sendAuditData(
-        @Body createAuditRequest: CreateAuditRequest
+        @Body createAuditRequest: CreateAuditRequest,@Header("Token") token:String
     ):Call<JsonObject>
 
     //@Headers("Token:cbus1111")

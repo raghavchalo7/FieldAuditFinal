@@ -69,17 +69,33 @@ class BusSelectionFragment : Fragment() {
 
         token= token!!.substring(1, token!!.length-1);
         val response = RetrofitInstance.api.getAuditReports(token!!,false)
+        Log.d("Token=",token)
 
         response.enqueue(object : Callback<CreateAuditNew> {
             override fun onResponse(
                 call: Call<CreateAuditNew>,
                 response: Response<CreateAuditNew>
             ) {
-                val responseBody1 = response.body()!!
-                val responseBody=responseBody1.data.summary
+                Log.d("Resp=",response.code().toString())
+                if(response.code()>=500)
+                {
+                    Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+                }
+                else if(response.code()>=400)
+                {
+                    Toast.makeText(context,"Please try again: "+response.body(),Toast.LENGTH_LONG).show()
+
+                }
+                else if(response.code()>=200) {
+
+                    val responseBody1 = response.body()!!
+
+
+                    val responseBody=responseBody1.data.summary
                 binding.totalBusesTV.text=responseBody.totalAudits.toString()
                 binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
                 binding.fineCollectionTV.text=responseBody.totalCollection.toString()
+                }
             }
 
             //                    override fun onFailure(call: Call<String>, t: Throwable) {
@@ -91,6 +107,8 @@ class BusSelectionFragment : Fragment() {
                 call: Call<CreateAuditNew>,
                 t: Throwable
             ) {
+                Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
+                Log.d("resp=",t.toString())
                 TODO("Not yet implemented")
             }
 

@@ -1,5 +1,6 @@
 package com.chalo.fieldauditapp
 
+import android.content.Context
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
 import android.os.health.TimerStat
@@ -61,6 +62,11 @@ class BusSelectionFineFragment : Fragment() {
 
         val busNo=findVal(amount,"busNo")
         val currentStopName=findVal(amount,"currentStopName")
+        val waybillNo=findVal(amount,"waybillNo")
+
+        val stopId:String=findVal(amount,"currentStopId")
+        val stopId2:String=findVal(amount,"routeId")
+        Log.d("stringData",stopId+" & "+stopId2)
 
         val deboardedPassengerCount=findVal(amount,"deboardedPassengerCount")
         binding.deboardTV.text=deboardedPassengerCount
@@ -68,13 +74,13 @@ class BusSelectionFineFragment : Fragment() {
 //        val currentPassengerCount=findVal(amount,"currentPassengerCount")
 //        binding.passengerTV.text=currentPassengerCount
 
-        val waybill_number=findVal(amount,"waybillNo")
+        //val finect=findVal(amount,"fine")
 
         val trip_number=findVal(amount,"tripNo")
 
 //        val audit_start_bus_stop_id=findVal(amount,"currentStopId")
 
-        val passenger_count=findVal(amount,"currentPassengerCount")
+        val passengerCount=findVal(amount,"currentPassengerCount")
 
         val tm=amount.indexOf("@")
         val timeStart=amount.subSequence(0,tm).toString().toLong()
@@ -211,9 +217,10 @@ class BusSelectionFineFragment : Fragment() {
 //                    val auditReq=CreateAuditRequest(2,"2023-08-18T13:00:00Z",audit_start_bus_stop_id.toInt(),"2023-08-18T12:00:00Z",lst,passenger_count.toInt(),10.0,31,trip_number,waybill_number.toInt())
 
                     val audit_start_bus_stop_id=findVal(amount,"currentStopId")
+                    val fineNo=findVal(amount,"")
                     println("audit_start_bus_stop_id is: $audit_start_bus_stop_id")
-                    Log.d("Check","Passenger Count is: $passenger_count")
-                    val auditReq=CreateAuditRequest(2,timeEnd,3,timeStart,fines,passenger_count.toInt(),31,"dw",10)
+                    Log.d("Check","Passenger Count is: $passengerCount")
+                    val auditReq=CreateAuditRequest(audit_end_bus_stop_id ="1", audit_end_ts = timeEnd, audit_start_bus_stop_id = "2", audit_start_ts = timeStart,fines=fines,passenger_count=passengerCount.toInt(), total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
 
 
                     //val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
@@ -222,7 +229,12 @@ class BusSelectionFineFragment : Fragment() {
                     //val lt= listOf<Fine>({110,1234567890})
 
                     //val call=createAuditApi.sendAuditData(auditReq)
-                    val call=RetrofitInstance.api.sendAuditData(auditReq)
+                    val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+                    var token= sharedPreferences?.getString("token",null)
+
+
+                    token= token!!.substring(1, token!!.length-1);
+                    val call=RetrofitInstance.api.sendAuditData(auditReq,token)
 
 
 //                    val response=try{
