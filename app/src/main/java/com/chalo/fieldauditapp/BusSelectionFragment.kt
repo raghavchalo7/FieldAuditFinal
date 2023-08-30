@@ -67,8 +67,8 @@ class BusSelectionFragment : Fragment() {
         var token= sharedPreferences?.getString("token",null)
 
 
-        token= token!!.substring(1, token!!.length-1);
-        val response = RetrofitInstance.api.getAuditReports(token!!,false)
+        token= token!!.substring(1, token.length-1);
+        val response = RetrofitInstance.api.getAuditReports(token,false)
         Log.d("Token=",token)
 
         response.enqueue(object : Callback<CreateAuditNew> {
@@ -80,10 +80,16 @@ class BusSelectionFragment : Fragment() {
                 if(response.code()>=500)
                 {
                     Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+                    binding.totalBusesTV.text="0"
+                    binding.passengerCaughtTV.text="0"
+                    binding.fineCollectionTV.text="0"
                 }
                 else if(response.code()>=400)
                 {
                     Toast.makeText(context,"Please try again: "+response.body(),Toast.LENGTH_LONG).show()
+                    binding.totalBusesTV.text="0"
+                    binding.passengerCaughtTV.text="0"
+                    binding.fineCollectionTV.text="0"
 
                 }
                 else if(response.code()>=200) {
@@ -108,8 +114,11 @@ class BusSelectionFragment : Fragment() {
                 t: Throwable
             ) {
                 Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
+                binding.totalBusesTV.text="0"
+                binding.passengerCaughtTV.text="0"
+                binding.fineCollectionTV.text="0"
                 Log.d("resp=",t.toString())
-                TODO("Not yet implemented")
+
             }
 
         })

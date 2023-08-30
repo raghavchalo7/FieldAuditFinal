@@ -104,7 +104,15 @@ class LoginFragment : Fragment() {
                     Log.d("SuccessapiLog",response.code().toString())
                     Log.d("SuccessapiLog",response.message().toString())
                     Log.d("SuccessapiLog",response.body().toString())
-                    if(response.code()==200)     //CORRECT THIS ***+++**********************
+                    if(response.code()>=500)
+                    {
+                        Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+                    }
+                    else if(response.code()>=400)
+                    {
+                        Toast.makeText(context,"Wrong details",Toast.LENGTH_LONG).show()
+                    }
+                    else if(response.code()>=200)     //CORRECT THIS ***+++**********************
                     {
                         val token= response.body()?.get("token")
                         val key="token"
@@ -121,6 +129,7 @@ class LoginFragment : Fragment() {
 
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                     Log.d("ErrorapiLog",t.toString())
+                    Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN",Toast.LENGTH_LONG).show()
                     //binding.code2TV.text=t.message.toString()
                 }
 

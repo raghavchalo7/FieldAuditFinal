@@ -379,11 +379,8 @@ class BusSelectionFineFragment : Fragment() {
                     call.enqueue(object : Callback<JsonObject> {
                         override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                             Log.d("SuccessapiWr",response.code().toString())
-                            if(response.code()==200)
-                            {
-                                findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
-                            }
-                            else if(response.code()>=500)
+
+                            if(response.code()>=500)
                             {
                                 Toast.makeText(context,"Server Error Please Try Again",Toast.LENGTH_LONG).show()
                             }
@@ -396,12 +393,17 @@ class BusSelectionFineFragment : Fragment() {
 
                                 Toast.makeText(context,"Please try again: "+response.body(),Toast.LENGTH_LONG).show()
                             }
+                            else if(response.code()>=200)
+                            {
+                                findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
+                            }
                             //binding.code2TV.text=response.code().toString()
                             //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
                         }
 
                         override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                             Log.d("ErrorapiWr",t.toString())
+                            Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
                             //binding.code2TV.text=t.message.toString()
                         }
 
