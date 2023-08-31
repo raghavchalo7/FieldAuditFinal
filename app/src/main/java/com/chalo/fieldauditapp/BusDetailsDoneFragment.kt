@@ -25,6 +25,7 @@ class BusDetailsDoneFragment : Fragment() {
         _binding = FragmentBusDetailsDoneBinding.inflate(inflater, container, false)
 
         (activity as MainActivity?)?.setDrawerEnabled(false)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         binding.redirectBusDetailsDoneToBusSelection.setOnClickListener {
             val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
@@ -38,6 +39,7 @@ class BusDetailsDoneFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity?)?.setDrawerEnabled(true)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
 }
