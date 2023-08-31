@@ -129,7 +129,7 @@ class LoginFragment : Fragment() {
 
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                     Log.d("ErrorapiLog",t.toString())
-                    Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN 22",Toast.LENGTH_LONG).show()
                     //binding.code2TV.text=t.message.toString()
                 }
 
