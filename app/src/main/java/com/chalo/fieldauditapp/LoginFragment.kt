@@ -1,29 +1,26 @@
 package com.chalo.fieldauditapp
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.chalo.fieldauditapp.databinding.FragmentLoginBinding
 import com.chalo.fieldauditapp.model.LoginRequest
-import com.chalo.fieldauditapp.model.LoginResponse
 import com.chalo.fieldauditapp.model.UserPost
 import com.google.gson.JsonObject
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 class LoginFragment : Fragment() {
 
@@ -144,6 +141,15 @@ class LoginFragment : Fragment() {
         }
         return binding.root
     }
+
+//    override fun onBackPressed() {
+//        Toast.makeText(context,"cw",Toast.LENGTH_LONG).show()
+//        (activity as MainActivity).finishAffinity()
+//////        //finishAffinity(activity as MainActivity)
+//////        (this as AppCompatActivity).finishAffinity()
+//////        (this as AppCompatActivity).finish()
+////        getActivity()?.supportFinishAfterTransition();
+//    }
 
     override fun onStop() {
         super.onStop()

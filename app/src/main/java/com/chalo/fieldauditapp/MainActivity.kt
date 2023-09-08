@@ -16,15 +16,10 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.navigateUp
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.chalo.fieldauditapp.databinding.ActivityMainBinding
-import com.chalo.fieldauditapp.databinding.FragmentBusSelectionDispBinding
 import com.google.android.material.navigation.NavigationView
-import org.w3c.dom.Text
-import kotlin.reflect.typeOf
 
 
 class MainActivity : AppCompatActivity() {
@@ -210,6 +205,11 @@ class MainActivity : AppCompatActivity() {
         {
             Toast.makeText(this,"NOBACKPRESS...",Toast.LENGTH_LONG).show()
         }
+        else if(navController.currentDestination==navController.findDestination(R.id.loginFragment))
+        {
+                finishAffinity()
+            finish()
+        }
 //        else if(navController.currentDestination==navController.findDestination(R.id.busSelectionFineFragment))
 //        {
 //            Toast.makeText(this,"NOBACKPRESS...",Toast.LENGTH_LONG).show()
@@ -233,6 +233,10 @@ class MainActivity : AppCompatActivity() {
 //        return super.onOptionsItemSelected(item)
 //    }
 
+//    override fun onBackPressed() {
+//        finishAffinity()
+//    }
+
     fun logout() {
             val sharedPreferences = this?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
             val editor = sharedPreferences?.edit()
@@ -241,6 +245,7 @@ class MainActivity : AppCompatActivity() {
             this?.let {
                 val intent = Intent(it, SplashScreenActivity::class.java)
                 it.startActivity(intent)
+                (this as AppCompatActivity).finishAffinity()
                 (this as AppCompatActivity).finish()
             }
     }
