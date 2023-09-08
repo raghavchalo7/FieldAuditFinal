@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.chalo.fieldauditapp.model.AuditReportRequestItem
+//import com.chalo.fieldauditapp.model.AuditReportRequestItem
 import com.chalo.fieldauditapp.model.Lists
 
 class CustomAdapter(private val mList: List<Lists>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {

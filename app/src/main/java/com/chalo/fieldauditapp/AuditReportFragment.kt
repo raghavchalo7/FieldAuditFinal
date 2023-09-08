@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chalo.fieldauditapp.databinding.FragmentAuditReportBinding
-import com.chalo.fieldauditapp.model.AuditReportRequestItem
+//import com.chalo.fieldauditapp.model.AuditReportRequestItem
 import com.chalo.fieldauditapp.model.CreateAuditNew
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -85,7 +85,7 @@ class AuditReportFragment : Fragment() {
                 Log.d("LOGREQ", response.request().toString())
                 if (response.isCanceled == false) {
                     Log.d("Msg2", "Success")
-                    var resp: ArrayList<AuditReportRequestItem>? = null
+                    //var resp: ArrayList<AuditReportRequestItem>? = null
                     val routeList = ArrayList<ItemViewsModel>()
                     var sr: Int? = null
                     //                val okkHttpclient = OkHttpClient.Builder()

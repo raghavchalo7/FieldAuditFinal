@@ -1,3 +1,3 @@
 package com.chalo.fieldauditapp.model
 
-class AuditReportRequest : ArrayList<AuditReportRequestItem>()
+//class AuditReportRequest : ArrayList<AuditReportRequestItem>()
