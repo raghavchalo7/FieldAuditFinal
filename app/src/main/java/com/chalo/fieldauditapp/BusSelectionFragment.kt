@@ -233,11 +233,22 @@ class BusSelectionFragment : Fragment() {
         super.onResume()
         (activity as AppCompatActivity?)!!.supportActionBar!!.setLogo(R.drawable.chalomasterlogo)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayUseLogoEnabled(true)
+        val toolbar=(activity as MainActivity)?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        if (toolbar != null) {
+            toolbar.setNavigationOnClickListener {
+                drawerLayout2.openDrawer(GravityCompat.START)
+            }
+        }
     }
 
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayUseLogoEnabled(false)
+        val toolbar=(activity as MainActivity)?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        if (toolbar != null) {
+            toolbar?.setNavigationOnClickListener(View.OnClickListener { (activity as MainActivity).onBackPressed() })
+        }
+
         //(activity as MainActivity?)?.setDrawerEnabled(false)
     }
 

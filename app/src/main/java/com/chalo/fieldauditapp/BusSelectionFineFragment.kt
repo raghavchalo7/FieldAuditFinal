@@ -104,6 +104,7 @@ class BusSelectionFineFragment : Fragment() {
 
                 val  bottomSheetDialog: BottomSheetDialog =  BottomSheetDialog(requireContext())
                 bottomSheetDialog.setContentView(R.layout.confirmdetails)
+                //bottomSheetDialog.dismissWithAnimation
 
                 val busTv2: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.busTV2)
                 if (busTv2 != null) {
@@ -169,7 +170,7 @@ class BusSelectionFineFragment : Fragment() {
                         Log.d("Check",stopId)
                         val test="eQewrnTx"
                         Log.d("Check",test)
-                        val auditReq=CreateAuditRequest(audit_end_bus_stop_id ="df", audit_end_ts = timeEnd, audit_start_bus_stop_id = "1", audit_start_ts = timeStart,bus_no=busNo,fines=fines,passenger_count=passengerCount.toInt(), route_id=routeId, route_name = routeName, total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
+                        val auditReq=CreateAuditRequest(audit_end_bus_stop_id ="1", audit_end_ts = timeEnd, audit_start_bus_stop_id = "1", audit_start_ts = timeStart,bus_no=busNo,fines=fines,passenger_count=passengerCount.toInt(), route_id=routeId, route_name = routeName, total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
 
 
                         //val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
@@ -398,6 +399,9 @@ class BusSelectionFineFragment : Fragment() {
                 //****From Here
                 val  bottomSheetDialog1: BottomSheetDialog =  BottomSheetDialog(requireContext())
                 bottomSheetDialog1.setContentView(R.layout.issueticket)
+                //bottomSheetDialog1.set
+                //bottomSheetDialog1.dismissWithAnimation
+                //fea
 
                 val fineTVi: TextView? =bottomSheetDialog1.findViewById<TextView>(R.id.fineTVi)
                 if (fineTVi != null) {
