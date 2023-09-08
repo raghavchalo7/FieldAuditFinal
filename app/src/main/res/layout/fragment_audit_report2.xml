@@ -49,28 +49,52 @@
 
         <TextView
             android:id="@+id/textView25"
-            android:layout_width="97dp"
+            android:layout_width="120dp"
             android:layout_height="19dp"
             android:layout_marginStart="80dp"
             android:layout_marginTop="24dp"
-            android:text="@string/fine_collection"
+            android:text="@string/passengers_caught"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/textView24"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <TextView
-            android:id="@+id/fineCollTV"
-            android:layout_width="58dp"
+            android:id="@+id/PassCntTV"
+            android:layout_width="158dp"
             android:layout_height="27dp"
             android:layout_marginStart="33dp"
             android:layout_marginTop="4dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/_8949"
+            android:text="@string/_23"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/busCnt"
             app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+        <TextView
+            android:id="@+id/ef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/fine_collection"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/busCnt" />
+
+        <TextView
+            android:id="@+id/fineColl"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/_3_000"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ef" />
 
         <View
             android:id="@+id/view3"
@@ -80,7 +104,7 @@
             android:background="@color/underline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/busCnt" />
+            app:layout_constraintTop_toBottomOf="@+id/fineColl" />
 
         <TextView
             android:id="@+id/textView27"
@@ -107,7 +131,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView27"
             tools:itemCount="3"
             tools:listitem="@layout/card_route_design" />
-<!--        /-->
+        <!--        /-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

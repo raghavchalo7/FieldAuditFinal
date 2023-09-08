@@ -16,7 +16,7 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="40dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/chalomasterlogo"
@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="27dp"
             android:layout_marginStart="152dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="152dp"
             android:fontFamily="sans-serif-black"
             android:text="@string/log"
@@ -44,42 +44,49 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.026" />
 
-        <EditText
-            android:id="@+id/editTextUser"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextUserlayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/rectangle_6"
-            android:hint="@string/user_id"
-            android:inputType="text"
-            android:padding="14dp"
-            android:textColorHint="@color/gray_hint"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_goneMarginStart="16dp" />
-
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="58dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/rectangle_6"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:textColorHint="@color/gray_hint"
-            android:textSize="14sp"
+            android:hint="@string/user_id"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextUser" />
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextUser"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                tools:layout_editor_absoluteX="124dp"
+                tools:layout_editor_absoluteY="220dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextPasswordLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextUserlayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPassword"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="52dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/redirectLoginToBusSelection"
@@ -96,6 +103,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

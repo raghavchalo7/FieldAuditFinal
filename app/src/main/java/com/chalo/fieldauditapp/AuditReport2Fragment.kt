@@ -15,6 +15,7 @@ import com.chalo.fieldauditapp.databinding.FragmentAuditReport2Binding
 import com.chalo.fieldauditapp.databinding.FragmentAuditReportBinding
 import com.chalo.fieldauditapp.model.AuditReportRequestItem
 import com.chalo.fieldauditapp.model.CreateAuditNew
+//import com.chalo.fieldauditapp.model.CreateAuditNew
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
@@ -125,7 +126,7 @@ class AuditReport2Fragment : Fragment() {
                             busCnt.text = sz.toString()
                         }
 
-                        val fineColl: TextView? = binding.fineCollTV
+                        val fineColl: TextView? = binding.fineColl
                         if (fineColl != null) {
                             fineColl.text = responseBody1.data.summary.totalCollection.toString()
                         }
@@ -164,13 +165,14 @@ class AuditReport2Fragment : Fragment() {
                             val fineCountTV2a: TextView? =
                                 bottomSheetDialog.findViewById<TextView>(R.id.fineCountTV2a)
                             if (fineCountTV2a != null) {
-                                fineCountTV2a.text = it.totalFinesCollected.toString()
+                                fineCountTV2a.text = it.totalFinesCount.toInt().toString()
                             }
 
                             val fineTV2a: TextView? =
                                 bottomSheetDialog.findViewById<TextView>(R.id.fineTV2a)
                             if (fineTV2a != null) {
-                                fineTV2a.text = it.totalFinesCount.toString()
+                                val fineWithRs="₹"+it.totalFinesCollected.toString()
+                                fineTV2a.text = fineWithRs
                             }
 
                             //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
@@ -221,6 +223,14 @@ class AuditReport2Fragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        (activity as MainActivity?)?.setDrawerEnabled(false)
+        (activity as MainActivity).supportActionBar?.title = "Audit Report"
     }
 
     override fun onStop() {

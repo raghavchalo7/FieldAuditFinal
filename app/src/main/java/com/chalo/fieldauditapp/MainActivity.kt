@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +23,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.chalo.fieldauditapp.databinding.ActivityMainBinding
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionDispBinding
 import com.google.android.material.navigation.NavigationView
+import org.w3c.dom.Text
 import kotlin.reflect.typeOf
 
 
@@ -116,9 +119,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+        val toolbar: androidx.appcompat.widget.Toolbar? =
+            findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         _binding!!.navView.setNavigationItemSelectedListener {
+            if (toolbar != null) {
+                toolbar.setNavigationOnClickListener { onBackPressed() }
+            }
             Log.d("TAG1","5")
             when(it.itemId) {
 //                R.id.audit -> Toast.makeText(context,"Audit Button Pressed.............",
@@ -177,9 +185,12 @@ class MainActivity : AppCompatActivity() {
         //appBarConfiguration = AppBarConfiguration(navController.graph, R.id.drawerLayout)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //
-        val toolbar: androidx.appcompat.widget.Toolbar? =
-            findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: androidx.appcompat.widget.Toolbar? =
+//            findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+//        setSupportActionBar(toolbar)
+
+
+
 
         setupActionBarWithNavController(navController,appBarConfiguration)
 
@@ -195,7 +206,7 @@ class MainActivity : AppCompatActivity() {
 ////        if(navController.currentDestination==navController.graph.findNode(R.id.busSelectionDispFragment))
 //        //if(BusSelectionDispFragmen)
 //        if(BusSelectionDispFragment.)
-        if(navController.currentDestination==navController.findDestination(R.id.busSelectionDispFragment) || navController.currentDestination==navController.findDestination(R.id.busSelectionFineFragment))
+        if(navController.currentDestination==navController.findDestination(R.id.busSelectionFineFragment))
         {
             Toast.makeText(this,"NOBACKPRESS...",Toast.LENGTH_LONG).show()
         }
@@ -239,6 +250,16 @@ class MainActivity : AppCompatActivity() {
             if (enabled) DrawerLayout.LOCK_MODE_UNLOCKED else DrawerLayout.LOCK_MODE_LOCKED_CLOSED
         binding.drawerLayout.setDrawerLockMode(lockMode)
         toggle.isDrawerIndicatorEnabled = enabled
+    }
+
+    fun makeVis(){
+        val showAuditReport:TextView=findViewById(R.id.showAuditReport)
+        showAuditReport.visibility=View.VISIBLE
+    }
+
+    fun makeGone(){
+        val showAuditReport:TextView=findViewById(R.id.showAuditReport)
+        showAuditReport.visibility=View.GONE
     }
 
 }

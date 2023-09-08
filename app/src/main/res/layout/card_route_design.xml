@@ -5,17 +5,16 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="53dp">
+    android:layout_height="70dp">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        app:cardElevation="6dp"
-        app:strokeWidth="1dp"
-        app:cardCornerRadius="0dp"
-        app:strokeColor="@color/gray"
+        android:layout_height="wrap_content"
+        app:cardElevation="7dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="5dp"
+        app:strokeColor="@color/white"
         app:cardBackgroundColor="@color/white"
         >
 

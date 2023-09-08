@@ -32,7 +32,7 @@ class BusSelectionDispFragment : Fragment() {
         //(activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         (activity as MainActivity?)?.setDrawerEnabled(false)
-        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         //(activity as MainActivity?)?.getActionBar()?.setDisplayHomeAsUpEnabled(false)
 
         val amount = args.dataVRec
@@ -46,6 +46,7 @@ class BusSelectionDispFragment : Fragment() {
         binding.currentPassengerCountTV.text=currentPassengerCount
 
         val busNo=findVal(amount,"busNo")
+        binding.currentBusNoTV.text=busNo
 
         binding.redirectBusDispToBusSelectFine.setOnClickListener {
             val action=BusSelectionDispFragmentDirections.actionBusSelectionDispFragmentToBusSelectionFineFragment(amount)
@@ -65,15 +66,18 @@ class BusSelectionDispFragment : Fragment() {
         super.onResume()
         val amount = args.dataVRec
         val busNo=findVal(amount,"busNo")
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title=busNo
+        //(activity as AppCompatActivity?)!!.supportActionBar!!.title=busNo
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(true)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        (activity as MainActivity?)?.setDrawerEnabled(false)
     }
 
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(false)
         (activity as MainActivity?)?.setDrawerEnabled(true)
-        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
     //onBackPressed

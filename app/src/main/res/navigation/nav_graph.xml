@@ -12,7 +12,15 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_busSelectionFragment"
-            app:destination="@id/busSelectionFragment" />
+            app:destination="@id/busSelectionFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_errorDetailsFragment"
+            app:destination="@id/errorDetailsFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_noNetworkFragment"
+            app:destination="@id/noNetworkFragment" />
     </fragment>
     <fragment
         android:id="@+id/busSelectionFragment"
@@ -29,7 +37,7 @@
     <fragment
         android:id="@+id/busSelectionDispFragment"
         android:name="com.chalo.fieldauditapp.BusSelectionDispFragment"
-        android:label="{dataVRec}"
+        android:label=""
         tools:layout="@layout/fragment_bus_selection_disp" >
         <action
             android:id="@+id/action_busSelectionDispFragment_to_busSelectionFineFragment"
@@ -75,4 +83,14 @@
         android:name="com.chalo.fieldauditapp.AuditReport2Fragment"
         android:label="fragment_audit_report2"
         tools:layout="@layout/fragment_audit_report2" />
+    <fragment
+        android:id="@+id/errorDetailsFragment"
+        android:name="com.chalo.fieldauditapp.ErrorDetailsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_error_details" />
+    <fragment
+        android:id="@+id/noNetworkFragment"
+        android:name="com.chalo.fieldauditapp.NoNetworkFragment"
+        android:label=""
+        tools:layout="@layout/fragment_no_network" />
 </navigation>

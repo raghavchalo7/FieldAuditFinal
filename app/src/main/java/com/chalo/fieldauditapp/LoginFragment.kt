@@ -107,16 +107,21 @@ class LoginFragment : Fragment() {
                     if(response.code()>=500)
                     {
                         Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+                        findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
                     }
                     else if(response.code()>=400)
                     {
                         Toast.makeText(context,"Wrong details",Toast.LENGTH_LONG).show()
+                        //findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment) //Remove
+                        binding.editTextUserlayout.error="This User ID does not exist"
                     }
-                    else if(response.code()>=200)     //CORRECT THIS ***+++**********************
+                    else
+                    if(response.code()>=200)     //CORRECT THIS ***+++**********************
                     {
                         val token= response.body()?.get("token")
                         val key="token"
                         saveData(key,token.toString())
+                        binding.editTextUserlayout.error=null
                         findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
                     }
                     else
@@ -130,6 +135,7 @@ class LoginFragment : Fragment() {
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                     Log.d("ErrorapiLog",t.toString())
                     Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN 22",Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_loginFragment_to_noNetworkFragment)
                     //binding.code2TV.text=t.message.toString()
                 }
 
@@ -152,7 +158,7 @@ class LoginFragment : Fragment() {
         editor?.apply{
             putString(key,token)
         }?.apply()
-        Toast.makeText(context, "Data Saved",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, "Data Saved",Toast.LENGTH_SHORT).show()
     }
 
     private fun loginCheck()

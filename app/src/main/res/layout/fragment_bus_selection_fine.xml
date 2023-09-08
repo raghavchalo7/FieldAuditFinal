@@ -27,31 +27,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/green_man2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
         <TextView
             android:id="@+id/deboardTV"
-            android:layout_width="0dp"
+            android:layout_width="200dp"
             android:layout_height="33dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="290dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/_02"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -84,23 +71,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
-                <EditText
-                    android:id="@+id/fineAmountET"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fineamountETLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="27dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/rectangle_62"
-                    android:ems="10"
-                    android:hint="Enter amount"
-                    android:inputType="numberSigned"
-                    android:padding="13dp"
-                    android:textSize="16sp"
+                    app:prefixText="@string/Rs"
+
+                    android:hint="@string/enter_amount"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fineAmountET"
+                        android:inputType="numberSigned"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/issueFine"
@@ -115,7 +108,8 @@
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fineAmountET" />
+                    app:layout_constraintTop_toBottomOf="@id/fineamountETLayout" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

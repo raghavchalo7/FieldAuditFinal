@@ -63,4 +63,19 @@
     <string name="passengers_caught">Passengers caught</string>
     <string name="_23">23</string>
     <string name="_3456">₹3456</string>
+    <string name="scan_bus_qr_to_start_audit">Scan bus QR to start audit</string>
+    <string name="no_buses_audited_yet">No buses audited yet</string>
+    <string name="vehicle_number">Vehicle Number</string>
+    <string name="mh07ab1234">MH07AB1234</string>
+    <string name="show_audit_report">Show Audit Report</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="Rs">₹</string>
+    <string name="confirm_fine">Confirm Fine</string>
+    <string name="fine_amount">Fine Amount</string>
+    <string name="audit_report2">Audit Report</string>
+    <string name="failed_to_load_bus_details">Failed to load bus details</string>
+    <string name="please_try_again">Please try again</string>
+    <string name="no_internet_connection_available">No internet connection available</string>
+    <string name="please_check_your_network_and_try_again">Please check your network and try again</string>
+    <string name="_3_000">₹3,000</string>
 </resources>

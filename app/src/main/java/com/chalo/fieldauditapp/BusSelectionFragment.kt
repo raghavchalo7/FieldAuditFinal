@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
@@ -59,9 +60,17 @@ class BusSelectionFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding=FragmentBusSelectionBinding.inflate(inflater,container, false)
 
-
+        drawerLayout2=(activity as MainActivity).findViewById(R.id.drawerLayout)
 //        activity.gea().setDisplayHomeAsUpEnabled(true);
-        (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)//true
+        (activity as MainActivity).toggle.syncState()
+        val toolbar=(activity as MainActivity)?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        if (toolbar != null) {
+            toolbar.setNavigationOnClickListener {
+                drawerLayout2.openDrawer(GravityCompat.START)
+            }
+        }
+
 
         val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
         var token= sharedPreferences?.getString("token",null)
@@ -80,16 +89,18 @@ class BusSelectionFragment : Fragment() {
                 if(response.code()>=500)
                 {
                     Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
-                    binding.totalBusesTV.text="0"
-                    binding.passengerCaughtTV.text="0"
-                    binding.fineCollectionTV.text="0"
+//                    binding.totalBusesTV.text="0"
+//                    binding.passengerCaughtTV.text="0"
+//                    binding.fineCollectionTV.text="0"
+                    binding.summaryCardView.visibility=View.INVISIBLE
                 }
                 else if(response.code()>=400)
                 {
                     Toast.makeText(context,"Please try again: "+response.body(),Toast.LENGTH_LONG).show()
-                    binding.totalBusesTV.text="0"
-                    binding.passengerCaughtTV.text="0"
-                    binding.fineCollectionTV.text="0"
+                    binding.summaryCardView.visibility=View.INVISIBLE
+//                    binding.totalBusesTV.text="0"
+//                    binding.passengerCaughtTV.text="0"
+//                    binding.fineCollectionTV.text="0"
 
                 }
                 else if(response.code()>=200) {
@@ -97,10 +108,16 @@ class BusSelectionFragment : Fragment() {
                     val responseBody1 = response.body()!!
 
 
+
                     val responseBody=responseBody1.data.summary
+                    if(responseBody.totalAudits>0)
+                    {
+                        binding.summaryCardView.visibility=View.VISIBLE
+                    }
                 binding.totalBusesTV.text=responseBody.totalAudits.toString()
                 binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
                 binding.fineCollectionTV.text=responseBody.totalCollection.toString()
+
                 }
             }
 
@@ -114,9 +131,10 @@ class BusSelectionFragment : Fragment() {
                 t: Throwable
             ) {
                 Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
-                binding.totalBusesTV.text="0"
-                binding.passengerCaughtTV.text="0"
-                binding.fineCollectionTV.text="0"
+//                binding.totalBusesTV.text="0"
+//                binding.passengerCaughtTV.text="0"
+//                binding.fineCollectionTV.text="0"
+                binding.summaryCardView.visibility=View.INVISIBLE
                 Log.d("resp=",t.toString())
 
             }
@@ -234,7 +252,7 @@ class BusSelectionFragment : Fragment() {
             } else {
                 val tsLong = System.currentTimeMillis() / 1000
                 val ts = tsLong.toString()
-                Toast.makeText(context, "Scanned at: " + ts, Toast.LENGTH_LONG).show()
+                //Toast.makeText(context, "Scanned at: " + ts, Toast.LENGTH_LONG).show()
                 var dataResult1Previous=result.toString()
                 //Toast.makeText(context,"Encrypted=${dataResult1Previous}",Toast.LENGTH_LONG).show()
                 //val encoded = Base64.encode(dataResult1Previous.toByteArray(),Base64.NO_WRAP)
@@ -250,7 +268,7 @@ class BusSelectionFragment : Fragment() {
                 //val decodeResult=Base64.decode(dataResult1ByteArray,Base64.NO_WRAP)
 //                Log.d("QRData",String(dataResult1ByteArray!!))
                 val dataResult1=String(dataResult1ByteArray!!)
-                Toast.makeText(context,"Decrypted=${dataResult1}",Toast.LENGTH_LONG).show()
+                //Toast.makeText(context,"Decrypted=${dataResult1}",Toast.LENGTH_LONG).show()
                 val dataResult= "$ts@$dataResult1"
                 Log.d("QRData",dataResult1)
                 val action=BusSelectionFragmentDirections.actionBusSelectionFragmentToBusSelectionDispFragment(dataResult)
