@@ -170,7 +170,7 @@ class BusSelectionFineFragment : Fragment() {
                         Log.d("Check",stopId)
                         val test="eQewrnTx"
                         Log.d("Check",test)
-                        val auditReq=CreateAuditRequest(audit_end_bus_stop_id ="1", audit_end_ts = timeEnd, audit_start_bus_stop_id = "1", audit_start_ts = timeStart,bus_no=busNo,fines=fines,passenger_count=passengerCount.toInt(), route_id=routeId, route_name = routeName, total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
+                        val auditReq=CreateAuditRequest(audit_end_bus_stop_id =stopId, audit_end_ts = timeEnd, audit_start_bus_stop_id = stopId, audit_start_ts = timeStart,bus_no=busNo,fines=fines,passenger_count=passengerCount.toInt(), route_id=routeId, route_name = routeName, total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
 
 
                         //val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
@@ -326,13 +326,17 @@ class BusSelectionFineFragment : Fragment() {
 //                    Commented now
                         Log.d("DataAPI",auditReq.toString())
                         Log.d("LOGREQ",call.request().toString())
+                        val loading=Loading_Dialog(activity as MainActivity)
+                        loading.start()
                         call.enqueue(object : Callback<JsonObject> {
                             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                                loading.isDismiss()
                                 Log.d("SuccessapiWr",response.code().toString())
 
                                 if(response.code()>=500)
                                 {
-                                    Toast.makeText(context,"Server Error Please Try Again",Toast.LENGTH_LONG).show()
+                                    //Toast.makeText(context,"Server Error Please Try Again",Toast.LENGTH_LONG).show()
+                                    findNavController().navigate(R.id.action_busSelectionFineFragment_to_errorDetailsFragment)
                                 }
                                 else if(response.code()>=400)
                                 {
@@ -353,7 +357,9 @@ class BusSelectionFineFragment : Fragment() {
 
                             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                                 Log.d("ErrorapiWr",t.toString())
-                                Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
+                                //Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
+                                loading.isDismiss()
+                                findNavController().navigate(R.id.action_busSelectionFineFragment_to_noNetworkFragment)
                                 //binding.code2TV.text=t.message.toString()
                             }
 
@@ -508,9 +514,9 @@ class BusSelectionFineFragment : Fragment() {
                     val test = "eQewrnTx"
                     Log.d("Check", test)
                     val auditReq = CreateAuditRequest(
-                        audit_end_bus_stop_id = "1",
+                        audit_end_bus_stop_id = stopId,
                         audit_end_ts = timeEnd,
-                        audit_start_bus_stop_id = "1",
+                        audit_start_bus_stop_id = stopId,
                         audit_start_ts = timeStart,
                         bus_no = busNo,
                         fines = fines,
@@ -673,19 +679,23 @@ class BusSelectionFineFragment : Fragment() {
                     //                    Commented now
                     Log.d("DataAPI", auditReq.toString())
                     Log.d("LOGREQ", call.request().toString())
+                    val loading=Loading_Dialog(activity as MainActivity)
+                    loading.start()
                     call.enqueue(object : Callback<JsonObject> {
                         override fun onResponse(
                             call: Call<JsonObject>,
                             response: Response<JsonObject>
                         ) {
+                            loading.isDismiss()
                             Log.d("SuccessapiWr", response.code().toString())
 
                             if (response.code() >= 500) {
-                                Toast.makeText(
-                                    context,
-                                    "Server Error Please Try Again",
-                                    Toast.LENGTH_LONG
-                                ).show()
+//                                Toast.makeText(
+//                                    context,
+//                                    "Server Error Please Try Again",
+//                                    Toast.LENGTH_LONG
+//                                ).show()
+                                findNavController().navigate(R.id.action_busSelectionFineFragment_to_errorDetailsFragment)
                             } else if (response.code() >= 400) {
                                 Log.d("400errorText", response.code().toString())
                                 Log.d("400errorText", response.body().toString())
@@ -706,8 +716,10 @@ class BusSelectionFineFragment : Fragment() {
 
                         override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                             Log.d("ErrorapiWr", t.toString())
-                            Toast.makeText(context, "NO INTERNET CONNECTION", Toast.LENGTH_LONG)
-                                .show()
+//                            Toast.makeText(context, "NO INTERNET CONNECTION", Toast.LENGTH_LONG)
+//                                .show()
+                            loading.isDismiss()
+                            findNavController().navigate(R.id.action_busSelectionFineFragment_to_noNetworkFragment)
                             //binding.code2TV.text=t.message.toString()
                         }
 

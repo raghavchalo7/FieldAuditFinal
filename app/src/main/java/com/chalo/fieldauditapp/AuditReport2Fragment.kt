@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chalo.fieldauditapp.databinding.FragmentAuditReport2Binding
 import com.chalo.fieldauditapp.databinding.FragmentAuditReportBinding
@@ -78,14 +79,18 @@ class AuditReport2Fragment : Fragment() {
             ////                    .callTimeout(60, TimeUnit.SECOND)
             ////                    .cache(Cache(dir,10 * 1024 * 1024)) //10MB
             //                    .build()
+            val loading=Loading_Dialog(activity as MainActivity)
+            loading.start()
             response.enqueue(object : Callback<CreateAuditNew> {
                 override fun onResponse(
                     call: Call<CreateAuditNew>,
                     response: Response<CreateAuditNew>
                 ) {
+                    loading.isDismiss()
 
                     if (response.code() >= 500) {
-                        Toast.makeText(context, "ServerError", Toast.LENGTH_LONG).show()
+                        //Toast.makeText(context, "ServerError", Toast.LENGTH_LONG).show()
+                        findNavController().navigate(R.id.action_auditReport2Fragment_to_errorDetailsFragment)
                     } else if (response.code() >= 400) {
                         Toast.makeText(context, "Wrong details", Toast.LENGTH_LONG).show()
                     } else if (response.code() >= 200)     //CORRECT THIS ***+++**********************
@@ -124,6 +129,11 @@ class AuditReport2Fragment : Fragment() {
                         val busCnt: TextView? = binding.busCnt
                         if (busCnt != null) {
                             busCnt.text = sz.toString()
+                        }
+
+                        val PassCntTV: TextView? = binding.PassCntTV
+                        if (PassCntTV != null) {
+                            PassCntTV.text = responseBody1.data.summary.passengerCaught.toString()
                         }
 
                         val fineColl: TextView? = binding.fineColl
@@ -211,7 +221,9 @@ class AuditReport2Fragment : Fragment() {
                     call: Call<CreateAuditNew>,
                     t: Throwable
                 ) {
-                    Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
+                    loading.isDismiss()
+                    findNavController().navigate(R.id.action_auditReport2Fragment_to_noNetworkFragment)
                 }
 
             })

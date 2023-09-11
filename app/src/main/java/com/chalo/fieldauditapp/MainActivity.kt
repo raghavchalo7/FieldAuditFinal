@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity() {
         {
             Toast.makeText(this,"NOBACKPRESS...",Toast.LENGTH_LONG).show()
         }
-        else if(navController.currentDestination==navController.findDestination(R.id.loginFragment))
+        else if(navController.currentDestination==navController.findDestination(R.id.loginFragment) || navController.currentDestination==navController.findDestination(R.id.busSelectionFragment))
         {
                 finishAffinity()
             finish()

@@ -34,7 +34,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/_02"
+            android:text="@string/_0"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"

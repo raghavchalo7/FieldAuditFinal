@@ -33,6 +33,12 @@
         <action
             android:id="@+id/action_busSelectionFragment_to_auditReportFragment"
             app:destination="@id/auditReportFragment" />
+        <action
+            android:id="@+id/action_busSelectionFragment_to_errorDetailsFragment"
+            app:destination="@id/errorDetailsFragment" />
+        <action
+            android:id="@+id/action_busSelectionFragment_to_noNetworkFragment"
+            app:destination="@id/noNetworkFragment" />
     </fragment>
     <fragment
         android:id="@+id/busSelectionDispFragment"
@@ -49,7 +55,7 @@
     <fragment
         android:id="@+id/busSelectionFineFragment"
         android:name="com.chalo.fieldauditapp.BusSelectionFineFragment"
-        android:label="{dataVRec}"
+        android:label=""
         tools:layout="@layout/fragment_bus_selection_fine" >
         <action
             android:id="@+id/action_busSelectionFineFragment_to_busDetailsDoneFragment"
@@ -58,6 +64,12 @@
         <argument
             android:name="dataVRec"
             app:argType="string" />
+        <action
+            android:id="@+id/action_busSelectionFineFragment_to_errorDetailsFragment"
+            app:destination="@id/errorDetailsFragment" />
+        <action
+            android:id="@+id/action_busSelectionFineFragment_to_noNetworkFragment"
+            app:destination="@id/noNetworkFragment" />
     </fragment>
     <fragment
         android:id="@+id/busDetailsDoneFragment"
@@ -81,8 +93,15 @@
     <fragment
         android:id="@+id/auditReport2Fragment"
         android:name="com.chalo.fieldauditapp.AuditReport2Fragment"
-        android:label="fragment_audit_report2"
-        tools:layout="@layout/fragment_audit_report2" />
+        android:label="Audit Report"
+        tools:layout="@layout/fragment_audit_report2" >
+        <action
+            android:id="@+id/action_auditReport2Fragment_to_errorDetailsFragment"
+            app:destination="@id/errorDetailsFragment" />
+        <action
+            android:id="@+id/action_auditReport2Fragment_to_noNetworkFragment"
+            app:destination="@id/noNetworkFragment" />
+    </fragment>
     <fragment
         android:id="@+id/errorDetailsFragment"
         android:name="com.chalo.fieldauditapp.ErrorDetailsFragment"

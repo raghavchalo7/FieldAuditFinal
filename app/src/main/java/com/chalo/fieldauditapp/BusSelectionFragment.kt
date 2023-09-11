@@ -80,15 +80,19 @@ class BusSelectionFragment : Fragment() {
         val response = RetrofitInstance.api.getAuditReports(token,false)
         Log.d("Token=",token)
 
+        val loading=Loading_Dialog(activity as MainActivity)
+        loading.start()
         response.enqueue(object : Callback<CreateAuditNew> {
             override fun onResponse(
                 call: Call<CreateAuditNew>,
                 response: Response<CreateAuditNew>
             ) {
+                loading.isDismiss()
                 Log.d("Resp=",response.code().toString())
                 if(response.code()>=500)
                 {
-                    Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_busSelectionFragment_to_errorDetailsFragment)
 //                    binding.totalBusesTV.text="0"
 //                    binding.passengerCaughtTV.text="0"
 //                    binding.fineCollectionTV.text="0"
@@ -130,10 +134,12 @@ class BusSelectionFragment : Fragment() {
                 call: Call<CreateAuditNew>,
                 t: Throwable
             ) {
-                Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
+                //Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
 //                binding.totalBusesTV.text="0"
 //                binding.passengerCaughtTV.text="0"
 //                binding.fineCollectionTV.text="0"
+                loading.isDismiss()
+                findNavController().navigate(R.id.action_busSelectionFragment_to_noNetworkFragment)
                 binding.summaryCardView.visibility=View.INVISIBLE
                 Log.d("resp=",t.toString())
 
@@ -257,7 +263,7 @@ class BusSelectionFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if (result != null) {
+        if (result.contents != null) {
             if (result == null) {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
@@ -267,23 +273,33 @@ class BusSelectionFragment : Fragment() {
                 var dataResult1Previous=result.toString()
                 //Toast.makeText(context,"Encrypted=${dataResult1Previous}",Toast.LENGTH_LONG).show()
                 //val encoded = Base64.encode(dataResult1Previous.toByteArray(),Base64.NO_WRAP)
-                val v1data=findVal(dataResult1Previous,"v1")
-                Log.e("v1dat",v1data)
-                val encodedByte=v1data.toByteArray()
-                //Log.d("QRData",v1data)
-                val secret="qwtPhBPjlpTpoPS7"
-                val sec=Base64.encodeToString(secret.toByteArray(),Base64.NO_WRAP)
-                //val secretBase64= Base64.encode(secret,Base64.NO_WRAP)
+                val index:Int = dataResult1Previous.indexOf("v1")
+                if(index==-1)
+                {
+                    Toast.makeText(context,"Wrong QR code", Toast.LENGTH_LONG).show()
+                }
+                else {
+                    val v1data = findVal(dataResult1Previous, "v1")
+                    Log.e("v1dat", v1data)
+                    val encodedByte = v1data.toByteArray()
+                    //Log.d("QRData",v1data)
+                    val secret = "qwtPhBPjlpTpoPS7"
+                    val sec = Base64.encodeToString(secret.toByteArray(), Base64.NO_WRAP)
+                    //val secretBase64= Base64.encode(secret,Base64.NO_WRAP)
 
-                val dataResult1ByteArray=decryptWithECB(encodedByte, sec)
-                //val decodeResult=Base64.decode(dataResult1ByteArray,Base64.NO_WRAP)
+                    val dataResult1ByteArray = decryptWithECB(encodedByte, sec)
+                    //val decodeResult=Base64.decode(dataResult1ByteArray,Base64.NO_WRAP)
 //                Log.d("QRData",String(dataResult1ByteArray!!))
-                val dataResult1=String(dataResult1ByteArray!!)
-                //Toast.makeText(context,"Decrypted=${dataResult1}",Toast.LENGTH_LONG).show()
-                val dataResult= "$ts@$dataResult1"
-                Log.d("QRData",dataResult1)
-                val action=BusSelectionFragmentDirections.actionBusSelectionFragmentToBusSelectionDispFragment(dataResult)
-                findNavController().navigate(action)
+                    val dataResult1 = String(dataResult1ByteArray!!)
+                    //Toast.makeText(context,"Decrypted=${dataResult1}",Toast.LENGTH_LONG).show()
+                    val dataResult = "$ts@$dataResult1"
+                    Log.d("QRData", dataResult1)
+                    val action =
+                        BusSelectionFragmentDirections.actionBusSelectionFragmentToBusSelectionDispFragment(
+                            dataResult
+                        )
+                    findNavController().navigate(action)
+                }
 
             }
         }

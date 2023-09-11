@@ -54,6 +54,8 @@
             android:layout_marginEnd="16dp"
             android:hint="@string/user_id"
             app:errorEnabled="true"
+            android:maxLines="1"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -62,6 +64,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextUser"
                 android:layout_width="match_parent"
+                android:maxLines="1"
+                android:inputType="text"
                 android:layout_height="52dp"
                 tools:layout_editor_absoluteX="124dp"
                 tools:layout_editor_absoluteY="220dp" />
@@ -77,12 +81,14 @@
             android:layout_marginTop="18dp"
             android:layout_marginEnd="16dp"
             android:hint="Password"
+            android:maxLines="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextUserlayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPassword"
+                android:maxLines="1"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="52dp" />

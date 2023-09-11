@@ -33,6 +33,7 @@ class LoginFragment : Fragment() {
         }
 
         override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int){
+            binding.editTextUserlayout.error=null
 
         }
         override fun afterTextChanged(editable: Editable) {
@@ -95,15 +96,19 @@ class LoginFragment : Fragment() {
             val s2: String = binding.editTextPassword.getText().toString()
             val loginRequest=LoginRequest(password = s2, username = s1);
             val call=RetrofitInstance.api.getLoginToken(loginRequest)
+
+            val loading=Loading_Dialog(activity as MainActivity)
+            loading.start()
             call.enqueue(object : Callback<JsonObject> {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                    loading.isDismiss()
 
                     Log.d("SuccessapiLog",response.code().toString())
                     Log.d("SuccessapiLog",response.message().toString())
                     Log.d("SuccessapiLog",response.body().toString())
                     if(response.code()>=500)
                     {
-                        Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+                        //Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
                         findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
                     }
                     else if(response.code()>=400)
@@ -131,7 +136,8 @@ class LoginFragment : Fragment() {
 
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                     Log.d("ErrorapiLog",t.toString())
-                    Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN 22",Toast.LENGTH_LONG).show()
+                    loading.isDismiss()
+                    //Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN 22",Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_loginFragment_to_noNetworkFragment)
                     //binding.code2TV.text=t.message.toString()
                 }
