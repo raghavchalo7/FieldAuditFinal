@@ -108,7 +108,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/summaryCardView"
             android:layout_width="0dp"
-            android:layout_height="176dp"
+            android:layout_height="228dp"
             android:layout_marginTop="21dp"
             app:layout_constraintEnd_toEndOf="@+id/cardView3"
             app:layout_constraintStart_toStartOf="@+id/cardView3"
@@ -190,6 +190,25 @@
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/viewAuditReport"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rectangle_6_cancel"
+                    android:text="@string/view_audit_reports"
+                    android:textColor="@color/orange"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fineCollectionTV" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

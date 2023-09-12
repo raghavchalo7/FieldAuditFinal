@@ -121,6 +121,9 @@ class BusSelectionFragment : Fragment() {
                 binding.totalBusesTV.text=responseBody.totalAudits.toString()
                 binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
                 binding.fineCollectionTV.text=responseBody.totalCollection.toString()
+                    binding.viewAuditReport.setOnClickListener {
+                        findNavController().navigate(R.id.auditReport2Fragment)
+                    }
 
                 }
             }
