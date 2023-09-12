@@ -151,7 +151,7 @@ class AuditReport2Fragment : Fragment() {
                             val busTV2a: TextView? =
                                 bottomSheetDialog.findViewById<TextView>(R.id.busTV2a)
                             if (busTV2a != null) {
-                                busTV2a.text = it.id.toString()
+                                busTV2a.text = it.busNo.toString()
                             }
 
 
@@ -164,7 +164,7 @@ class AuditReport2Fragment : Fragment() {
                             val stopTV2a: TextView? =
                                 bottomSheetDialog.findViewById<TextView>(R.id.stopTV2a)
                             if (stopTV2a != null) {
-                                stopTV2a.text = it.auditEndBusStopId.toString()
+                                stopTV2a.text = it.routeName.toString()
                             }
 
                             //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
@@ -253,7 +253,7 @@ class AuditReport2Fragment : Fragment() {
 
 
     override fun onDestroyView() {
-        (activity as MainActivity).supportActionBar?.title = ""
+        //(activity as MainActivity).supportActionBar?.title = ""
         super.onDestroyView()
         _binding=null
     }

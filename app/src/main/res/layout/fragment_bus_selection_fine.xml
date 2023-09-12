@@ -28,7 +28,7 @@
 
 
         <TextView
-            android:id="@+id/deboardTV"
+            android:id="@+id/passengerTV"
             android:layout_width="200dp"
             android:layout_height="33dp"
             android:layout_marginStart="16dp"
@@ -50,7 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deboardTV">
+            app:layout_constraintTop_toBottomOf="@+id/passengerTV">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -119,16 +119,13 @@
             android:id="@+id/endAudit"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="48dp"
-            android:layout_marginEnd="16dp"
             android:background="@drawable/rectangle_64"
             android:text="@string/end_audit"
             android:textColor="#F57C00"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 

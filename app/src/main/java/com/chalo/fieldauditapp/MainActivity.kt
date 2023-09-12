@@ -201,11 +201,11 @@ class MainActivity : AppCompatActivity() {
 ////        if(navController.currentDestination==navController.graph.findNode(R.id.busSelectionDispFragment))
 //        //if(BusSelectionDispFragmen)
 //        if(BusSelectionDispFragment.)
-        if(navController.currentDestination==navController.findDestination(R.id.busSelectionFineFragment))
-        {
-            Toast.makeText(this,"NOBACKPRESS...",Toast.LENGTH_LONG).show()
-        }
-        else if(navController.currentDestination==navController.findDestination(R.id.loginFragment) || navController.currentDestination==navController.findDestination(R.id.busSelectionFragment))
+//        if(navController.currentDestination==navController.findDestination(R.id.busSelectionFineFragment))
+//        {
+//            Toast.makeText(this,"NOBACKPRESS...",Toast.LENGTH_LONG).show()
+//        }
+        if(navController.currentDestination==navController.findDestination(R.id.loginFragment) || navController.currentDestination==navController.findDestination(R.id.busSelectionFragment))
         {
                 finishAffinity()
             finish()

@@ -276,7 +276,8 @@ class BusSelectionFragment : Fragment() {
                 val index:Int = dataResult1Previous.indexOf("v1")
                 if(index==-1)
                 {
-                    Toast.makeText(context,"Wrong QR code", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context,"Wrong QR code", Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_busSelectionFragment_to_errorDetailsFragment)
                 }
                 else {
                     val v1data = findVal(dataResult1Previous, "v1")

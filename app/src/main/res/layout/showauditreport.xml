@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:id="@+id/auditdetailsid">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -18,13 +17,14 @@
         android:layout_width="0dp"
         android:layout_height="27dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="216dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="192dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/audit_report2"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
@@ -33,8 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="19dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-
+        android:layout_marginTop="32dp"
         android:text="@string/vehicle_number"
         android:textColor="@color/gray"
         android:textSize="14sp"
@@ -43,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/busTV2a"
+        android:id="@+id/busTV2"
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:layout_marginStart="24dp"
@@ -57,61 +56,22 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-
-        android:text="@string/route"
-        android:textColor="@color/gray"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/busTV2a" />
-
-    <TextView
-        android:id="@+id/routeTV2a"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/_0"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <TextView
-        android:id="@+id/stopTV2a"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/_0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/routeTV2a" />
-
-
-    <TextView
         android:id="@+id/textView19"
         android:layout_width="0dp"
         android:layout_height="19dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="213dp"
         android:text="@string/passenger_caught"
         android:textColor="@color/gray"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopTV2a" />
+        app:layout_constraintTop_toBottomOf="@+id/busTV2" />
 
 
     <TextView
-        android:id="@+id/fineCountTV2a"
+        android:id="@+id/fineCountTV2"
         android:layout_width="0dp"
         android:layout_height="27dp"
         android:layout_marginStart="24dp"
@@ -129,43 +89,29 @@
         android:layout_height="19dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="237dp"
         android:text="@string/fine_collection"
         android:textColor="@color/gray"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fineCountTV2a" />
+        app:layout_constraintTop_toBottomOf="@+id/fineCountTV2" />
 
     <TextView
-        android:id="@+id/fineTV2a"
+        android:id="@+id/fineTV2"
         android:layout_width="0dp"
         android:layout_height="27dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/_0"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/dimissAudit"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rectangle_6_proceed"
-        android:text="@string/dismiss"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fineTV2a"
+        app:layout_constraintTop_toBottomOf="@+id/textView20"
         app:layout_constraintVertical_bias="0.0" />
 
 

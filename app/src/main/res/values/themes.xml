@@ -20,6 +20,10 @@
 
     <style name="Theme.SplashScreenApp" parent="Base.Theme.FieldAuditApp" />
 
+    <style name="Nav_menu" parent="Base.Theme.FieldAuditApp">
+        <item name="android:itemBackground">@color/red</item>
+    </style>
+
 <!--    <style name="ToolbarColoredBackArrow" parent="Theme.Material3.DayNight.">-->
 <!--        <item name="android:textColorSecondary">@color/black</item>-->
 <!--    </style>-->
