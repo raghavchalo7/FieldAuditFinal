@@ -34,7 +34,6 @@
         android:layout_height="19dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-
         android:text="@string/vehicle_number"
         android:textColor="@color/gray"
         android:textSize="14sp"
@@ -57,18 +56,45 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
+        android:id="@+id/textView28"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/bus_stop"
+        android:textColor="@color/gray"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/busTV2a" />
+
+    <TextView
+        android:id="@+id/busStopTV2a"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/_0"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+    <TextView
         android:id="@+id/textView13"
         android:layout_width="0dp"
         android:layout_height="19dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-
         android:text="@string/route"
         android:textColor="@color/gray"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/busTV2a" />
+        app:layout_constraintTop_toBottomOf="@+id/busStopTV2a" />
 
     <TextView
         android:id="@+id/routeTV2a"
@@ -148,6 +174,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/dimissAudit"

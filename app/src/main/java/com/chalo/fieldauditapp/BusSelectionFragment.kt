@@ -118,9 +118,10 @@ class BusSelectionFragment : Fragment() {
                     {
                         binding.summaryCardView.visibility=View.VISIBLE
                     }
-                binding.totalBusesTV.text=responseBody.totalAudits.toString()
-                binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
-                binding.fineCollectionTV.text=responseBody.totalCollection.toString()
+                    binding.totalBusesTV.text=responseBody.totalAudits.toString()
+                    binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
+                    val stWithRs:String="₹"+responseBody.totalCollection.toString()
+                    binding.fineCollectionTV.text=stWithRs
                     binding.viewAuditReport.setOnClickListener {
                         findNavController().navigate(R.id.auditReport2Fragment)
                     }

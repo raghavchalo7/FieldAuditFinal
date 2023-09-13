@@ -63,6 +63,8 @@ class BusSelectionFineFragment : Fragment() {
         val routeId=findVal(amount,"routeId")
         val routeName=findVal(amount,"routeName")
 
+        val stopName=findVal(amount,"currentStopName")
+
         val stopId:String=findVal(amount,"currentStopId").toString()
         val stopId2:String=findVal(amount,"routeId")
         Log.d("stringData",stopId+" & "+stopId2)
@@ -173,7 +175,7 @@ class BusSelectionFineFragment : Fragment() {
                         val test="eQewrnTx"
                         Log.d("Check",test)
                         Toast.makeText(context,"routeName=${routeName}",Toast.LENGTH_LONG).show()
-                        val auditReq=CreateAuditRequest(audit_end_bus_stop_id =stopId, audit_end_ts = timeEnd, audit_start_bus_stop_id = stopId, audit_start_ts = timeStart,bus_no=busNo,fines=fines,passenger_count=passengerCount.toInt(), route_id=routeId, route_name = routeName, total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
+                        val auditReq=CreateAuditRequest(audit_end_bus_stop_id =stopId, audit_end_bus_stop_name = stopName,audit_end_ts = timeEnd, audit_start_bus_stop_id = stopId, audit_start_bus_stop_name = stopName ,audit_start_ts = timeStart,bus_no=busNo,fines=fines,passenger_count=passengerCount.toInt(), route_id=routeId, route_name = routeName, total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
 
 
                         //val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
@@ -529,20 +531,7 @@ class BusSelectionFineFragment : Fragment() {
                         val test = "eQewrnTx"
                         Log.d("Check", test)
                         Toast.makeText(context,"routeName=${routeName}",Toast.LENGTH_LONG).show()
-                        val auditReq = CreateAuditRequest(
-                            audit_end_bus_stop_id = stopId,
-                            audit_end_ts = timeEnd,
-                            audit_start_bus_stop_id = stopId,
-                            audit_start_ts = timeStart,
-                            bus_no = busNo,
-                            fines = fines,
-                            passenger_count = passengerCount.toInt(),
-                            route_id = routeId,
-                            route_name = routeName,
-                            total_ticket_count = fineCount,
-                            trip_number = trip_number,
-                            waybill_number = waybillNo.toInt()
-                        )
+                        val auditReq = CreateAuditRequest(audit_end_bus_stop_id =stopId, audit_end_bus_stop_name = stopName,audit_end_ts = timeEnd, audit_start_bus_stop_id = stopId, audit_start_bus_stop_name = stopName ,audit_start_ts = timeStart,bus_no=busNo,fines=fines,passenger_count=passengerCount.toInt(), route_id=routeId, route_name = routeName, total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
 
 
                         //val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)
@@ -840,21 +829,8 @@ class BusSelectionFineFragment : Fragment() {
                     Log.d("Check", stopId)
                     val test = "eQewrnTx"
                     Log.d("Check", test)
-                    Toast.makeText(context,"routeName=${routeName}",Toast.LENGTH_LONG).show()
-                    val auditReq = CreateAuditRequest(
-                        audit_end_bus_stop_id = stopId,
-                        audit_end_ts = timeEnd,
-                        audit_start_bus_stop_id = stopId,
-                        audit_start_ts = timeStart,
-                        bus_no = busNo,
-                        fines = fines,
-                        passenger_count = passengerCount.toInt(),
-                        route_id = routeId,
-                        route_name = routeName,
-                        total_ticket_count = fineCount,
-                        trip_number = trip_number,
-                        waybill_number = waybillNo.toInt()
-                    )
+                    //Toast.makeText(context,"routeName=${routeName}",Toast.LENGTH_LONG).show()
+                    val auditReq = CreateAuditRequest(audit_end_bus_stop_id =stopId, audit_end_bus_stop_name = stopName,audit_end_ts = timeEnd, audit_start_bus_stop_id = stopId, audit_start_bus_stop_name = stopName ,audit_start_ts = timeStart,bus_no=busNo,fines=fines,passenger_count=passengerCount.toInt(), route_id=routeId, route_name = routeName, total_ticket_count = fineCount,trip_number=trip_number, waybill_number = waybillNo.toInt())
 
 
                     //val createAuditApi=retrofitbuilder.create(CreateAuditAPI::class.java)

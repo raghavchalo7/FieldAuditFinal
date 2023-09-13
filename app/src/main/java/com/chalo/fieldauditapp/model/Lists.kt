@@ -4,6 +4,7 @@ data class Lists(
     val auditEndBusStopId: String,
     val auditEndTs: String,
     val auditStartBusStopId: String,
+    val auditStartBusStopName: String,
     val auditStartTs: String,
     val busNo: String,
     val createdDate: String,

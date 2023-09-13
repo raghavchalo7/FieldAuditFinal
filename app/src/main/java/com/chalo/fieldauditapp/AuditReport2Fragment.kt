@@ -155,6 +155,14 @@ class AuditReport2Fragment : Fragment() {
                             }
 
 
+                            //kjwebfkjbwelfnkl****************
+                            val busStopTV2a: TextView? =
+                                bottomSheetDialog.findViewById<TextView>(R.id.busStopTV2a)
+                            if (busStopTV2a != null) {
+                                busStopTV2a.text = it.auditStartBusStopName.toString()
+                            }
+
+
                             val routeTV2a: TextView? =
                                 bottomSheetDialog.findViewById<TextView>(R.id.routeTV2a)
                             if (routeTV2a != null) {
