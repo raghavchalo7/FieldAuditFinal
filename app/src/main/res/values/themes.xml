@@ -24,6 +24,7 @@
         <item name="android:itemBackground">@color/red</item>
     </style>
 
+
 <!--    <style name="ToolbarColoredBackArrow" parent="Theme.Material3.DayNight.">-->
 <!--        <item name="android:textColorSecondary">@color/black</item>-->
 <!--    </style>-->

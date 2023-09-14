@@ -138,7 +138,8 @@ class AuditReport2Fragment : Fragment() {
 
                         val fineColl: TextView? = binding.fineColl
                         if (fineColl != null) {
-                            fineColl.text = responseBody1.data.summary.totalCollection.toString()
+                            val fineWithRs:String="₹"+responseBody1.data.summary.totalCollection.toString()
+                            fineColl.text = fineWithRs
                         }
 
                         itemAdapter.onItemClick = {
