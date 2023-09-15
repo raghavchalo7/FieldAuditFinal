@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.chalo.fieldauditapp.databinding.FragmentLoginBinding
+import com.chalo.fieldauditapp.model.CreateAuditRequest
 import com.chalo.fieldauditapp.model.LoginRequest
 import com.chalo.fieldauditapp.model.UserPost
 import com.google.gson.JsonObject
@@ -102,8 +103,11 @@ class LoginFragment : Fragment() {
 
             //From here
 
-            //send loginRequest, i.e. body  may send Header (T/F), get response, query -> (T/F) with the body if it's True
+            //send loginRequest, i.e. body  may send Header (T/F), get response, query -> (T/F) with the body if it's True, call (call type is the response type)
+            //if response code==200, then we need control, so return a pair<flag,response>, if true erite code, if false handled automatically
 
+            //val responseType: CreateAuditRequest? =null
+            val resp=apiCall(loginRequest,false,null,false,null,call)
 
 
 
