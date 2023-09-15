@@ -103,11 +103,11 @@ class LoginFragment : Fragment() {
 
             //From here
 
-            //send loginRequest, i.e. body  may send Header (T/F), get response, query -> (T/F) with the body if it's True, call (call type is the response type)
+            //send loginRequest, i.e. body  may send Header (T/F), get response, query -> (T/F) with the body if it's True, call response type)
             //if response code==200, then we need control, so return a pair<flag,response>, if true erite code, if false handled automatically
 
             //val responseType: CreateAuditRequest? =null
-            val resp=apiCall(loginRequest,false,null,false,null,call)
+            val resp=apiCall(loginRequest,false,null,false,null,call,null)
 
 
 
