@@ -44,6 +44,8 @@ class AuditReport2Fragment : Fragment() {
         (activity as MainActivity?)?.setDrawerEnabled(false)
 
         (activity as MainActivity).supportActionBar?.title = "Audit Report"
+        //(activity as MainActivity).supportActionBar?.setTitle("Audit Report")
+        Toast.makeText(context,"onCreateView",Toast.LENGTH_LONG).show()
         val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
         var token= sharedPreferences?.getString("token",null)
         Log.d("TOKEN",token!!)
@@ -246,12 +248,20 @@ class AuditReport2Fragment : Fragment() {
         return binding.root
     }
 
+//    override fun onStart() {
+//        super.onStart()
+//        (activity as MainActivity).supportActionBar?.title = "Audit Report"
+//        Toast.makeText(context,"onStart",Toast.LENGTH_LONG).show()
+//    }
     override fun onResume() {
         super.onResume()
+        (activity as MainActivity).supportActionBar?.title = "Audit Report"
+        Toast.makeText(context,"onResume",Toast.LENGTH_LONG).show()
         (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as MainActivity).supportActionBar?.title = "Audit Report"
 
         (activity as MainActivity?)?.setDrawerEnabled(false)
-        (activity as MainActivity).supportActionBar?.title = "Audit Report"
+
     }
 
     override fun onStop() {

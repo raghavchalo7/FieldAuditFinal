@@ -1,7 +1,8 @@
 package com.chalo.fieldauditapp.model
 
-data class Lists(
+data class  Content(
     val auditEndBusStopId: String,
+    val auditEndBusStopName: String,
     val auditEndTs: String,
     val auditStartBusStopId: String,
     val auditStartBusStopName: String,
@@ -9,11 +10,9 @@ data class Lists(
     val busNo: String,
     val createdDate: String,
     val crewId: Int,
-    //val fines: List<FineXX>,
     val id: Int,
-    //val passengerCount: Int,
     val routeId: String,
-    val routeName:String,
+    val routeName: String,
     val totalFinesCollected: Double,
     val totalFinesCount: Double,
     val totalTicketCount: Int,

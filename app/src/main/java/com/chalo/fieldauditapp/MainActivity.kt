@@ -118,6 +118,10 @@ class MainActivity : AppCompatActivity() {
             findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        appBarConfiguration = AppBarConfiguration.Builder(R.id.loginFragment,R.id.busSelectionFragment).build()
+
+        setupActionBarWithNavController(navController,appBarConfiguration)
+
         _binding!!.navView.setNavigationItemSelectedListener {
             if (toolbar != null) {
                 toolbar.setNavigationOnClickListener { onBackPressed() }
@@ -131,6 +135,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.audit -> //navController.navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
                 {
                     navController.navigate(R.id.auditReport2Fragment)
+
+
 //                    return@setNavigationItemSelectedListener NavigationUI.onNavDestinationSelected(R.id.audit, navController)
 //                    return NavigationUI.onNavDestinationSelected(item, navController);
 //                    //setContentView(R.layout.fragment_audit_report)
@@ -175,7 +181,7 @@ class MainActivity : AppCompatActivity() {
 
         //val dr:DrawerLayout=findViewById(BusSelectionFragment.d)
 //        val appBarConfiguration = AppBarConfiguration(navController.graph,binding.drawerLayout)
-        appBarConfiguration = AppBarConfiguration.Builder(R.id.loginFragment,R.id.busSelectionFragment).build()
+
 
         //appBarConfiguration = AppBarConfiguration(navController.graph, R.id.drawerLayout)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
@@ -187,7 +193,11 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        setupActionBarWithNavController(navController,appBarConfiguration)
+
+
+
+
+
 
     }
 
