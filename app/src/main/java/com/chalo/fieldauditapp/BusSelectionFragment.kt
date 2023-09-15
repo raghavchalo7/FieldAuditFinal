@@ -123,7 +123,8 @@ class BusSelectionFragment : Fragment() {
                     val stWithRs:String="₹"+responseBody.totalCollection.toString()
                     binding.fineCollectionTV.text=stWithRs
                     binding.viewAuditReport.setOnClickListener {
-                        findNavController().navigate(R.id.auditReport2Fragment)
+//                        findNavController().navigate(R.id.auditReport2Fragment)
+                        findNavController().navigate(R.id.action_busSelectionFragment_to_auditReport2Fragment)
                     }
 
                 }

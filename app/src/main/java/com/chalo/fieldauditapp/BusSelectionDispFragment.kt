@@ -75,7 +75,7 @@ class BusSelectionDispFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(false)
+        //(activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(false)
         (activity as MainActivity?)?.setDrawerEnabled(true)
         (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }

@@ -134,7 +134,8 @@ class MainActivity : AppCompatActivity() {
 //                R.id.nav_host_fragment
                 R.id.audit -> //navController.navigate(R.id.action_busSelectionFragment_to_auditReportFragment)
                 {
-                    navController.navigate(R.id.auditReport2Fragment)
+//                    navController.navigate(R.id.auditReport2Fragment)
+                    navController.navigate(R.id.action_busSelectionFragment_to_auditReport2Fragment)
 
 
 //                    return@setNavigationItemSelectedListener NavigationUI.onNavDestinationSelected(R.id.audit, navController)

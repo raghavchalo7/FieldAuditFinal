@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_busSelectionFragment_to_noNetworkFragment"
             app:destination="@id/noNetworkFragment" />
+        <action
+            android:id="@+id/action_busSelectionFragment_to_auditReport2Fragment"
+            app:destination="@id/auditReport2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/busSelectionDispFragment"
