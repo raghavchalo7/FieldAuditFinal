@@ -99,6 +99,17 @@ class LoginFragment : Fragment() {
 
             val loading=Loading_Dialog(activity as MainActivity)
             loading.start()
+
+            //From here
+
+            //send loginRequest, i.e. body  may send Header (T/F), get response, query -> (T/F) with the body if it's True
+
+
+
+
+            //Till here
+
+
             call.enqueue(object : Callback<JsonObject> {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     loading.isDismiss()
