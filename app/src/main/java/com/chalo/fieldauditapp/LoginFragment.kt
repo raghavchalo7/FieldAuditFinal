@@ -107,7 +107,7 @@ class LoginFragment : Fragment() {
             //if response code==200, then we need control, so return a pair<flag,response>, if true erite code, if false handled automatically
 
             //val responseType: CreateAuditRequest? =null
-            val resp=apiCall(loginRequest,false,null,false,null,call,null)
+            val resp=apiCall(loginRequest,false,null,false,null,call,CreateAuditRequest)
 
 
 

@@ -1,6 +1,7 @@
 package com.chalo.fieldauditapp
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -37,6 +39,7 @@ class BusSelectionFineFragment : Fragment() {
 //    private var _binding2: ConfirmdetailsBinding?=null
 //    private val binding2 get() = _binding2!!
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -102,6 +105,11 @@ class BusSelectionFineFragment : Fragment() {
 
 
         val ShowTV=(activity as MainActivity?)?.findViewById<TextView>(R.id.showAuditReport)
+//        val vdk: CreateAuditRequest?
+//        vdk::class.java.typeName
+        //Log.d("TYPEVar2323",vdk!!::class.java.typeName)
+        //Toast.makeText(context,"Type of vdk is=${vdk!!::class.java.typeName}",Toast.LENGTH_LONG).show()
+
         if (ShowTV != null) {
             ShowTV.setOnClickListener {
 
