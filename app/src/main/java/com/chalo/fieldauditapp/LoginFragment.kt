@@ -1,5 +1,6 @@
 package com.chalo.fieldauditapp
 
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -107,7 +108,7 @@ class LoginFragment : Fragment() {
             //if response code==200, then we need control, so return a pair<flag,response>, if true erite code, if false handled automatically
 
             //val responseType: CreateAuditRequest? =null
-            val resp=apiCall(loginRequest,false,null,false,null,call,CreateAuditRequest)
+            val resp=apiCall(call, "CreateAuditRequest")
 
 
 
