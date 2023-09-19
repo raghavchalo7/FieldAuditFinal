@@ -1,7 +1,7 @@
 package com.chalo.fieldauditapp
 
-import android.app.Fragment
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,12 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.chalo.fieldauditapp.ErrorHandling.ApiCall
 import com.chalo.fieldauditapp.databinding.FragmentLoginBinding
-import com.chalo.fieldauditapp.model.CreateAuditRequest
 import com.chalo.fieldauditapp.model.LoginRequest
 import com.chalo.fieldauditapp.model.UserPost
 import com.google.gson.JsonObject
@@ -55,6 +54,7 @@ class LoginFragment : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -108,57 +108,65 @@ class LoginFragment : Fragment() {
             //if response code==200, then we need control, so return a pair<flag,response>, if true erite code, if false handled automatically
 
             //val responseType: CreateAuditRequest? =null
-            val resp=apiCall(call, "CreateAuditRequest")
+            val resp=ApiCall<CreateAuditAPI,JsonObject>(call, "CreateAuditRequest")
+            Log.d("Check1","ResponseCode=${resp.first}")
+            loading.isDismiss()
+            if(resp.first==true)
+            {
+                Toast.makeText(context,"True@@@@@@2",Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
+            }
+            //val fe=
 
 
 
             //Till here
 
 
-            call.enqueue(object : Callback<JsonObject> {
-                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                    loading.isDismiss()
-
-                    Log.d("SuccessapiLog",response.code().toString())
-                    Log.d("SuccessapiLog",response.message().toString())
-                    Log.d("SuccessapiLog",response.body().toString())
-                    if(response.code()>=500)
-                    {
-                        //Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
-                        findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
-                    }
-                    else if(response.code()>=400)
-                    {
-                        Toast.makeText(context,"Wrong details",Toast.LENGTH_LONG).show()
-                        //findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment) //Remove
-                        binding.editTextUserlayout.error="This User ID does not exist"
-                    }
-                    else
-                    if(response.code()>=200)     //CORRECT THIS ***+++**********************
-                    {
-                        val token= response.body()?.get("token")
-                        val key="token"
-                        saveData(key,token.toString())
-                        binding.editTextUserlayout.error=null
-                        findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
-                    }
-                    else
-                    {
-                        Toast.makeText(context,"Enter correct Login Details",Toast.LENGTH_SHORT).show()
-                    }
-                    //binding.code2TV.text=response.code().toString()
-                    //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
-                }
-
-                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                    Log.d("ErrorapiLog",t.toString())
-                    loading.isDismiss()
-                    //Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN 22",Toast.LENGTH_LONG).show()
-                    findNavController().navigate(R.id.action_loginFragment_to_noNetworkFragment)
-                    //binding.code2TV.text=t.message.toString()
-                }
-
-            })
+//        *****    call.enqueue(object : Callback<JsonObject> {
+//                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+//                    loading.isDismiss()
+//
+//                    Log.d("SuccessapiLog",response.code().toString())
+//                    Log.d("SuccessapiLog",response.message().toString())
+//                    Log.d("SuccessapiLog",response.body().toString())
+//                    if(response.code()>=500)
+//                    {
+//                        //Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+//                        findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
+//                    }
+//                    else if(response.code()>=400)
+//                    {
+//                        Toast.makeText(context,"Wrong details",Toast.LENGTH_LONG).show()
+//                        //findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment) //Remove
+//                        binding.editTextUserlayout.error="This User ID does not exist"
+//                    }
+//                    else
+//                    if(response.code()>=200)     //CORRECT THIS ***+++**********************
+//                    {
+//                        val token= response.body()?.get("token")
+//                        val key="token"
+//                        saveData(key,token.toString())
+//                        binding.editTextUserlayout.error=null
+//                        findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
+//                    }
+//                    else
+//                    {
+//                        Toast.makeText(context,"Enter correct Login Details",Toast.LENGTH_SHORT).show()
+//                    }
+//                    //binding.code2TV.text=response.code().toString()
+//                    //Toast.makeText(context, response.code(), Toast.LENGTH_LONG)
+//                }
+//
+//                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+//                    Log.d("ErrorapiLog",t.toString())
+//                    loading.isDismiss()
+//                    //Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN 22",Toast.LENGTH_LONG).show()
+//                    findNavController().navigate(R.id.action_loginFragment_to_noNetworkFragment)
+//                    //binding.code2TV.text=t.message.toString()
+//                }
+//
+//   ******         })
 //            findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
         }
         return binding.root
