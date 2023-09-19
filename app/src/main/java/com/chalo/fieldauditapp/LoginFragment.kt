@@ -18,6 +18,9 @@ import com.chalo.fieldauditapp.databinding.FragmentLoginBinding
 import com.chalo.fieldauditapp.model.LoginRequest
 import com.chalo.fieldauditapp.model.UserPost
 import com.google.gson.JsonObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -108,13 +111,16 @@ class LoginFragment : Fragment() {
             //if response code==200, then we need control, so return a pair<flag,response>, if true erite code, if false handled automatically
 
             //val responseType: CreateAuditRequest? =null
-            val resp=ApiCall<CreateAuditAPI,JsonObject>(call, "CreateAuditRequest")
-            Log.d("Check1","ResponseCode=${resp.first}")
-            loading.isDismiss()
-            if(resp.first==true)
+
+            withContext(Dispatchers.Main)
             {
-                Toast.makeText(context,"True@@@@@@2",Toast.LENGTH_LONG).show()
-                findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
+                val resp = ApiCall<CreateAuditAPI, JsonObject>(call, "CreateAuditRequest")
+                Log.d("Check1", "ResponseCode=${resp.first}")
+                loading.isDismiss()
+                if (resp.first == true) {
+                    Toast.makeText(context, "True@@@@@@2", Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
+                }
             }
             //val fe=
 

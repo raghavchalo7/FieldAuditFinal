@@ -18,12 +18,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 @RequiresApi(Build.VERSION_CODES.R)
-fun <T,S> ApiCall(call: Call<S>, respType: String):Pair<Boolean,Response<S>?>
+suspend fun <T,S> ApiCall(call: Call<S>, respType: String):Pair<Boolean,Response<S>?>
 {
 
 
@@ -59,7 +60,7 @@ fun <T,S> ApiCall(call: Call<S>, respType: String):Pair<Boolean,Response<S>?>
     //navController = MainActivity().navHostFragment.findNavController()
     //val resp:Pair<Boolean,Response<S>?>
 
-        CoroutineScope.launch(Dispatchers.Main){
+    withContext(Dispatchers.Main){
         call.enqueue(object : Callback<S> {
             override fun onResponse(call: Call<S>, response: Response<S>) {
                 //*loading.isDismiss()
