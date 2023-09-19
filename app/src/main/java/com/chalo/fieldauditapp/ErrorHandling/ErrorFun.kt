@@ -5,22 +5,27 @@ import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.chalo.fieldauditapp.Loading_Dialog
 import com.chalo.fieldauditapp.MainActivity
 import com.chalo.fieldauditapp.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 @RequiresApi(Build.VERSION_CODES.R)
-suspend fun <T, S> ApiCall(call: Call<S>, respType: String): Pair<Boolean, Response<S>?> {
+suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivity): Pair<Boolean, Response<S>?> {
 
 
-    //val loading= Loading_Dialog(activity as MainActivity)
-    //*loading.start()
+    val loading= Loading_Dialog(activity)
+    loading.start()
 //    ResourcesLoade
 //    val url: URL = Launcher::class.java.getResource(name)
 //    val gh:$respType
@@ -29,20 +34,22 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String): Pair<Boolean, Respo
     Log.d("Check1", "Before navHost")
     //val navHostFragment = MainActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
     Log.d("Check1", "After navHost")
-    var navController: NavController
+    //var navController: NavController
     //navController = navHostFragment.findNavController()
     Log.d("Check1", "After navController")
+    val navController = Navigation.findNavController(activity, R.id.nav_host_fragment)
 
     //val nvc=findNavController(R.id.nav_host_fragment)
 
 
-//    val graphInflater = navHostFragment.navController.navInflater
+    //val graphInflater = navHostFragment.navController.navInflater
 //    val navGraph = graphInflater.inflate(R.navigation.nav_graph)
 //    navController = navHostFragment.navController
 
 
     var flag: Boolean = false
     var res: Response<S>? = null
+    var fail:Boolean=false
 
 
     //navController = MainActivity().navHostFragment.findNavController()
@@ -57,7 +64,7 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String): Pair<Boolean, Respo
             override fun onResponse(call: Call<S>, response: Response<S>) {
                 Log.d("Check1", "onResponse")
                 check = true
-                //*loading.isDismiss()
+                loading.isDismiss()
 
                 Log.d("SuccessapiLog", response.code().toString())
                 Log.d("SuccessapiLog", response.message().toString())
@@ -67,7 +74,7 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String): Pair<Boolean, Respo
                     //*NavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
                     //MainActivity().findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
                     //navController.navigate(R.id.errorDetailsFragment)
-                    MainActivity().findNavController(R.id.errorDetailsFragment)
+                    activity.findNavController(R.id.errorDetailsFragment)
                     //return Pair(false, null)
                     //(Activity as MainActivity).
                 } else if (response.code() >= 400) {
@@ -99,9 +106,14 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String): Pair<Boolean, Respo
 
             override fun onFailure(call: Call<S>, t: Throwable) {
                 check = true
+                fail=true
                 Log.d("Check1", "onFailure")
                 Log.d("ErrorapiLog", t.toString())
-                //*loading.isDismiss()
+
+                //activity.findNavController(R.id.noNetworkFragment)
+                //navController.navigate(R.id.noNetworkFragment)
+
+                loading.isDismiss()
                 //Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN 22",Toast.LENGTH_LONG).show()
                 //*findNavController().navigate(R.id.action_loginFragment_to_noNetworkFragment)
                 //binding.code2TV.text=t.message.toString()
@@ -110,6 +122,17 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String): Pair<Boolean, Respo
         Log.d("Check1", "At the end of Coroutine")
         while (check == false) {
 
+        }
+        if(fail==true)
+        {
+            withContext(Dispatchers.Main){
+                //navController.navigate(R.id.noNetworkFragment)
+                //NavHostFragment.findNavController(R.navigation)
+                Log.d("Check1","In fail==true")
+//                activity.findNavController(R.id.noNetworkFragment)
+//                activity.
+                navController.navigate(R.id.noNetworkFragment)
+            }
         }
     }
     job.await()

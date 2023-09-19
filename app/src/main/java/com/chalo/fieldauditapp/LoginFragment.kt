@@ -103,8 +103,8 @@ class LoginFragment : Fragment() {
             val loginRequest=LoginRequest(password = s2, username = s1);
             val call=RetrofitInstance.api.getLoginToken(loginRequest)
 
-            val loading=Loading_Dialog(activity as MainActivity)
-            loading.start()
+//            val loading=Loading_Dialog(activity as MainActivity)
+//            loading.start()
 
             //From here
 
@@ -114,9 +114,9 @@ class LoginFragment : Fragment() {
             //val responseType: CreateAuditRequest? =null
 
             CoroutineScope(Dispatchers.Main).launch {
-                val resp = ApiCall<CreateAuditAPI, JsonObject>(call, "CreateAuditRequest")
+                val resp = ApiCall<CreateAuditAPI, JsonObject>(call, "CreateAuditRequest", activity = activity as MainActivity)
                 Log.d("Check1", "ResponseCode=${resp.second?.body()}")
-                loading.isDismiss()
+                //loading.isDismiss()
                 if (resp.first == true) {
                     //Toast.makeText(context, "True@@@@@@2", Toast.LENGTH_LONG).show()
                         val token= resp.second?.body()?.get("token")
