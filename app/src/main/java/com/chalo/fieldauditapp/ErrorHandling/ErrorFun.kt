@@ -1,31 +1,22 @@
 package com.chalo.fieldauditapp.ErrorHandling
 
-import android.app.Activity
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import com.chalo.fieldauditapp.Loading_Dialog
 import com.chalo.fieldauditapp.MainActivity
 import com.chalo.fieldauditapp.R
-import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.async
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 @RequiresApi(Build.VERSION_CODES.R)
-suspend fun <T,S> ApiCall(call: Call<S>, respType: String):Pair<Boolean,Response<S>?>
-{
+suspend fun <T, S> ApiCall(call: Call<S>, respType: String): Pair<Boolean, Response<S>?> {
 
 
     //val loading= Loading_Dialog(activity as MainActivity)
@@ -35,16 +26,14 @@ suspend fun <T,S> ApiCall(call: Call<S>, respType: String):Pair<Boolean,Response
 //    val gh:$respType
 //    CreateAuditAPI as T
 //    somethingThatReturnsInt() as T
-    Log.d("Check1","Before navHost")
+    Log.d("Check1", "Before navHost")
     //val navHostFragment = MainActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-    Log.d("Check1","After navHost")
+    Log.d("Check1", "After navHost")
     var navController: NavController
     //navController = navHostFragment.findNavController()
-    Log.d("Check1","After navController")
+    Log.d("Check1", "After navController")
 
     //val nvc=findNavController(R.id.nav_host_fragment)
-
-
 
 
 //    val graphInflater = navHostFragment.navController.navInflater
@@ -52,17 +41,22 @@ suspend fun <T,S> ApiCall(call: Call<S>, respType: String):Pair<Boolean,Response
 //    navController = navHostFragment.navController
 
 
-    var flag:Boolean=false
-    var res: Response<S>?=null
-
+    var flag: Boolean = false
+    var res: Response<S>? = null
 
 
     //navController = MainActivity().navHostFragment.findNavController()
     //val resp:Pair<Boolean,Response<S>?>
 
-    withContext(Dispatchers.Main){
+    //val job=withContext(Dispatchers.Main){
+    val job = CoroutineScope(Dispatchers.IO).async {
+        Log.d("Check1", "Inside coroutine")
+        var check: Boolean = false
+
         call.enqueue(object : Callback<S> {
             override fun onResponse(call: Call<S>, response: Response<S>) {
+                Log.d("Check1", "onResponse")
+                check = true
                 //*loading.isDismiss()
 
                 Log.d("SuccessapiLog", response.code().toString())
@@ -104,21 +98,25 @@ suspend fun <T,S> ApiCall(call: Call<S>, respType: String):Pair<Boolean,Response
             }
 
             override fun onFailure(call: Call<S>, t: Throwable) {
+                check = true
+                Log.d("Check1", "onFailure")
                 Log.d("ErrorapiLog", t.toString())
                 //*loading.isDismiss()
                 //Toast.makeText(context,"NO INTERNET CONNECTION TO LOGIN 22",Toast.LENGTH_LONG).show()
                 //*findNavController().navigate(R.id.action_loginFragment_to_noNetworkFragment)
                 //binding.code2TV.text=t.message.toString()
             }
-
         })
+        Log.d("Check1", "At the end of Coroutine")
+        while (check == false) {
+
+        }
     }
+    job.await()
+    Log.d("Check1", "After Enqueue and flag=${flag}")
 
-    Log.d("Check1","After Enqueue and flag=${flag}")
 
-
-    val resp:Pair<Boolean,Response<S>?> =Pair(flag,res)
-    return resp
+    return Pair(flag, res)
 }
 
 fun <T:Any> A(cx:Int,valw:T):Int

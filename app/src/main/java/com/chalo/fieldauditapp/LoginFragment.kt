@@ -20,6 +20,7 @@ import com.chalo.fieldauditapp.model.UserPost
 import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
@@ -112,13 +113,15 @@ class LoginFragment : Fragment() {
 
             //val responseType: CreateAuditRequest? =null
 
-            withContext(Dispatchers.Main)
-            {
+            CoroutineScope(Dispatchers.Main).launch {
                 val resp = ApiCall<CreateAuditAPI, JsonObject>(call, "CreateAuditRequest")
-                Log.d("Check1", "ResponseCode=${resp.first}")
+                Log.d("Check1", "ResponseCode=${resp.second?.body()}")
                 loading.isDismiss()
                 if (resp.first == true) {
-                    Toast.makeText(context, "True@@@@@@2", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, "True@@@@@@2", Toast.LENGTH_LONG).show()
+                        val token= resp.second?.body()?.get("token")
+                        val key="token"
+                        saveData(key,token.toString())
                     findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
                 }
             }
