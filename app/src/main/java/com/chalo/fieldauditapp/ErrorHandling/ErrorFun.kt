@@ -50,7 +50,8 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
     var flag: Boolean = false
     var res: Response<S>? = null
     var fail:Boolean=false
-
+    var cd:Int=200
+    var flag2:Boolean=false
 
     //navController = MainActivity().navHostFragment.findNavController()
     //val resp:Pair<Boolean,Response<S>?>
@@ -60,6 +61,7 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
         Log.d("Check1", "Inside coroutine")
         var check: Boolean = false
 
+        //check=false
         call.enqueue(object : Callback<S> {
             override fun onResponse(call: Call<S>, response: Response<S>) {
                 Log.d("Check1", "onResponse")
@@ -74,20 +76,22 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
                     //*NavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
                     //MainActivity().findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
                     //navController.navigate(R.id.errorDetailsFragment)
+                    cd=500
                     activity.findNavController(R.id.errorDetailsFragment)
                     //return Pair(false, null)
                     //(Activity as MainActivity).
                 } else if (response.code() >= 400) {
-                    Toast.makeText((MainActivity()), "Wrong details", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(activity , "Wrong details", Toast.LENGTH_LONG).show()
+                    cd=400
                     //findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment) //Remove
                     //*binding.editTextUserlayout.error="This User ID does not exist"
-                } else
-                    if (response.code() >= 200)     //CORRECT THIS ***+++**********************
+                } else if (response.code() >= 200)     //CORRECT THIS ***+++**********************
                     {
                         //*val token= response.body()?.get("token")
                         Log.d("Check1", "Inside 200 cond")
                         val key = "token"
                         flag = true
+
                         res = response
                         //MainActivity().findNavController(R.id.errorDetailsFragment)
                         //*saveData(key,token.toString())
@@ -110,6 +114,8 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
                 Log.d("Check1", "onFailure")
                 Log.d("ErrorapiLog", t.toString())
 
+                cd=1000
+
                 //activity.findNavController(R.id.noNetworkFragment)
                 //navController.navigate(R.id.noNetworkFragment)
 
@@ -119,27 +125,54 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
                 //binding.code2TV.text=t.message.toString()
             }
         })
-        Log.d("Check1", "At the end of Coroutine")
+        Log.d("Check1", "At the end of Coroutine + check=${check}")
         while (check == false) {
-
+            Log.d("Check1", "in check + check=${check}")
         }
-        if(fail==true)
+//        if(fail==true)
+//        {
+//            withContext(Dispatchers.Main){
+//                //navController.navigate(R.id.noNetworkFragment)
+//                //NavHostFragment.findNavController(R.navigation)
+//                Log.d("Check1","In fail==true")
+////                activity.findNavController(R.id.noNetworkFragment)
+////                activity.
+//                navController.navigate(R.id.noNetworkFragment)
+//            }
+//        }
+        Log.d("Check1","*******")
+        if(flag==false)
         {
-            withContext(Dispatchers.Main){
-                //navController.navigate(R.id.noNetworkFragment)
-                //NavHostFragment.findNavController(R.navigation)
-                Log.d("Check1","In fail==true")
-//                activity.findNavController(R.id.noNetworkFragment)
-//                activity.
-                navController.navigate(R.id.noNetworkFragment)
+            withContext(Dispatchers.Main)
+            {
+                when (cd) {
+                    400 -> {
+                        Log.d("Check1","400")
+                        Toast.makeText(activity,"Wrong details",Toast.LENGTH_LONG).show()
+                    }
+                    500 -> {
+                        Log.d("Check1","500")
+                        navController.navigate(R.id.errorDetailsFragment)
+                    }
+                    1000 -> {
+                        Log.d("Check1","1000")
+                        navController.navigate(R.id.noNetworkFragment)
+                    }
+                    else -> {
+                        Log.d("Check1","else")
+                    }
+                }
             }
         }
+        flag2=flag
+        flag=false
+        check=false
     }
     job.await()
-    Log.d("Check1", "After Enqueue and flag=${flag}")
+    Log.d("Check1", "After Enqueue and flag=${flag2}")
 
 
-    return Pair(flag, res)
+    return Pair(flag2, res)
 }
 
 fun <T:Any> A(cx:Int,valw:T):Int
