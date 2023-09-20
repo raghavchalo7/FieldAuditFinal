@@ -1,5 +1,9 @@
-package com.chalo.fieldauditapp
+package com.chalo.fiel
 
+import com.chalo.fieldauditapp.CreateAuditAPI
+import com.chalo.fieldauditapp.MainActivity
+import com.chalo.fieldauditapp.R
+import com.chalo.fieldauditapp.RetrofitInstance
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -101,7 +105,7 @@ class LoginFragment : Fragment() {
             val s1: String = binding.editTextUser.getText().toString()
             val s2: String = binding.editTextPassword.getText().toString()
             val loginRequest=LoginRequest(password = s2, username = s1);
-            val call=RetrofitInstance.api.getLoginToken(loginRequest)
+            val call= RetrofitInstance.api.getLoginToken(loginRequest)
 
 //            val loading=Loading_Dialog(activity as MainActivity)
 //            loading.start()
@@ -122,7 +126,12 @@ class LoginFragment : Fragment() {
                         val token= resp.second?.body()?.get("token")
                         val key="token"
                         saveData(key,token.toString())
+                    binding.editTextUserlayout.error=null
                     findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
+                }
+                if(resp.second?.code()!! >=400 &&  resp.second?.code()!! <500)
+                {
+                    binding.editTextUserlayout.error="This User ID does not exist"
                 }
             }
             //val fe=
