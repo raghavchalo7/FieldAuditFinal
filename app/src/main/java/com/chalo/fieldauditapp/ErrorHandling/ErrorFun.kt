@@ -81,7 +81,7 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
                     //return Pair(false, null)
                     //(Activity as MainActivity).
                 } else if (response.code() >= 400) {
-                    //Toast.makeText(activity , "Wrong details", Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity , "Wrong details", Toast.LENGTH_LONG).show()
                     cd=400
                     //findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment) //Remove
                     //*binding.editTextUserlayout.error="This User ID does not exist"
