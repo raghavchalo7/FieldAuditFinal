@@ -86,35 +86,33 @@ class BusSelectionFragment : Fragment() {
 
         CoroutineScope(Main).launch {
             val resp= ApiCall<CreateAuditAPI,CreateAuditNew>(response,"fsfs",activity = activity as MainActivity)
-            if (resp.second?.code()  == 200) {
+            if(resp.first==false) {
+                if (resp.second?.code() == 200) {
 
-                val responseBody1 = resp.second?.body()!!
+                    val responseBody1 = resp.second?.body()!!
 
 
-
-                val responseBody=responseBody1.data.summary
-                if(responseBody.totalAudits>0)
-                {
-                    binding.summaryCardView.visibility=View.VISIBLE
-                }
-                binding.totalBusesTV.text=responseBody.totalAudits.toString()
-                binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
-                val stWithRs:String="₹"+responseBody.totalCollection.toString()
-                binding.fineCollectionTV.text=stWithRs
-                binding.viewAuditReport.setOnClickListener {
+                    val responseBody = responseBody1.data.summary
+                    if (responseBody.totalAudits > 0) {
+                        binding.summaryCardView.visibility = View.VISIBLE
+                    }
+                    binding.totalBusesTV.text = responseBody.totalAudits.toString()
+                    binding.passengerCaughtTV.text = responseBody.passengerCaught.toString()
+                    val stWithRs: String = "₹" + responseBody.totalCollection.toString()
+                    binding.fineCollectionTV.text = stWithRs
+                    binding.viewAuditReport.setOnClickListener {
 //                        findNavController().navigate(R.id.auditReport2Fragment)
-                    findNavController().navigate(R.id.action_busSelectionFragment_to_auditReport2Fragment)
+                        findNavController().navigate(R.id.action_busSelectionFragment_to_auditReport2Fragment)
+                    }
+
+
                 }
-
-
-            }
-            if(resp.second?.code()!! >=500 &&  resp.second?.code()!! <600)
-            {
-                binding.summaryCardView.visibility=View.INVISIBLE
-            }
-            if(resp.second?.code()!! >=400 &&  resp.second?.code()!! <500)
-            {
-                binding.summaryCardView.visibility=View.INVISIBLE
+                if (resp.second?.code()!! >= 500 && resp.second?.code()!! < 600) {
+                    binding.summaryCardView.visibility = View.INVISIBLE
+                }
+                if (resp.second?.code()!! >= 400 && resp.second?.code()!! < 500) {
+                    binding.summaryCardView.visibility = View.INVISIBLE
+                }
             }
             if(resp.first==true)
             {

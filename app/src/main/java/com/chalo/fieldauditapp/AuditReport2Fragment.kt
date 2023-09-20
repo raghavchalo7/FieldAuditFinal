@@ -89,132 +89,139 @@ class AuditReport2Fragment : Fragment() {
 
 
             CoroutineScope(Dispatchers.Main).launch {
-                val resp= ApiCall<CreateAuditAPI,CreateAuditNew>(response,"fsfs",activity = activity as MainActivity)
-                if (resp.second?.code() == 200) {
+                val resp = ApiCall<CreateAuditAPI, CreateAuditNew>(
+                    response,
+                    "fsfs",
+                    activity = activity as MainActivity
+                )
+                if(resp.first==false) {
+                    if (resp.second?.code() == 200) {
 
-                    Log.d("Successapi1", resp.second?.code().toString())
-                    Log.d("Success2api", resp.second?.code().toString())
-                    //                binding.code2TV.text=response.code().toString()
-                    val responseBody1 = resp.second?.body()!!
-                    val responseBody = responseBody1.data.lists
-                    //val tot=responseBody1.su
-                    //resp=responseBody
-//                            Toast.makeText(
-//                                context,
-//                                "Recieved Data=" + responseBody[0].tripNumber,
-//                                Toast.LENGTH_LONG
-//                            ).show()
-                    //Toast.makeText(context, "responseBody="+responseBody.toString(),Toast.LENGTH_LONG).show()
-                    val sz = responseBody.size
-                    Log.d("Success2apiDATA", sz.toString())
-
-
-                    for (i in 0..sz - 1) {
-                        val rt1 = ItemViewsModel(
-                            responseBody[i].tripNumber,
-                            responseBody[i].auditEndBusStopId.toString()
-                        )
-                        routeList.add(rt1)
-                    }
-                    Log.d("DATAInonResponse", routeList.toString())
-                    //sr = responseBody[0].auditStartBusStopId
-                    val itemAdapter = CustomAdapter(responseBody)
-                    binding.recyclerview.layoutManager = LinearLayoutManager(context)
-                    binding.recyclerview.adapter = itemAdapter
-                    Log.d("DATALIst", routeList.toString())
-
-                    val busCnt: TextView? = binding.busCnt
-                    if (busCnt != null) {
-                        busCnt.text = sz.toString()
-                    }
-
-                    val PassCntTV: TextView? = binding.PassCntTV
-                    if (PassCntTV != null) {
-                        PassCntTV.text = responseBody1.data.summary.passengerCaught.toString()
-                    }
-
-                    val fineColl: TextView? = binding.fineColl
-                    if (fineColl != null) {
-                        val fineWithRs:String="₹"+responseBody1.data.summary.totalCollection.toString()
-                        fineColl.text = fineWithRs
-                    }
-
-                    itemAdapter.onItemClick = {
-                        //Toast.makeText(context, "Pressed", Toast.LENGTH_LONG).show()
-                        val bottomSheetDialog: BottomSheetDialog =
-                            BottomSheetDialog(requireContext())
-                        //bottomSheetDialog.setContentView()
-                        bottomSheetDialog.setContentView(R.layout.auditdetails)
-
-                        val busTV2a: TextView? =
-                            bottomSheetDialog.findViewById<TextView>(R.id.busTV2a)
-                        if (busTV2a != null) {
-                            busTV2a.text = it.busNo.toString()
-                        }
+                        Log.d("Successapi1", resp.second?.code().toString())
+                        Log.d("Success2api", resp.second?.code().toString())
+                        //                binding.code2TV.text=response.code().toString()
+                        val responseBody1 = resp.second?.body()!!
+                        val responseBody = responseBody1.data.lists
+                        //val tot=responseBody1.su
+                        //resp=responseBody
+    //                            Toast.makeText(
+    //                                context,
+    //                                "Recieved Data=" + responseBody[0].tripNumber,
+    //                                Toast.LENGTH_LONG
+    //                            ).show()
+                        //Toast.makeText(context, "responseBody="+responseBody.toString(),Toast.LENGTH_LONG).show()
+                        val sz = responseBody.size
+                        Log.d("Success2apiDATA", sz.toString())
 
 
-                        //kjwebfkjbwelfnkl****************
-                        val busStopTV2a: TextView? =
-                            bottomSheetDialog.findViewById<TextView>(R.id.busStopTV2a)
-                        if (busStopTV2a != null) {
-                            busStopTV2a.text = it.auditStartBusStopName.toString()
-                        }
-
-
-                        val routeTV2a: TextView? =
-                            bottomSheetDialog.findViewById<TextView>(R.id.routeTV2a)
-                        if (routeTV2a != null) {
-                            routeTV2a.text = it.tripNumber
-                        }
-
-                        val stopTV2a: TextView? =
-                            bottomSheetDialog.findViewById<TextView>(R.id.stopTV2a)
-                        if (stopTV2a != null) {
-                            stopTV2a.text = it.routeName.toString()
-                        }
-
-                        //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
-                        //                    if (passengerTV2a != null) {
-                        //                        passengerTV2a.text=it.passengerCount.toString()
-                        //                    }
-
-                        val fineCountTV2a: TextView? =
-                            bottomSheetDialog.findViewById<TextView>(R.id.fineCountTV2a)
-                        if (fineCountTV2a != null) {
-                            fineCountTV2a.text = it.totalFinesCount.toInt().toString()
-                        }
-
-                        val fineTV2a: TextView? =
-                            bottomSheetDialog.findViewById<TextView>(R.id.fineTV2a)
-                        if (fineTV2a != null) {
-                            val fineWithRs="₹"+it.totalFinesCollected.toString()
-                            fineTV2a.text = fineWithRs
-                        }
-
-                        //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
-                        //                    if (passengerTV2a != null) {
-                        //                        passengerTV2a.text=responseBody[0].passengerCount.toString()
-                        //                    }
-
-                        //            val b2=bottomSheetDialog.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.redirectBusSelectFineToBusDetailsDone)
-                        //            if (b2 != null) {
-                        //                b2.setOnClickListener {
-                        //                    findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
-                        val b2 =
-                            bottomSheetDialog.findViewById<androidx.appcompat.widget.AppCompatButton>(
-                                R.id.dimissAudit
+                        for (i in 0..sz - 1) {
+                            val rt1 = ItemViewsModel(
+                                responseBody[i].tripNumber,
+                                responseBody[i].auditEndBusStopId.toString()
                             )
-                        if (b2 != null) {
-                            b2.setOnClickListener {
-                                bottomSheetDialog.dismiss()
-                            }
+                            routeList.add(rt1)
                         }
-                        //                }
-                        //            }
-                        bottomSheetDialog.show()
-                    }
+                        Log.d("DATAInonResponse", routeList.toString())
+                        //sr = responseBody[0].auditStartBusStopId
+                        val itemAdapter = CustomAdapter(responseBody)
+                        binding.recyclerview.layoutManager = LinearLayoutManager(context)
+                        binding.recyclerview.adapter = itemAdapter
+                        Log.d("DATALIst", routeList.toString())
 
-                }
+                        val busCnt: TextView? = binding.busCnt
+                        if (busCnt != null) {
+                            busCnt.text = sz.toString()
+                        }
+
+                        val PassCntTV: TextView? = binding.PassCntTV
+                        if (PassCntTV != null) {
+                            PassCntTV.text = responseBody1.data.summary.passengerCaught.toString()
+                        }
+
+                        val fineColl: TextView? = binding.fineColl
+                        if (fineColl != null) {
+                            val fineWithRs: String =
+                                "₹" + responseBody1.data.summary.totalCollection.toString()
+                            fineColl.text = fineWithRs
+                        }
+
+                        itemAdapter.onItemClick = {
+                            //Toast.makeText(context, "Pressed", Toast.LENGTH_LONG).show()
+                            val bottomSheetDialog: BottomSheetDialog =
+                                BottomSheetDialog(requireContext())
+                            //bottomSheetDialog.setContentView()
+                            bottomSheetDialog.setContentView(R.layout.auditdetails)
+
+                            val busTV2a: TextView? =
+                                bottomSheetDialog.findViewById<TextView>(R.id.busTV2a)
+                            if (busTV2a != null) {
+                                busTV2a.text = it.busNo.toString()
+                            }
+
+
+                            //kjwebfkjbwelfnkl****************
+                            val busStopTV2a: TextView? =
+                                bottomSheetDialog.findViewById<TextView>(R.id.busStopTV2a)
+                            if (busStopTV2a != null) {
+                                busStopTV2a.text = it.auditStartBusStopName.toString()
+                            }
+
+
+                            val routeTV2a: TextView? =
+                                bottomSheetDialog.findViewById<TextView>(R.id.routeTV2a)
+                            if (routeTV2a != null) {
+                                routeTV2a.text = it.tripNumber
+                            }
+
+                            val stopTV2a: TextView? =
+                                bottomSheetDialog.findViewById<TextView>(R.id.stopTV2a)
+                            if (stopTV2a != null) {
+                                stopTV2a.text = it.routeName.toString()
+                            }
+
+                            //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
+                            //                    if (passengerTV2a != null) {
+                            //                        passengerTV2a.text=it.passengerCount.toString()
+                            //                    }
+
+                            val fineCountTV2a: TextView? =
+                                bottomSheetDialog.findViewById<TextView>(R.id.fineCountTV2a)
+                            if (fineCountTV2a != null) {
+                                fineCountTV2a.text = it.totalFinesCount.toInt().toString()
+                            }
+
+                            val fineTV2a: TextView? =
+                                bottomSheetDialog.findViewById<TextView>(R.id.fineTV2a)
+                            if (fineTV2a != null) {
+                                val fineWithRs = "₹" + it.totalFinesCollected.toString()
+                                fineTV2a.text = fineWithRs
+                            }
+
+                            //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
+                            //                    if (passengerTV2a != null) {
+                            //                        passengerTV2a.text=responseBody[0].passengerCount.toString()
+                            //                    }
+
+                            //            val b2=bottomSheetDialog.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.redirectBusSelectFineToBusDetailsDone)
+                            //            if (b2 != null) {
+                            //                b2.setOnClickListener {
+                            //                    findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
+                            val b2 =
+                                bottomSheetDialog.findViewById<androidx.appcompat.widget.AppCompatButton>(
+                                    R.id.dimissAudit
+                                )
+                            if (b2 != null) {
+                                b2.setOnClickListener {
+                                    bottomSheetDialog.dismiss()
+                                }
+                            }
+                            //                }
+                            //            }
+                            bottomSheetDialog.show()
+                        }
+
+                    }
+            }
             }
 
 
