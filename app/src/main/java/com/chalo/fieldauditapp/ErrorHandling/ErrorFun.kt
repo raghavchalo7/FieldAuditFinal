@@ -21,7 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 @RequiresApi(Build.VERSION_CODES.R)
-suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivity): Pair<Boolean, Response<S>?> {
+suspend fun <S> ApiCall(call: Call<S>, activity: MainActivity): Pair<Boolean, Response<S>?> {
 
 
     val loading= Loading_Dialog(activity)

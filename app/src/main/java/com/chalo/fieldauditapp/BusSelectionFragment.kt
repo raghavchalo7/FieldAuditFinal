@@ -85,7 +85,7 @@ class BusSelectionFragment : Fragment() {
         Log.d("Token=",token)
 
         CoroutineScope(Main).launch {
-            val resp= ApiCall<CreateAuditAPI,CreateAuditNew>(response,"fsfs",activity = activity as MainActivity)
+            val resp= ApiCall<CreateAuditNew>(response,activity = activity as MainActivity)
             if(resp.first==false) {
                 if (resp.second?.code() == 200) {
 

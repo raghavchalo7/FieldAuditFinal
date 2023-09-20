@@ -118,7 +118,7 @@ class LoginFragment : Fragment() {
             //val responseType: CreateAuditRequest? =null
 
             CoroutineScope(Dispatchers.Main).launch {
-                val resp = ApiCall<CreateAuditAPI, JsonObject>(call, "CreateAuditRequest", activity = activity as MainActivity)
+                val resp = ApiCall<JsonObject>(call, activity = activity as MainActivity)
                 Log.d("Check1", "ResponseCode=${resp.second?.body()}")
                 //loading.isDismiss()
                 if(resp.first==false) {

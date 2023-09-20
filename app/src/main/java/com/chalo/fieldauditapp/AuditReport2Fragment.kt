@@ -89,9 +89,8 @@ class AuditReport2Fragment : Fragment() {
 
 
             CoroutineScope(Dispatchers.Main).launch {
-                val resp = ApiCall<CreateAuditAPI, CreateAuditNew>(
+                val resp = ApiCall<CreateAuditNew>(
                     response,
-                    "fsfs",
                     activity = activity as MainActivity
                 )
                 if(resp.first==false) {

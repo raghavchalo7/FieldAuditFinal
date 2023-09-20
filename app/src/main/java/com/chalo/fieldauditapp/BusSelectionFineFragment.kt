@@ -344,7 +344,7 @@ class BusSelectionFineFragment : Fragment() {
                         Log.d("DataAPI",auditReq.toString())
                         Log.d("LOGREQ",call.request().toString())
                         CoroutineScope(Dispatchers.Main).launch {
-                            val resp= ApiCall<CreateAuditAPI, JsonObject>(call,"vsdf", activity = activity as MainActivity)
+                            val resp= ApiCall<JsonObject>(call,activity = activity as MainActivity)
 
                             if(resp.first==false) {
                                 if (resp.second?.code() == 200) {
@@ -708,7 +708,7 @@ class BusSelectionFineFragment : Fragment() {
 
 
                         CoroutineScope(Dispatchers.Main).launch {
-                            val resp= ApiCall<CreateAuditAPI, JsonObject>(call,"vsdf", activity = activity as MainActivity)
+                            val resp= ApiCall<JsonObject>(call,activity = activity as MainActivity)
                             if(resp.first==false) {
                                 if (resp.second?.code() == 200) {
                                     findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
@@ -1021,7 +1021,7 @@ class BusSelectionFineFragment : Fragment() {
 
 
                     CoroutineScope(Dispatchers.Main).launch {
-                        val resp= ApiCall<CreateAuditAPI, JsonObject>(call,"vsdf", activity = activity as MainActivity)
+                        val resp= ApiCall<JsonObject>(call,activity = activity as MainActivity)
                         if(resp.first==false) {
                             if (resp.second?.code() == 200) {
                                 findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
