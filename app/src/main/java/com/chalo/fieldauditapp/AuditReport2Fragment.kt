@@ -48,45 +48,19 @@ class AuditReport2Fragment : Fragment() {
         (activity as MainActivity?)?.setDrawerEnabled(false)
 
         (activity as MainActivity).supportActionBar?.title = "Audit Report"
-        //(activity as MainActivity).supportActionBar?.setTitle("Audit Report")
-        //Toast.makeText(context,"onCreateView",Toast.LENGTH_LONG).show()
+
         val sharedPreferences = activity?.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
         var token= sharedPreferences?.getString("token",null)
         Log.d("TOKEN",token!!)
-        //val call=RetrofitInstance.api.getAuditReports("cbus1111")
-//        val headers = HashMap<String, String>()
-//        headers["Token"] = token
-//        //val call=RetrofitInstance.api.getAuditReports()
-
-
-
 
         token= token!!.substring(1, token!!.length-1);
         val response = RetrofitInstance.api.getAuditReports(token,true)   //jhhjvjh*****
         Log.d("LOGREQ", response.request().toString())
         if (response.isCanceled == false) {
             Log.d("Msg2", "Success")
-            //var resp: ArrayList<AuditReportRequestItem>? = null
+
             val routeList = ArrayList<ItemViewsModel>()
             var sr: Int? = null
-            //                val okkHttpclient = OkHttpClient.Builder()
-            //                    .addInterceptor(ChuckerInterceptor(requireContext()))
-            //                    //.addInterceptor(AuthHeaderInterceptor(authenticator = authenticator))
-            //                    .addInterceptor(
-            //                        ChuckerInterceptor.Builder(requireContext())
-            //                        .collector(ChuckerCollector(requireContext()))
-            //                        .maxContentLength(250000L)
-            //                        .redactHeaders(emptySet())
-            //                        .alwaysReadResponseBody(false)
-            //                        .build())
-            ////                    .connectTimeout(30, TimeUnit.SECOND)
-            ////                    .readTimeout(60, TimeUnit.SECOND)
-            ////                    .writeTimeout(60, TimeUnit.SECOND)
-            ////                    .callTimeout(60, TimeUnit.SECOND)
-            ////                    .cache(Cache(dir,10 * 1024 * 1024)) //10MB
-            //                    .build()
-
-
 
             CoroutineScope(Dispatchers.Main).launch {
                 val resp = ApiCall<CreateAuditNew>(
@@ -98,17 +72,10 @@ class AuditReport2Fragment : Fragment() {
 
                         Log.d("Successapi1", resp.second?.code().toString())
                         Log.d("Success2api", resp.second?.code().toString())
-                        //                binding.code2TV.text=response.code().toString()
+
                         val responseBody1 = resp.second?.body()!!
                         val responseBody = responseBody1.data.lists
-                        //val tot=responseBody1.su
-                        //resp=responseBody
-    //                            Toast.makeText(
-    //                                context,
-    //                                "Recieved Data=" + responseBody[0].tripNumber,
-    //                                Toast.LENGTH_LONG
-    //                            ).show()
-                        //Toast.makeText(context, "responseBody="+responseBody.toString(),Toast.LENGTH_LONG).show()
+
                         val sz = responseBody.size
                         Log.d("Success2apiDATA", sz.toString())
 
@@ -121,7 +88,7 @@ class AuditReport2Fragment : Fragment() {
                             routeList.add(rt1)
                         }
                         Log.d("DATAInonResponse", routeList.toString())
-                        //sr = responseBody[0].auditStartBusStopId
+
                         val itemAdapter = CustomAdapter(responseBody)
                         binding.recyclerview.layoutManager = LinearLayoutManager(context)
                         binding.recyclerview.adapter = itemAdapter
@@ -145,10 +112,10 @@ class AuditReport2Fragment : Fragment() {
                         }
 
                         itemAdapter.onItemClick = {
-                            //Toast.makeText(context, "Pressed", Toast.LENGTH_LONG).show()
+
                             val bottomSheetDialog: BottomSheetDialog =
                                 BottomSheetDialog(requireContext())
-                            //bottomSheetDialog.setContentView()
+
                             bottomSheetDialog.setContentView(R.layout.auditdetails)
 
                             val busTV2a: TextView? =
@@ -178,10 +145,6 @@ class AuditReport2Fragment : Fragment() {
                                 stopTV2a.text = it.routeName.toString()
                             }
 
-                            //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
-                            //                    if (passengerTV2a != null) {
-                            //                        passengerTV2a.text=it.passengerCount.toString()
-                            //                    }
 
                             val fineCountTV2a: TextView? =
                                 bottomSheetDialog.findViewById<TextView>(R.id.fineCountTV2a)
@@ -196,15 +159,6 @@ class AuditReport2Fragment : Fragment() {
                                 fineTV2a.text = fineWithRs
                             }
 
-                            //                    val passengerTV2a: TextView? =bottomSheetDialog.findViewById<TextView>(R.id.passengerTV2a)
-                            //                    if (passengerTV2a != null) {
-                            //                        passengerTV2a.text=responseBody[0].passengerCount.toString()
-                            //                    }
-
-                            //            val b2=bottomSheetDialog.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.redirectBusSelectFineToBusDetailsDone)
-                            //            if (b2 != null) {
-                            //                b2.setOnClickListener {
-                            //                    findNavController().navigate(R.id.action_busSelectionFineFragment_to_busDetailsDoneFragment)
                             val b2 =
                                 bottomSheetDialog.findViewById<androidx.appcompat.widget.AppCompatButton>(
                                     R.id.dimissAudit
@@ -214,8 +168,7 @@ class AuditReport2Fragment : Fragment() {
                                     bottomSheetDialog.dismiss()
                                 }
                             }
-                            //                }
-                            //            }
+
                             bottomSheetDialog.show()
                         }
 
@@ -391,11 +344,7 @@ class AuditReport2Fragment : Fragment() {
         return binding.root
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        (activity as MainActivity).supportActionBar?.title = "Audit Report"
-//        Toast.makeText(context,"onStart",Toast.LENGTH_LONG).show()
-//    }
+
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).supportActionBar?.title = "Audit Report"
@@ -415,7 +364,6 @@ class AuditReport2Fragment : Fragment() {
 
 
     override fun onDestroyView() {
-        //(activity as MainActivity).supportActionBar?.title = ""
         super.onDestroyView()
         _binding=null
     }

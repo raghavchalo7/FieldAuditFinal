@@ -72,7 +72,7 @@ suspend fun <S> ApiCall(call: Call<S>, activity: MainActivity): Pair<Boolean, Re
         })
 
         while (check == false) {
-//            Log.d("Check1", "in check + check=${check}")
+            Log.d("Check1", "in check + check=${check}")
         }
 
         if(flag==false)
