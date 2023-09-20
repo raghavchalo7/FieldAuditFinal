@@ -23,11 +23,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import com.chalo.fieldauditapp.ErrorHandling.ApiCall
 import com.chalo.fieldauditapp.databinding.ActivityMainBinding
 import com.chalo.fieldauditapp.databinding.FragmentBusSelectionBinding
 import com.chalo.fieldauditapp.model.CreateAuditNew
 import com.google.zxing.integration.android.IntentIntegrator
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,6 +56,7 @@ class BusSelectionFragment : Fragment() {
 //    private var _binding2: ActivityMainBinding?=null
 //    private val binding2 get() = _binding2!!
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -80,77 +84,115 @@ class BusSelectionFragment : Fragment() {
         val response = RetrofitInstance.api.getAuditReports(token,false)
         Log.d("Token=",token)
 
-        val loading=Loading_Dialog(activity as MainActivity)
-        loading.start()
-        response.enqueue(object : Callback<CreateAuditNew> {
-            override fun onResponse(
-                call: Call<CreateAuditNew>,
-                response: Response<CreateAuditNew>
-            ) {
-                loading.isDismiss()
-                Log.d("Resp=",response.code().toString())
-                if(response.code()>=500)
+        CoroutineScope(Main).launch {
+            val resp= ApiCall<CreateAuditAPI,CreateAuditNew>(response,"fsfs",activity = activity as MainActivity)
+            if (resp.second?.code()  == 200) {
+
+                val responseBody1 = resp.second?.body()!!
+
+
+
+                val responseBody=responseBody1.data.summary
+                if(responseBody.totalAudits>0)
                 {
-                    //Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
-                    findNavController().navigate(R.id.action_busSelectionFragment_to_errorDetailsFragment)
-//                    binding.totalBusesTV.text="0"
-//                    binding.passengerCaughtTV.text="0"
-//                    binding.fineCollectionTV.text="0"
-                    binding.summaryCardView.visibility=View.INVISIBLE
+                    binding.summaryCardView.visibility=View.VISIBLE
                 }
-                else if(response.code()>=400)
-                {
-                    Toast.makeText(context,"Please try again: "+response.body(),Toast.LENGTH_LONG).show()
-                    binding.summaryCardView.visibility=View.INVISIBLE
-//                    binding.totalBusesTV.text="0"
-//                    binding.passengerCaughtTV.text="0"
-//                    binding.fineCollectionTV.text="0"
-
-                }
-                else if(response.code()>=200) {
-
-                    val responseBody1 = response.body()!!
-
-
-
-                    val responseBody=responseBody1.data.summary
-                    if(responseBody.totalAudits>0)
-                    {
-                        binding.summaryCardView.visibility=View.VISIBLE
-                    }
-                    binding.totalBusesTV.text=responseBody.totalAudits.toString()
-                    binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
-                    val stWithRs:String="₹"+responseBody.totalCollection.toString()
-                    binding.fineCollectionTV.text=stWithRs
-                    binding.viewAuditReport.setOnClickListener {
+                binding.totalBusesTV.text=responseBody.totalAudits.toString()
+                binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
+                val stWithRs:String="₹"+responseBody.totalCollection.toString()
+                binding.fineCollectionTV.text=stWithRs
+                binding.viewAuditReport.setOnClickListener {
 //                        findNavController().navigate(R.id.auditReport2Fragment)
-                        findNavController().navigate(R.id.action_busSelectionFragment_to_auditReport2Fragment)
-                    }
-
+                    findNavController().navigate(R.id.action_busSelectionFragment_to_auditReport2Fragment)
                 }
+
+
             }
-
-            //                    override fun onFailure(call: Call<String>, t: Throwable) {
-            //                        Log.d("Errorapi1",t.toString())
-            //                        //binding.code2TV.text=t.message.toString()
-            //                    }
-
-            override fun onFailure(
-                call: Call<CreateAuditNew>,
-                t: Throwable
-            ) {
-                //Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
-//                binding.totalBusesTV.text="0"
-//                binding.passengerCaughtTV.text="0"
-//                binding.fineCollectionTV.text="0"
-                loading.isDismiss()
-                findNavController().navigate(R.id.action_busSelectionFragment_to_noNetworkFragment)
+            if(resp.second?.code()!! >=500 &&  resp.second?.code()!! <600)
+            {
                 binding.summaryCardView.visibility=View.INVISIBLE
-                Log.d("resp=",t.toString())
-
             }
+            if(resp.second?.code()!! >=400 &&  resp.second?.code()!! <500)
+            {
+                binding.summaryCardView.visibility=View.INVISIBLE
+            }
+            if(resp.first==true)
+            {
+                binding.summaryCardView.visibility=View.INVISIBLE
+            }
+        }
 
-        })
+//        val loading=Loading_Dialog(activity as MainActivity)
+//        loading.start()
+//        response.enqueue(object : Callback<CreateAuditNew> {
+//            override fun onResponse(
+//                call: Call<CreateAuditNew>,
+//                response: Response<CreateAuditNew>
+//            ) {
+//                loading.isDismiss()
+//                Log.d("Resp=",response.code().toString())
+//                if(response.code()>=500)
+//                {
+//                    //Toast.makeText(context,"ServerError",Toast.LENGTH_LONG).show()
+//                    findNavController().navigate(R.id.action_busSelectionFragment_to_errorDetailsFragment)
+////                    binding.totalBusesTV.text="0"
+////                    binding.passengerCaughtTV.text="0"
+////                    binding.fineCollectionTV.text="0"
+//                    binding.summaryCardView.visibility=View.INVISIBLE
+//                }
+//                else if(response.code()>=400)
+//                {
+//                    Toast.makeText(context,"Please try again: "+response.body(),Toast.LENGTH_LONG).show()
+//                    binding.summaryCardView.visibility=View.INVISIBLE
+////                    binding.totalBusesTV.text="0"
+////                    binding.passengerCaughtTV.text="0"
+////                    binding.fineCollectionTV.text="0"
+//
+//                }
+//                else if(response.code()>=200) {
+//
+//                    val responseBody1 = response.body()!!
+//
+//
+//
+//                    val responseBody=responseBody1.data.summary
+//                    if(responseBody.totalAudits>0)
+//                    {
+//                        binding.summaryCardView.visibility=View.VISIBLE
+//                    }
+//                    binding.totalBusesTV.text=responseBody.totalAudits.toString()
+//                    binding.passengerCaughtTV.text=responseBody.passengerCaught.toString()
+//                    val stWithRs:String="₹"+responseBody.totalCollection.toString()
+//                    binding.fineCollectionTV.text=stWithRs
+//                    binding.viewAuditReport.setOnClickListener {
+////                        findNavController().navigate(R.id.auditReport2Fragment)
+//                        findNavController().navigate(R.id.action_busSelectionFragment_to_auditReport2Fragment)
+//                    }
+//
+//                }
+//            }
+//
+//            //                    override fun onFailure(call: Call<String>, t: Throwable) {
+//            //                        Log.d("Errorapi1",t.toString())
+//            //                        //binding.code2TV.text=t.message.toString()
+//            //                    }
+//
+//            override fun onFailure(
+//                call: Call<CreateAuditNew>,
+//                t: Throwable
+//            ) {
+//                //Toast.makeText(context,"NO INTERNET CONNECTION",Toast.LENGTH_LONG).show()
+////                binding.totalBusesTV.text="0"
+////                binding.passengerCaughtTV.text="0"
+////                binding.fineCollectionTV.text="0"
+//                loading.isDismiss()
+//                findNavController().navigate(R.id.action_busSelectionFragment_to_noNetworkFragment)
+//                binding.summaryCardView.visibility=View.INVISIBLE
+//                Log.d("resp=",t.toString())
+//
+//            }
+//
+//        })
 
         binding.redirectBusSelectToBusSelectDisp.setOnClickListener {
 //            IntentIntegrator().initiateScan()

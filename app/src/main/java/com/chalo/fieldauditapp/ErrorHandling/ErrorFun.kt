@@ -65,9 +65,11 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
         call.enqueue(object : Callback<S> {
             override fun onResponse(call: Call<S>, response: Response<S>) {
                 Log.d("Check1", "onResponse")
+                fail=false
                 check = true
                 loading.isDismiss()
 
+                res = response
                 Log.d("SuccessapiLog", response.code().toString())
                 Log.d("SuccessapiLog", response.message().toString())
                 Log.d("SuccessapiLog", response.body().toString())
@@ -77,11 +79,11 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
                     //MainActivity().findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment)
                     //navController.navigate(R.id.errorDetailsFragment)
                     cd=500
-                    activity.findNavController(R.id.errorDetailsFragment)
+                    //activity.findNavController(R.id.errorDetailsFragment)
                     //return Pair(false, null)
                     //(Activity as MainActivity).
                 } else if (response.code() >= 400) {
-                    Toast.makeText(activity , "Wrong details", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(activity , "Wrong details", Toast.LENGTH_LONG).show()
                     cd=400
                     //findNavController().navigate(R.id.action_loginFragment_to_errorDetailsFragment) //Remove
                     //*binding.editTextUserlayout.error="This User ID does not exist"
@@ -92,7 +94,7 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
                         val key = "token"
                         flag = true
 
-                        res = response
+//                        res = response
                         //MainActivity().findNavController(R.id.errorDetailsFragment)
                         //*saveData(key,token.toString())
                         //*binding.editTextUserlayout.error=null
@@ -172,7 +174,7 @@ suspend fun <T, S> ApiCall(call: Call<S>, respType: String, activity: MainActivi
     Log.d("Check1", "After Enqueue and flag=${flag2}")
 
 
-    return Pair(flag2, res)
+    return Pair(fail, res)
 }
 
 fun <T:Any> A(cx:Int,valw:T):Int

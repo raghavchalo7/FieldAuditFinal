@@ -1,4 +1,4 @@
-package com.chalo.fiel
+package com.chalo.fieldauditapp
 
 import com.chalo.fieldauditapp.CreateAuditAPI
 import com.chalo.fieldauditapp.MainActivity
@@ -121,12 +121,12 @@ class LoginFragment : Fragment() {
                 val resp = ApiCall<CreateAuditAPI, JsonObject>(call, "CreateAuditRequest", activity = activity as MainActivity)
                 Log.d("Check1", "ResponseCode=${resp.second?.body()}")
                 //loading.isDismiss()
-                if (resp.first == true) {
+                if (resp.second?.code()  == 200) {
                     //Toast.makeText(context, "True@@@@@@2", Toast.LENGTH_LONG).show()
                         val token= resp.second?.body()?.get("token")
                         val key="token"
                         saveData(key,token.toString())
-                    binding.editTextUserlayout.error=null
+                    //binding.editTextUserlayout.error=null
                     findNavController().navigate(R.id.action_loginFragment_to_busSelectionFragment)
                 }
                 if(resp.second?.code()!! >=400 &&  resp.second?.code()!! <500)
