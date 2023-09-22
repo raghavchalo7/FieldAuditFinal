@@ -413,7 +413,8 @@ class BusSelectionFineFragment : Fragment() {
 
 
         binding.issueFine.setOnClickListener {
-            val ts = System.currentTimeMillis() / 1000
+            var ts = System.currentTimeMillis() / 1000
+            ts+=19800
             val fineTs = ts.toString()
 
             val msg=binding.fineAmountET.text.toString()

@@ -19,6 +19,12 @@ class SplashScreenActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         _binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         //binding.ivChalo.alpha=0f
+
+
+
+        val view = binding.root
+        setContentView(view)
+
         binding.ivChalo.animate().setDuration(1000).alpha(1f).withEndAction {
             val i= Intent(this,MainActivity::class.java)
             startActivity(i)
@@ -31,9 +37,5 @@ class SplashScreenActivity : AppCompatActivity() {
 //            }
             finish()
         }
-
-
-        val view = binding.root
-        setContentView(view)
     }
 }

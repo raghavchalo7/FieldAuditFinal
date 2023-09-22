@@ -312,8 +312,12 @@ class BusSelectionFragment : Fragment() {
             if (result == null) {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
-                val tsLong = System.currentTimeMillis() / 1000
+                var tsLong = System.currentTimeMillis() / 1000
+                //Log.d("TimeCurrentTS=","Current Time=${tsLong}")
+                tsLong += 19800
                 val ts = tsLong.toString()
+                //Toast.makeText(context,"Current Time=${ts}",Toast.LENGTH_LONG).show()
+                //Log.d("TimeCurrentTS=","Current Time after 5:30=${ts}")
                 //Toast.makeText(context, "Scanned at: " + ts, Toast.LENGTH_LONG).show()
                 var dataResult1Previous=result.toString()
                 //Toast.makeText(context,"Encrypted=${dataResult1Previous}",Toast.LENGTH_LONG).show()
