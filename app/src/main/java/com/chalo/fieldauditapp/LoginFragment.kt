@@ -74,6 +74,10 @@ class LoginFragment : Fragment() {
         binding.editTextUser.addTextChangedListener(mTextWatcher);
         binding.editTextPassword.addTextChangedListener(mTextWatcher);
 
+        binding.crashBtnLog.setOnClickListener {
+            throw RuntimeException("Test Crash from Login") // Force a crash
+        }
+
         //loadData()
 
 //        val retrofitbuilder=Retrofit.Builder()

@@ -2,11 +2,24 @@
 plugins {
     id("com.android.application") version "8.1.0" apply false
     id("org.jetbrains.kotlin.android") version "1.8.0" apply false
+    // ...
+
+    // Make sure that you have the Google services Gradle plugin dependency
+    id("com.google.gms.google-services") version "4.3.15" apply false
+
+    id("com.google.firebase.crashlytics") version "2.9.9" apply false
 }
 
 buildscript {
     repositories {
         google()
+    }
+    plugins {
+        // ...
+
+        // Add the dependency for the Google services Gradle plugin
+        //id("com.google.gms.google-services") version "4.3.15" apply false
+
     }
     dependencies {
         val nav_version = "2.7.0"

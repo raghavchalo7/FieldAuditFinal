@@ -80,4 +80,7 @@
     <string name="_3_000">₹3,000</string>
     <string name="view_audit_reports">VIEW AUDIT REPORTS</string>
     <string name="bus_stop">Bus Stop</string>
+    <string name="test_crash">Test Crash</string>
+    <string name="loading">Loading..</string>
+    <string name="test_crash_login">Test Crash login</string>
 </resources>

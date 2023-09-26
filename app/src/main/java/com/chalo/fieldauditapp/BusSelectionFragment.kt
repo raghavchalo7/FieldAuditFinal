@@ -64,6 +64,10 @@ class BusSelectionFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding=FragmentBusSelectionBinding.inflate(inflater,container, false)
 
+        binding.crashBtn.setOnClickListener {
+            throw RuntimeException("Test Crash") // Force a crash
+        }
+
         drawerLayout2=(activity as MainActivity).findViewById(R.id.drawerLayout)
 //        activity.gea().setDisplayHomeAsUpEnabled(true);
         (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)//true
