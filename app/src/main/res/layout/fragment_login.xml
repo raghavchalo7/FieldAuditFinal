@@ -14,12 +14,12 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
+            android:layout_width="103dp"
+            android:layout_height="56dp"
             android:layout_marginTop="40dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/chalomasterlogo"
+            android:src="@drawable/chaloauditlogo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -110,9 +110,10 @@
 
         <Button
             android:id="@+id/crashBtnLog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="54dp"
             android:text="@string/test_crash_login"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/redirectLoginToBusSelection"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

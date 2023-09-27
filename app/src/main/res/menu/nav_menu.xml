@@ -10,12 +10,12 @@
 
     <item
         android:id="@+id/audit"
-        android:icon="@drawable/vectoraudit"
+        android:icon="@drawable/auditreportvector"
         android:title="@string/audit_report"/>
 
     <item
         android:id="@+id/logout"
-        android:icon="@drawable/logout2"
+        android:icon="@drawable/logoutvector"
         android:title="@string/logout"/>
 </menu>
 

@@ -3,6 +3,7 @@
     <style name="Base.Theme.FieldAuditApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">@color/black</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="Theme.FieldAuditApp" parent="Base.Theme.FieldAuditApp" />
@@ -10,6 +11,7 @@
     <style name="MyToolbarStyle" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/black</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
 
@@ -24,6 +26,15 @@
         <item name="android:itemBackground">@color/red</item>
     </style>
 
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
 
 <!--    <style name="ToolbarColoredBackArrow" parent="Theme.Material3.DayNight.">-->
 <!--        <item name="android:textColorSecondary">@color/black</item>-->

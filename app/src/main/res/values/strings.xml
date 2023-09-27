@@ -83,4 +83,8 @@
     <string name="test_crash">Test Crash</string>
     <string name="loading">Loading..</string>
     <string name="test_crash_login">Test Crash login</string>
+    <string name="confirm_vehicle_details">Confirm Vehicle Details</string>
+    <string name="audit_passengers">Audit Passengers</string>
+    <string name="passengers_in_the_bus">Passengers in the bus :</string>
+    <string name="view_audit_report">View Audit Report</string>
 </resources>

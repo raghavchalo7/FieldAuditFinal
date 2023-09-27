@@ -286,7 +286,7 @@ class BusSelectionFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setLogo(R.drawable.chalomasterlogo)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setLogo(R.drawable.chaloauditlogo)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayUseLogoEnabled(true)
         val toolbar=(activity as MainActivity)?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         if (toolbar != null) {
@@ -318,7 +318,7 @@ class BusSelectionFragment : Fragment() {
             } else {
                 var tsLong = System.currentTimeMillis() / 1000
                 //Log.d("TimeCurrentTS=","Current Time=${tsLong}")
-                tsLong += 19800
+                //tsLong += 19800
                 val ts = tsLong.toString()
                 //Toast.makeText(context,"Current Time=${ts}",Toast.LENGTH_LONG).show()
                 //Log.d("TimeCurrentTS=","Current Time after 5:30=${ts}")

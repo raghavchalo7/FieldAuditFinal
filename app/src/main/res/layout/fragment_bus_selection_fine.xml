@@ -14,15 +14,15 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
+            android:layout_width="186dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosansregular"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="216dp"
-            android:text="@string/passenger_count"
+            android:fontFamily="@font/notosanssemibold"
+            android:text="@string/audit_passengers"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,13 +32,13 @@
             android:id="@+id/passengerTV"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/notosanssemibold"
             android:text="@string/_0"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView21"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <androidx.cardview.widget.CardView
@@ -132,6 +132,17 @@
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/passengers_in_the_bus"
+            android:textSize="16sp"
+            android:fontFamily="@font/notosanssemibold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

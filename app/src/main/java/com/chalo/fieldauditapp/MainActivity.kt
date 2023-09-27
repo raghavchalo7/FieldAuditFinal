@@ -105,8 +105,18 @@ class MainActivity : AppCompatActivity() {
 
         //val IS_PRIVACY_POLICY_ACCEPTED:String="true"//for now
 
+        //Log.d("Token======",token.toString())
         val destination =
             if (IS_LOGGED_IN == false) R.id.loginFragment else R.id.busSelectionFragment
+        if(IS_LOGGED_IN==true)
+        {
+            val tok= token?.subSequence(1, (token?.length )?.minus(1) ?: 0)
+            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userIdTV).text=tok
+        }
+        else
+        {
+            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userIdTV).text="UserId"
+        }
         navGraph.setStartDestination(destination)
         navController.graph = navGraph
 

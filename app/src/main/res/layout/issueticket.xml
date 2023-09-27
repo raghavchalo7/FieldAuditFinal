@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    >
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/notosansbold"
         android:text="@string/confirm_fine"
         android:textColor="@color/black"
         android:textSize="18sp"
