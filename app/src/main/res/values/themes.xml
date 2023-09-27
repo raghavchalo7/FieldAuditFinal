@@ -26,6 +26,7 @@
 
     <style name="Theme.SplashScreenApp" parent="Base.Theme.FieldAuditApp">
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="Nav_menu" parent="Base.Theme.FieldAuditApp">

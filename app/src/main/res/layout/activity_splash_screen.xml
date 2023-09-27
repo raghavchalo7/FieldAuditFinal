@@ -10,7 +10,7 @@
         android:id="@+id/iv_chalo"
         android:layout_width="103dp"
         android:layout_height="56dp"
-        android:src="@drawable/chaloauditlogo"
+        android:src="@drawable/audit_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

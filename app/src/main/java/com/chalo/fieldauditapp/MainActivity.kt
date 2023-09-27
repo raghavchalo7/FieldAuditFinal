@@ -212,6 +212,41 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+//        var IS_LOGGED_IN: Boolean
+//        val sharedPreferences = this.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+//        val token = sharedPreferences?.getString("token", null)
+//        //Toast.makeText(this, "toast=${token}", Toast.LENGTH_LONG).show()
+//        IS_LOGGED_IN = token != null
+//        if(IS_LOGGED_IN==true)
+//        {
+//            val tok= token?.subSequence(1, (token?.length )?.minus(1) ?: 0)
+//            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userIdTV).text=tok
+//        }
+//        else
+//        {
+//            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userIdTV).text="UserId"
+//        }
+    }
+
+    fun userName(){
+        var IS_LOGGED_IN: Boolean
+        val sharedPreferences = this.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE)
+        val token = sharedPreferences?.getString("token", null)
+        //Toast.makeText(this, "toast=${token}", Toast.LENGTH_LONG).show()
+        IS_LOGGED_IN = token != null
+        if(IS_LOGGED_IN==true)
+        {
+            val tok= token?.subSequence(1, (token?.length )?.minus(1) ?: 0)
+            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userIdTV).text=tok
+        }
+        else
+        {
+            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userIdTV).text="UserId"
+        }
+    }
+
     override fun onBackPressed() {
 
 //        val fragmentOne:BusSelectionFragment = supportFragmentManager.findFragmentByTag("BusSelectionFragment");

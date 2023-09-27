@@ -295,6 +295,8 @@ class BusSelectionFragment : Fragment() {
                 drawerLayout2.openDrawer(GravityCompat.START)
             }
         }
+
+        (activity as MainActivity).userName()
     }
 
     override fun onStop() {
