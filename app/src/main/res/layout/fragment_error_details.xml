@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ErrorDetailsFragment">
+    tools:context=".ErrorDetailsFragment"
+    android:background="@color/white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="222dp"
-            android:src="@drawable/info"
+            android:src="@drawable/infovector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,15 +25,15 @@
         <TextView
             android:id="@+id/textView16"
             android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="71dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="47dp"
             android:layout_marginTop="23dp"
-            android:layout_marginEnd="71dp"
+            android:layout_marginEnd="47dp"
             android:fontFamily="@font/notosanssemibold"
             android:text="@string/failed_to_load_bus_details"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,15 +41,15 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="19dp"
-            android:layout_marginStart="128dp"
-            android:fontFamily="@font/notosansregular"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="128dp"
+            android:layout_marginEnd="120dp"
+            android:fontFamily="@font/notosansregular"
             android:text="@string/please_try_again"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

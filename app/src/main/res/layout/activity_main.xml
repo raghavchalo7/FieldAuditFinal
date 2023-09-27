@@ -57,6 +57,7 @@
         app:headerLayout="@layout/nav_header"
         android:backgroundTint="@color/white"
         app:menu="@menu/nav_menu"
+        app:theme="@style/Drawer"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"/>
 

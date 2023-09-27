@@ -286,8 +286,9 @@ class BusSelectionFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setLogo(R.drawable.chaloauditlogo)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setLogo(R.drawable.audit_logo)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayUseLogoEnabled(true)
+
         val toolbar=(activity as MainActivity)?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         if (toolbar != null) {
             toolbar.setNavigationOnClickListener {

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -19,15 +20,15 @@
     <TextView
         android:id="@+id/textView16"
         android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="71dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
         android:layout_marginTop="23dp"
-        android:layout_marginEnd="71dp"
-        android:fontFamily="sans-serif-medium"
+        android:layout_marginEnd="47dp"
+        android:fontFamily="@font/notosanssemibold"
         android:text="@string/failed_to_load_bus_details"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,20 +36,24 @@
 
     <TextView
         android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="128dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="128dp"
+        android:layout_marginEnd="120dp"
+        android:fontFamily="@font/notosansregular"
         android:text="@string/please_try_again"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appCompatButton"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"

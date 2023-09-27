@@ -94,7 +94,8 @@
             android:layout_marginTop="8dp"
             android:text="@string/_0"
             android:textSize="20sp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/notosansbold"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ef" />
 

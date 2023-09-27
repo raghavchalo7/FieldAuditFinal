@@ -20,10 +20,17 @@ class ErrorDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding=FragmentErrorDetailsBinding.inflate(inflater,container, false)
         (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as MainActivity?)?.setDrawerEnabled(false)
         binding.errorDetailsOK.setOnClickListener {
             (activity as MainActivity).onBackPressed()
         }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as MainActivity?)?.setDrawerEnabled(false)
     }
 
 }

@@ -39,7 +39,6 @@ class BusDetailsDoneFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
         (activity as MainActivity?)?.setDrawerEnabled(false)
     }
 
