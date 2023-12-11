@@ -8,6 +8,16 @@ plugins {
 }
 
 android {
+
+    signingConfigs {
+        create("release") {
+            keyAlias = "key0"
+            keyPassword = "FieldAuditKey"
+            storeFile = file("/Users/raghavsharma/Desktop/FieldAuditApp.jks")
+            storePassword = "FieldAuditKey"
+        }
+    }
+
     namespace = "com.chalo.fieldauditapp"
     compileSdk = 33
 
@@ -24,11 +34,20 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            isDebuggable=false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
+            //signingConfig signingConfigs.release
         }
+
+        debug{
+            isMinifyEnabled = false
+            isDebuggable = true
+        }
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

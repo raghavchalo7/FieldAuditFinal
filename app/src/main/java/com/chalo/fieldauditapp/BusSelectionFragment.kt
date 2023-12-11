@@ -61,6 +61,7 @@ class BusSelectionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        R.string.Rs
         // Inflate the layout for this fragment
         _binding=FragmentBusSelectionBinding.inflate(inflater,container, false)
 
